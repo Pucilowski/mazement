@@ -3,8 +3,9 @@ package com.pucilowski.navigation.ui;
 import com.pucilowski.navigation.maze.algorithms.generation.RecursiveDFS;
 import com.pucilowski.navigation.maze.algorithms.generation.StackDFS;
 import com.pucilowski.navigation.maze.model.grid.Grid;
+import com.pucilowski.navigation.maze.model.grid.SquareGrid;
 import com.pucilowski.navigation.ui.panels.ControlPanel;
-import com.pucilowski.navigation.ui.panels.ViewPanel;
+import com.pucilowski.navigation.ui.panels.MazePanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,6 +19,8 @@ import java.awt.event.ActionListener;
 public class Frame extends JFrame {
 
     final GUI gui;
+
+    public MazePanel mazePanel;
 
     public Frame(GUI gui) {
         this.gui = gui;
@@ -48,12 +51,15 @@ public class Frame extends JFrame {
         genDfsStack.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                gui.mazing.grid = new SquareGrid(20,15);
                 StackDFS dfs = new StackDFS(gui.mazing.grid);
             }
         });
         genDfsRecursive.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                gui.mazing.grid = new SquareGrid(20,15);
+
                 RecursiveDFS dfs = new RecursiveDFS(gui.mazing.grid);
             }
         });
@@ -66,17 +72,18 @@ generateItem.add(genDfsRecursive);
         setLayout(new BorderLayout());
 
 
-        ViewPanel viewPanel = new ViewPanel() {
+        mazePanel = new MazePanel() {
             @Override
             public Grid getGrid() {
                 return gui.mazing.grid;
             }
         };
 
+
         ControlPanel controlPanel = new ControlPanel();
         controlPanel.setPreferredSize(new Dimension(128, 600));
 
-        add(viewPanel, BorderLayout.CENTER);
+        add(mazePanel, BorderLayout.CENTER);
         add(controlPanel, BorderLayout.EAST);
 
     }

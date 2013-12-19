@@ -15,19 +15,35 @@ import java.util.Stack;
 public class StackDFS extends AbstractGenerator {
 
 
+
     Stack<Cell> visited = new Stack<Cell>();
+
+
 
     public StackDFS(Grid grid) {
         super(grid);
 
+
+
+    }
+
+    public void start() {
         visited.add(grid.cells[0][0]);
 
 
-        while (step()) ;
-
-        grid.gen();
+        while (step())  {
 
 
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            grid.gen();
+
+            step.onStep(visited.peek());
+        }
     }
 
     public boolean step() {
@@ -62,6 +78,7 @@ public class StackDFS extends AbstractGenerator {
                 grid.connect(neigh);
 
                 visited.add(neigh.target);
+                neigh.target.depth = current.depth;
 
                 return true;
                 //maze[cx][cy] |= dir.bit;

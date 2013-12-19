@@ -15,14 +15,8 @@ public class BinaryGrid {
     public final boolean[][] passage;
 
     public BinaryGrid(Grid grid) {
-
-        System.out.println("grid: " + grid.width + " height : "+ grid.height);
-
         this.width = grid.width * 2 + 1;
         this.height = grid.height * 2 + 1;
-
-        System.out.println("grid: " + width + " height : "+ height);
-
         this.passage = new boolean[width][height];
 
         for (int y = 0; y < grid.height; y++) {
@@ -35,6 +29,7 @@ public class BinaryGrid {
             for (int x = 0; x < grid.width; x++) {
                 Cell cell = grid.cells[x][y];
 
+                //if(cell.walls==0)continue;
 
                 int nx = 2 * x + 1;
                 int ny = 2 * y + 1;
@@ -50,14 +45,13 @@ public class BinaryGrid {
 
                     if ((cell.walls & flag) == flag) {
                         Cell n = grid.getAdjacentTile(cell, index);
-                        Point p = grid.getOffset( cell,index);
-                        System.out.println("Cell: " + cell);
                         if(n==null)continue;
+                        Point p = grid.getOffset( n,index);
+
 
                         int px = nx + p.x;
                         int py = ny + p.y;
 
-                        System.out.println(width + ":"+height);
 
                         passage[px][py] = true;
 
