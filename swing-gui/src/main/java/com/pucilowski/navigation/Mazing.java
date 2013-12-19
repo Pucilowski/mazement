@@ -9,6 +9,7 @@ import com.pucilowski.navigation.maze.model.Cell;
 import com.pucilowski.navigation.maze.model.grid.Grid;
 import com.pucilowski.navigation.maze.model.grid.HexGrid;
 import com.pucilowski.navigation.maze.model.grid.SquareGrid;
+import com.pucilowski.navigation.maze.model.grid.TriGrid;
 import com.pucilowski.navigation.ui.GUI;
 
 /**
@@ -22,7 +23,7 @@ public class Mazing {
 
     public Mazing() {
 
-        grid = new SquareGrid(20, 15);
+        grid = new TriGrid(20, 15);
         gui = new GUI(this);
 
 
@@ -48,7 +49,7 @@ public class Mazing {
                     dfs.grid.gen();
 
                     try {
-                        Thread.sleep(100);
+                        Thread.sleep(10);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
