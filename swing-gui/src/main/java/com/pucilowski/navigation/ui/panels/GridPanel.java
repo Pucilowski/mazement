@@ -11,22 +11,10 @@ import java.awt.event.MouseMotionListener;
 /**
  * Created by martin on 11/12/13.
  */
-public abstract class MazePanel extends JPanel {
+public abstract class GridPanel extends JPanel {
 
-    public MazePanel() {
-        setBackground(Color.RED);
+    public GridPanel() {
 
-        addMouseMotionListener(new MouseMotionListener() {
-            @Override
-            public void mouseDragged(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseMoved(MouseEvent e) {
-
-            }
-        });
     }
 
     public abstract Grid getGrid();
