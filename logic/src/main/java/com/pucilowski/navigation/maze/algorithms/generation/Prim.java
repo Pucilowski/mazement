@@ -1,11 +1,11 @@
 package com.pucilowski.navigation.maze.algorithms.generation;
 
+import com.pucilowski.navigation.maze.algorithms.generation.misc.StepListener;
 import com.pucilowski.navigation.maze.model.Cell;
 import com.pucilowski.navigation.maze.model.Neighborship;
 import com.pucilowski.navigation.maze.model.grid.Grid;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 /**
  * Created by martin on 19/12/13.
@@ -31,7 +31,7 @@ public class Prim extends AbstractGenerator {
 
 
             try {
-                Thread.sleep(50);
+                Thread.sleep(100);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -44,7 +44,7 @@ public class Prim extends AbstractGenerator {
 
     public void addWalls(Cell cell) {
         for (Neighborship n : cell.neighborships) {
-            if (n == null) continue;
+            if (n == null /*|| n.target.walls>0*/) continue;
             walls.add(n);
         }
     }
@@ -57,7 +57,6 @@ public class Prim extends AbstractGenerator {
 
         //System.out.println("cx: " + cx + " cy: " + cy);
 
-        System.out.println("aa");
 
         if (walls.isEmpty()) {
             Cell start = grid.cells[0][0];
@@ -66,18 +65,15 @@ public class Prim extends AbstractGenerator {
         }
 
 
-        Collections.shuffle(walls, random);
+        //Collections.shuffle(walls, random);
         Neighborship wall = walls.get(0);
 
-         if (!visited.contains(wall.target)) {
+        if (visited.contains(wall.target)) {
+            walls.remove(wall);
+        } else {
             grid.connect(wall);
             visited.add(wall.target);
             addWalls(wall.target);
-            return true;
-        }
-
-        if (grid.isConnected(wall)) {
-            walls.remove(wall);
         }
 
         step.onStep(wall.source);

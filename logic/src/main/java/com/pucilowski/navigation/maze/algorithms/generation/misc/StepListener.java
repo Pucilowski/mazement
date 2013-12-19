@@ -1,4 +1,4 @@
-package com.pucilowski.navigation.maze.algorithms.generation;
+package com.pucilowski.navigation.maze.algorithms.generation.misc;
 
 import com.pucilowski.navigation.maze.model.Cell;
 
