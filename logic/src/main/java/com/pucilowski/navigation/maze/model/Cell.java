@@ -12,14 +12,12 @@ public class Cell {
     public final int y;
 
     public final int sides;
-    //public final Cell[] neighborships;
-    //public final Map<Integer, Cell> neighborships = new HashMap<Integer, Cell>();
     public final Neighborship[] neighborships;
 
     public int walls = 0;
 
-public int depth=0;
-Color c =  Color.WHITE;
+    public int depth = 0;
+    Color c = Color.WHITE;
 
     public Cell(int x, int y, int sides) {
         this.x = x;
@@ -51,6 +49,6 @@ Color c =  Color.WHITE;
 
     @Override
     public String toString() {
-        return "["+x+", "+y+"]";
+        return "[" + x + ", " + y + "]";
     }
 }
