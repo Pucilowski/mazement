@@ -1,4 +1,4 @@
-package com.pucilowski.navigation.maze.generation;
+package com.pucilowski.navigation.maze.algorithms.generation;
 
 import com.pucilowski.navigation.maze.model.Cell;
 import com.pucilowski.navigation.maze.model.Neighborship;
@@ -25,6 +25,9 @@ public class StackDFS extends AbstractGenerator {
 
         while (step()) ;
 
+        grid.gen();
+
+
     }
 
     public boolean step() {
@@ -35,11 +38,11 @@ public class StackDFS extends AbstractGenerator {
 
         //System.out.println("cx: " + cx + " cy: " + cy);
 
-        if(visited.empty()) return false;
+        if (visited.empty()) return false;
 
         Cell current = visited.peek();
 
-        System.out.println("step: " + current);
+        //System.out.println("step: " + current);
 
         Neighborship[] neighborships = current.neighborships;
         Collections.shuffle(Arrays.asList(neighborships), random);
@@ -67,55 +70,11 @@ public class StackDFS extends AbstractGenerator {
 
         }
 
-        System.out.println("nothing to do : " + current );
 
         visited.pop();
 
         return true;
 
-        //Collections.shuffle(Arrays.asList(adjacentTiles));
 
-        //for (int i = 0; i < adjacentTiles.length; i++) {
-
-        //Cell[] adjacentTiles = grid.getAdjacentTiles(current);
-
-
-    }
-
-    private static boolean between(int v, int upper) {
-        return (v >= 0) && (v < upper);
-    }
-
-    public void display() {
-
-        int x = grid.width;
-        int y = grid.height;
-        Cell[][] cells = grid.cells;
-
-
-        for (int i = 0; i < y; i++) {
-            // draw the north edge
-            for (int j = 0; j < x; j++) {
-                System.out.print((grid.cells[j][i].walls & 1) == 0 ? "+---" : "+   ");
-            }
-            System.out.println("+");
-            // draw the west edge
-            for (int j = 0; j < x; j++) {
-                System.out.print((grid.cells[j][i].walls & 8) == 0 ? "|   " : "    ");
-            }
-            System.out.println("|");
-        }
-        // draw the bottom line
-        for (int j = 0; j < x; j++) {
-            System.out.print("+---");
-        }
-        System.out.println("+");
-    }
-
-    public static void main(String[] args) {
-        int x = args.length >= 1 ? (Integer.parseInt(args[0])) : 8;
-        int y = args.length == 2 ? (Integer.parseInt(args[1])) : 8;
-        StackDFS maze = new StackDFS(new SquareGrid(20, 15));
-        maze.display();
     }
 }
