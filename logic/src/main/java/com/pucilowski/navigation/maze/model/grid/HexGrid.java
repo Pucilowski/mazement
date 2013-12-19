@@ -10,14 +10,14 @@ import java.util.ArrayList;
  */
 public class HexGrid extends Grid {
 
-   public static final Point[] offsets = {
-            new Point(1, -1), // ne
-            new Point(1, 0), // se
+    public static final Point[] offsets = {
+            new Point(1, 0), // ne
+            new Point(1, 1), // se
 
             new Point(0, 1), // s
 
-            new Point(-1, 0), // sw
-            new Point(-1, -1), // nw
+            new Point(-1, 1), // sw
+            new Point(-1, 0), // nw
 
             new Point(0, -1), // n
     };
