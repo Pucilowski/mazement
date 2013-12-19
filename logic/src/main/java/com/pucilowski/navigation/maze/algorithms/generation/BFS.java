@@ -63,7 +63,7 @@ public class BFS extends AbstractGenerator {
         Collections.shuffle(Arrays.asList(neighborships), random);
 
         for (int i = 0; i < neighborships.length; i++) {
-            //Cell adjacent = grid.getAdjacentTile(current, i);
+            //Cell adjacent = grid.getNeighbor(current, i);
             Neighborship neigh = neighborships[i];
             if (neigh == null) continue;
 

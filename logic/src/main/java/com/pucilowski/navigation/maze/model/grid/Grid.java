@@ -4,6 +4,7 @@ import com.pucilowski.navigation.maze.model.Cell;
 import com.pucilowski.navigation.maze.model.Neighborship;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 /**
  * Created by martin on 10/12/13.
@@ -15,7 +16,7 @@ public abstract class Grid {
     public final int sides;
     public Cell[][] cells;
 
-    public BinaryGrid binaryGrid = new BinaryGrid(this);
+    public BooleanGrid booleanGrid = new BooleanGrid(this);
     public int maxDepth = 1;
 
 
@@ -41,7 +42,7 @@ public abstract class Grid {
                 for (int index = 0; index < sides; index++) {
 
 
-                    Cell neighbor = getAdjacentTile(cell, index);
+                    Cell neighbor = getNeighbor(cell, index);
                     if (neighbor == null) continue;
                     //cell.neighborships[s] = opp;
                     //cell.neighborships.put(index, neighbor);
@@ -60,7 +61,7 @@ public abstract class Grid {
     }
 
     public void gen() {
-        binaryGrid = new BinaryGrid(this);
+        booleanGrid = new BooleanGrid(this);
     }
 
     public boolean isConnected(Neighborship n) {
@@ -96,9 +97,27 @@ public abstract class Grid {
 
     public abstract Point getOffset(Cell cell, int index);
 
-    public abstract Cell getAdjacentTile(Cell current, int index);
+    public final Cell getNeighbor(Cell cell, int index) {
+        Point o = getOffset(cell,index);
 
-    public abstract Cell[] getAdjacentTiles(Cell cell);
+        int x = cell.x + o.x;
+        int y = cell.y + o.y;
+        if (!contains(x, y)) return null;
+
+        return cells[x][y];
+    }
+
+    public final  Cell[] getNeighbours(Cell cell) {
+        ArrayList<Cell> adjacent = new ArrayList<Cell>();
+
+        for (int i = 0; i < sides; i++) {
+            Cell n = getNeighbor(cell, i);
+            if (n == null) continue;
+            adjacent.add(n);
+        }
+
+        return adjacent.toArray(new Cell[adjacent.size()]);
+    }
 
 
     public abstract void display();

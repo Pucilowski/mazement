@@ -1,9 +1,7 @@
 package com.pucilowski.navigation.ui.panels;
 
-import com.pucilowski.navigation.maze.model.Cell;
-import com.pucilowski.navigation.maze.model.grid.BinaryGrid;
+import com.pucilowski.navigation.maze.model.grid.BooleanGrid;
 import com.pucilowski.navigation.maze.model.grid.Grid;
-import com.pucilowski.navigation.maze.model.grid.paint.Lerp;
 
 import javax.swing.*;
 import java.awt.*;
@@ -35,7 +33,7 @@ public abstract class MazePanel extends JPanel {
 
     public void paintComponent(Graphics g) {
         Grid grid =getGrid();
-        BinaryGrid bGrid = grid.binaryGrid;
+        BooleanGrid bGrid = grid.booleanGrid;
 
 
         int w = bGrid.width;

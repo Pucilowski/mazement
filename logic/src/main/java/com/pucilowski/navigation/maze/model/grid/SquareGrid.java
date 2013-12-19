@@ -29,28 +29,7 @@ public class SquareGrid extends Grid {
         return offsets[index];
     }
 
-    public Cell getAdjacentTile(Cell cell, int index) {
 
-        int x = cell.x + offsets[index].x;
-        int y = cell.y + offsets[index].y;
-
-        if (!contains(x, y)) return null;
-
-        return cells[x][y];
-    }
-
-    @Override
-    public Cell[] getAdjacentTiles(Cell cell) {
-        ArrayList<Cell> adjacent = new ArrayList<Cell>();
-
-        for (int i = 0; i < sides; i++) {
-            Cell n = getAdjacentTile(cell, i);
-            if (n == null) continue;
-            adjacent.add(n);
-        }
-
-        return adjacent.toArray(new Cell[adjacent.size()]);
-    }
 
     /**
      * sourced from rosettacode

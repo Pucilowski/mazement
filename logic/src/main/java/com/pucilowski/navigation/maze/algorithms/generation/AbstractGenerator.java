@@ -28,6 +28,8 @@ public abstract class AbstractGenerator   {
         this.random = new Random();
     }
 
+    public abstract void start();
+
 
     public enum State {
         WORKING,
