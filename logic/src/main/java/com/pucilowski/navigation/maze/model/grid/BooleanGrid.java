@@ -22,7 +22,7 @@ public class BooleanGrid {
             for (int x = 0; x < grid.width; x++) {
                 Cell cell = grid.cells[x][y];
 
-                if(cell.walls==0)continue;
+                if (cell.walls == 0) continue;
 
                 int nx = 2 * x + 1;
                 int ny = 2 * y + 1;
@@ -34,8 +34,8 @@ public class BooleanGrid {
 
                     if ((cell.walls & flag) == flag) {
                         Cell n = grid.getNeighbor(cell, index);
-                        if(n==null)continue;
-                        Point p = grid.getOffset( n,index);
+                        if (n == null) continue;
+                        Point p = grid.getOffset(n, index);
 
                         int px = nx + p.x;
                         int py = ny + p.y;

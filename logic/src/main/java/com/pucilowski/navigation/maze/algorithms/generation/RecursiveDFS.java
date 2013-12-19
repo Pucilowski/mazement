@@ -27,47 +27,21 @@ public class RecursiveDFS extends Generator {
     }
 
     private void explore(Cell current) {
-     Neighborship[] neighborships = current.neighborships;
+        Neighborship[] neighborships = current.neighborships;
         Collections.shuffle(Arrays.asList(neighborships), random);
 
         for (int i = 0; i < neighborships.length; i++) {
             Neighborship neigh = neighborships[i];
             if (neigh == null) continue;
 
-              int nx = neigh.target.x;
+            int nx = neigh.target.x;
             int ny = neigh.target.y;
 
             if ((grid.cells[nx][ny].walls == 0)) {
                 grid.connect(neigh);
 
-               explore(neigh.target);
+                explore(neigh.target);
             }
         }
-    }
-
-    public void display() {
-
-        int x = grid.width;
-        int y = grid.height;
-        Cell[][] cells = grid.cells;
-
-
-        for (int i = 0; i < y; i++) {
-            // draw the north edge
-            for (int j = 0; j < x; j++) {
-                System.out.print((grid.cells[j][i].walls & 1) == 0 ? "+---" : "+   ");
-            }
-            System.out.println("+");
-            // draw the west edge
-            for (int j = 0; j < x; j++) {
-                System.out.print((grid.cells[j][i].walls & 8) == 0 ? "|   " : "    ");
-            }
-            System.out.println("|");
-        }
-        // draw the bottom line
-        for (int j = 0; j < x; j++) {
-            System.out.print("+---");
-        }
-        System.out.println("+");
     }
 }
