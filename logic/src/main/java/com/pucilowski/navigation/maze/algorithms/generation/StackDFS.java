@@ -3,38 +3,26 @@ package com.pucilowski.navigation.maze.algorithms.generation;
 import com.pucilowski.navigation.maze.model.Cell;
 import com.pucilowski.navigation.maze.model.Neighborship;
 import com.pucilowski.navigation.maze.model.grid.Grid;
-import com.pucilowski.navigation.maze.model.grid.SquareGrid;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
-import java.util.Stack;
 
 /**
  * Created by martin on 19/12/13.
  */
-public class StackDFS extends AbstractGenerator {
-
-
+public class StackDFS extends Generator {
 
     LinkedList<Cell> visited = new LinkedList<Cell>();
 
-
-
     public StackDFS(Grid grid) {
         super(grid);
-
-
-
     }
 
     public void start() {
         visited.add(grid.cells[0][0]);
 
-
         while (step())  {
-
-
             try {
                 Thread.sleep(50);
             } catch (InterruptedException e) {
@@ -48,7 +36,6 @@ public class StackDFS extends AbstractGenerator {
     }
 
     public boolean step() {
-
         if (visited.isEmpty()) return false;
 
         Cell current = visited.peek();
@@ -61,9 +48,7 @@ public class StackDFS extends AbstractGenerator {
             Neighborship neigh = neighborships[i];
             if (neigh == null) continue;
 
-            //int nx = cx + dir.dx;
-            //int ny = cy + dir.dy;
-            int nx = neigh.target.x;
+         int nx = neigh.target.x;
             int ny = neigh.target.y;
 
             if ((grid.cells[nx][ny].walls == 0)) {
@@ -74,17 +59,11 @@ public class StackDFS extends AbstractGenerator {
                 neigh.target.depth = current.depth;
 
                 return true;
-                //maze[cx][cy] |= dir.bit;
-                //maze[nx][ny] |= dir.opposite.bit;
-            }
-
+          }
         }
-
 
         visited.pop();
 
         return true;
-
-
     }
 }

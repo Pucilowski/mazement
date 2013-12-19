@@ -10,7 +10,7 @@ public class ControlPanel extends JPanel {
 
     public ControlPanel() {
 
-        setBackground(Color.RED);
+        //setBackground(Color.RED);
     }
 
 }

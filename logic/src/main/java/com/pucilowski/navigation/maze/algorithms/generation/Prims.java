@@ -1,6 +1,5 @@
 package com.pucilowski.navigation.maze.algorithms.generation;
 
-import com.pucilowski.navigation.maze.algorithms.generation.misc.StepListener;
 import com.pucilowski.navigation.maze.model.Cell;
 import com.pucilowski.navigation.maze.model.Neighborship;
 import com.pucilowski.navigation.maze.model.grid.Grid;
@@ -10,13 +9,13 @@ import java.util.ArrayList;
 /**
  * Created by martin on 19/12/13.
  */
-public class Prim extends AbstractGenerator {
+public class Prims extends Generator {
 
 
     ArrayList<Cell> visited = new ArrayList<Cell>();
     ArrayList<Neighborship> walls = new ArrayList<Neighborship>();
 
-    public Prim(Grid grid) {
+    public Prims(Grid grid) {
         super(grid);
 
 

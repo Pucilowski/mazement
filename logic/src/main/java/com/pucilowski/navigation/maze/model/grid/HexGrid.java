@@ -10,33 +10,16 @@ import java.util.ArrayList;
  */
 public class HexGrid extends Grid {
 
-    public static final Point NORTH = new Point(0, -1);
-    public static final Point SOUTH = new Point(0, 1);
-
-  /*  public static final Point[] offsets = {
-            new Point(-1, 0), // nw
-            new Point(-1, 1), //ne
-
-          EAST, // e
-            WEST, // w
-
-            new Point(1, 0), // ne
-            new Point(1, 1), // se
-    };*/
-
-
-    public static final Point[] offsets = {
-
-
+   public static final Point[] offsets = {
             new Point(1, -1), // ne
             new Point(1, 0), // se
 
-            SOUTH,
+            new Point(0, 1), // s
 
             new Point(-1, 0), // sw
             new Point(-1, -1), // nw
 
-            NORTH,
+            new Point(0, -1), // n
     };
 
     public HexGrid(int width, int height) {
@@ -44,13 +27,13 @@ public class HexGrid extends Grid {
     }
 
     @Override
-    public Point getOffset(Cell cell,int index) {
+    public Point getOffset(Cell cell, int index) {
         //return offsets[index];
-        int x =  offsets[index].x;
-        int y =  offsets[index].y;
-        if(cell.x%2==1) y++;
+        int x = offsets[index].x;
+        int y = offsets[index].y;
+        if (cell.x % 2 == 1) y++;
 
-        return new Point(x,y);
+        return new Point(x, y);
     }
 
 

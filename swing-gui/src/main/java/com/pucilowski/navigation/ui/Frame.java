@@ -5,7 +5,7 @@ import com.pucilowski.navigation.maze.algorithms.generation.StackDFS;
 import com.pucilowski.navigation.maze.model.grid.Grid;
 import com.pucilowski.navigation.maze.model.grid.SquareGrid;
 import com.pucilowski.navigation.ui.panels.ControlPanel;
-import com.pucilowski.navigation.ui.panels.MazePanel;
+import com.pucilowski.navigation.ui.panels.GridPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,7 +20,7 @@ public class Frame extends JFrame {
 
     final GUI gui;
 
-    public MazePanel mazePanel;
+    public GridPanel gridPanel;
 
     public Frame(GUI gui) {
         this.gui = gui;
@@ -72,7 +72,7 @@ generateItem.add(genDfsRecursive);
         setLayout(new BorderLayout());
 
 
-        mazePanel = new MazePanel() {
+        gridPanel = new GridPanel() {
             @Override
             public Grid getGrid() {
                 return gui.mazing.grid;
@@ -83,7 +83,7 @@ generateItem.add(genDfsRecursive);
         ControlPanel controlPanel = new ControlPanel();
         controlPanel.setPreferredSize(new Dimension(128, 600));
 
-        add(mazePanel, BorderLayout.CENTER);
+        add(gridPanel, BorderLayout.CENTER);
         add(controlPanel, BorderLayout.EAST);
 
     }
