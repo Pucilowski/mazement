@@ -34,23 +34,14 @@ public abstract class Grid {
 
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
-
                 Cell cell = cells[x][y];
-                //ArrayList<Neighborship> neighborList = new ArrayList<Neighborship>();
-
 
                 for (int index = 0; index < sides; index++) {
-
-
                     Cell neighbor = getNeighbor(cell, index);
                     if (neighbor == null) continue;
-                    //cell.neighborships[s] = opp;
-                    //cell.neighborships.put(index, neighbor);
 
-                    //cell.neighborships[index] = new Neighborship(index, neighbor);
                     cell.neighborships[index] = new Neighborship(cell, neighbor, index);
                 }
-
             }
         }
 
@@ -64,17 +55,6 @@ public abstract class Grid {
         booleanGrid = new BooleanGrid(this);
     }
 
-    public boolean isConnected(Neighborship n) {
-        int index = n.index;
-
-        int cflag = (int) Math.pow(2, index);
-        int opp = (index + (sides / 2)) % sides;
-        int nflag = (int) Math.pow(2, opp);
-
-        return (n.source.walls & cflag) == cflag && (n.target.walls & nflag) == nflag;
-
-    }
-
     public void connect(Neighborship n) {
 
         int index = n.index;
@@ -83,16 +63,26 @@ public abstract class Grid {
         int opp = (index + (sides / 2)) % sides;
         int target = (int) Math.pow(2, opp);
 
-        //System.out.println("Current: " + n.source + " Adjacent: " + n.target + " c: " + cflag + " nflag: " + nflag);
-
         n.source.walls |= source;
         n.target.walls |= target;
     }
 
+    public boolean isConnected(Neighborship n) {
+        int index = n.index;
+
+        int source = n.getBit();
+        int opp = (index + (sides / 2)) % sides;
+        int target = (int) Math.pow(2, opp);
+
+        return (n.source.walls & source) == source && (n.target.walls & target) == target;
+
+    }
+
+
     public abstract Point getOffset(Cell cell, int index);
 
     public final Cell getNeighbor(Cell cell, int index) {
-        Point o = getOffset(cell,index);
+        Point o = getOffset(cell, index);
 
         int x = cell.x + o.x;
         int y = cell.y + o.y;
@@ -101,7 +91,7 @@ public abstract class Grid {
         return cells[x][y];
     }
 
-    public final  Cell[] getNeighbors(Cell cell) {
+    public final Cell[] getNeighbors(Cell cell) {
         ArrayList<Cell> adjacent = new ArrayList<Cell>();
 
         for (int i = 0; i < sides; i++) {
@@ -114,7 +104,6 @@ public abstract class Grid {
     }
 
 
-    public abstract void display();
 
 
 }

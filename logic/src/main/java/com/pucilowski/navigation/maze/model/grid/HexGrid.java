@@ -1,9 +1,9 @@
 package com.pucilowski.navigation.maze.model.grid;
 
 import com.pucilowski.navigation.maze.model.Cell;
+import com.pucilowski.navigation.maze.model.grid.paint.GridPaint;
 
 import java.awt.*;
-import java.util.ArrayList;
 
 /**
  * Created by martin on 10/12/13.
@@ -22,8 +22,12 @@ public class HexGrid extends Grid {
             new Point(0, -1), // n
     };
 
+    GridPaint paint;
+
     public HexGrid(int width, int height) {
         super(width, height, 6);
+
+        paint = new GridPaint(width, height);
     }
 
     @Override
@@ -37,8 +41,4 @@ public class HexGrid extends Grid {
     }
 
 
-    @Override
-    public void display() {
-
-    }
 }

@@ -9,9 +9,17 @@ public class Neighborship {
     public final Cell target;
     public final int index;
 
+
+
     public Neighborship(Cell source, Cell target, int index) {
         this.source = source;
         this.target = target;
         this.index = index;
+
+
+    }
+
+    public int getBit() {
+        return (int) Math.pow(2, index);
     }
 }

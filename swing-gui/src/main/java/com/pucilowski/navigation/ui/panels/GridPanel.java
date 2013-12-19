@@ -20,7 +20,7 @@ public abstract class GridPanel extends JPanel {
     public abstract Grid getGrid();
 
     public void paintComponent(Graphics g) {
-        Grid grid =getGrid();
+        Grid grid = getGrid();
         BooleanGrid bGrid = grid.booleanGrid;
 
 
@@ -36,12 +36,13 @@ public abstract class GridPanel extends JPanel {
                 boolean walkable = bGrid.passage[x][y];
 
 
-                int d = 0;
-                //if (x % 2 == 0) d = size / 2;
-
                 int px = size * x;
-                int py = size * y + d;
+                int py = size * y;
 
+                //if (x % 2 == 0) py += size / 2;
+
+                if (x % 2 == 0) px += size / 2;
+                //if (y % 2 == 0) py += size / 2;
 /*
                 float ratio = (float) cell.depth / (float) getGrid().maxDepth;
 
@@ -57,12 +58,12 @@ public abstract class GridPanel extends JPanel {
 
                 if (walkable) {
                     g.setColor(Color.WHITE);
-                    g.fillRect(px, py, size - 1, size - 1);
+                    g.drawRect(px, py, size - 1, size - 1);
                     //g.setColor(Color.LIGHT_GRAY);
                     //g.drawRect(px, py, size, size);
                 } else {
                     g.setColor(Color.BLACK);
-                    g.fillRect(px, py, size - 1, size - 1);
+                    g.drawRect(px, py, size - 1, size - 1);
                     //g.setColor(Color.LIGHT_GRAY);
                     //g.drawRect(px, py, size - 1, size - 1);
                 }

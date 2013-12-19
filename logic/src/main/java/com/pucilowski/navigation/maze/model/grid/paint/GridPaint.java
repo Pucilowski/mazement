@@ -9,13 +9,15 @@ import java.awt.*;
  * Time: 22:55
  * To change this template use File | Settings | File Templates.
  */
-public class HexGrid extends GridRenderer{
-    int side;
+public class GridPaint extends GridRenderer {
+
+
     int across;
     int down;
 
-    public HexGrid(int side, int across, int down) {
-        this.side = side;
+    int side = 16;
+
+    public GridPaint(int across, int down) {
         this.across = across;
         this.down = down;
     }
@@ -62,6 +64,8 @@ public class HexGrid extends GridRenderer{
                 6
         );
     }
+
+
 
     public Point getPolygonCenter(int x, int y) {
         Polygon p = getPolygon(x, y);
