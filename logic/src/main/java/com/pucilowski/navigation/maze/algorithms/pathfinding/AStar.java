@@ -9,8 +9,8 @@ import java.util.LinkedList;
 import java.util.PriorityQueue;
 
 /**
-* Created by martin on 11/12/13.
-*/
+ * Created by martin on 11/12/13.
+ */
 public class AStar {
 
     final Graph graph;
@@ -30,7 +30,6 @@ public class AStar {
     });
 
 
-    // result
     State state = State.WORKING;
     Vertex[] path = null;
 
@@ -62,8 +61,6 @@ public class AStar {
 
         start.g_score = 0D;
         start.f_score = start.g_score + weights.heuristic(start, finish);
-
-        //iSearch.onInit(start, finish);
     }
 
     public void step() {

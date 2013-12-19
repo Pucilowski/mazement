@@ -22,21 +22,14 @@ public class StackDFS extends Generator {
     public void start() {
         visited.add(grid.cells[0][0]);
 
-        while (step())  {
-            try {
-                Thread.sleep(50);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
 
-            grid.gen();
-
-            step.onStep(visited.peek());
-        }
     }
 
-    public boolean step() {
-        if (visited.isEmpty()) return false;
+    public void step() {
+        if (visited.isEmpty()) {
+            state = State.SUCCESS;
+            return;
+        }
 
         Cell current = visited.peek();
 
@@ -48,7 +41,7 @@ public class StackDFS extends Generator {
             Neighborship neigh = neighborships[i];
             if (neigh == null) continue;
 
-         int nx = neigh.target.x;
+            int nx = neigh.target.x;
             int ny = neigh.target.y;
 
             if ((grid.cells[nx][ny].walls == 0)) {
@@ -58,12 +51,13 @@ public class StackDFS extends Generator {
                 visited.push(neigh.target);
                 neigh.target.depth = current.depth;
 
-                return true;
-          }
+                step.onStep(neigh.target);
+
+                return;
+            }
         }
 
         visited.pop();
 
-        return true;
     }
 }

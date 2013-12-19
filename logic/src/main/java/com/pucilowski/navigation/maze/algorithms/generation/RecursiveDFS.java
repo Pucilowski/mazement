@@ -19,6 +19,12 @@ public class RecursiveDFS extends Generator {
 
     @Override
     public void start() {
+
+
+    }
+
+    @Override
+    public void step() {
         Cell cell = grid.cells[0][0];
 
         explore(cell);
