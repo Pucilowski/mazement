@@ -47,10 +47,7 @@ public abstract class Graph {
     }
 
     public Vertex getVertex(Point p) {
-        for (Vertex v : vertices) {
-            if (v.x == p.x && v.y == p.y) return v;
-        }
-        return null;
+        return getVertex(p.x, p.y);
     }
 
 }
