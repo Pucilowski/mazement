@@ -29,7 +29,7 @@ public class BinaryGrid {
             for (int x = 0; x < grid.width; x++) {
                 Cell cell = grid.cells[x][y];
 
-                //if(cell.walls==0)continue;
+                if(cell.walls==0)continue;
 
                 int nx = 2 * x + 1;
                 int ny = 2 * y + 1;
