@@ -13,7 +13,6 @@ public abstract class Graph {
 
     private final ArrayList<Vertex> vertices = new ArrayList<Vertex>();
 
-
     public abstract Vertex[] getValencies(Vertex current);
 
     public Graph() {
