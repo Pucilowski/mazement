@@ -72,13 +72,13 @@ public abstract class MazePanel extends JPanel {
                 if (walkable) {
                     g.setColor(Color.WHITE);
                     g.fillRect(px, py, size - 1, size - 1);
-                    g.setColor(Color.LIGHT_GRAY);
-                    g.drawRect(px, py, size, size);
+                    //g.setColor(Color.LIGHT_GRAY);
+                    //g.drawRect(px, py, size, size);
                 } else {
                     g.setColor(Color.BLACK);
                     g.fillRect(px, py, size - 1, size - 1);
-                    g.setColor(Color.LIGHT_GRAY);
-                    g.drawRect(px, py, size - 1, size - 1);
+                    //g.setColor(Color.LIGHT_GRAY);
+                    //g.drawRect(px, py, size - 1, size - 1);
                 }
 
 

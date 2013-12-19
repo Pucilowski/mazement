@@ -1,5 +1,6 @@
 package com.pucilowski.navigation.maze.algorithms.generation;
 
+import com.pucilowski.navigation.maze.algorithms.generation.misc.StepListener;
 import com.pucilowski.navigation.maze.model.Cell;
 import com.pucilowski.navigation.maze.model.grid.Grid;
 
@@ -13,7 +14,7 @@ public abstract class AbstractGenerator   {
     public final Grid grid;
     public final Random random;
 
-    StepListener step = new StepListener() {
+    public StepListener step = new StepListener() {
         @Override
         public void onStep(Cell cell) {
 
