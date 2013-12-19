@@ -23,10 +23,7 @@ public class Cell {
         this.x = x;
         this.y = y;
         this.sides = sides;
-        //this.neighborships = new Cell[sides];
         this.neighborships = new Neighborship[sides];
-
-        //wall = new boolean[sides];
     }
 
 
