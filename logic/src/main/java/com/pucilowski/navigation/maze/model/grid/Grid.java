@@ -71,8 +71,6 @@ public abstract class Grid {
         int opp = (index + (sides / 2)) % sides;
         int nflag = (int) Math.pow(2, opp);
 
-        //System.out.println("Current: " + n.source + " Adjacent: " + n.target + " c: " + cflag + " nflag: " + nflag);
-
         return (n.source.walls & cflag) == cflag && (n.target.walls & nflag) == nflag;
 
     }

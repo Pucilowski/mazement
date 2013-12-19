@@ -9,7 +9,7 @@ import java.util.Random;
 /**
  * Created by martin on 19/12/13.
  */
-public abstract class AbstractGenerator   {
+public abstract class Generator {
 
     public final Grid grid;
     public final Random random;
@@ -23,7 +23,7 @@ public abstract class AbstractGenerator   {
 
     State state = State.WORKING;
 
-    public AbstractGenerator(Grid grid) {
+    public Generator(Grid grid) {
         this.grid = grid;
         this.random = new Random();
     }

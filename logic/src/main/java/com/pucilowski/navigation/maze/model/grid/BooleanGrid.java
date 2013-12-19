@@ -20,12 +20,6 @@ public class BooleanGrid {
 
         for (int y = 0; y < grid.height; y++) {
             for (int x = 0; x < grid.width; x++) {
-                //passage[x][y] = true;
-            }
-        }
-
-        for (int y = 0; y < grid.height; y++) {
-            for (int x = 0; x < grid.width; x++) {
                 Cell cell = grid.cells[x][y];
 
                 if(cell.walls==0)continue;
@@ -36,33 +30,19 @@ public class BooleanGrid {
                 passage[nx][ny] = true;
 
                 for (int index = 0; index < grid.sides; index++) {
-                    //System.out.println("Waaat"+index);
-
                     int flag = (int) Math.pow(2, index);
-
-                    //System.out.println("WallS: "+cell.walls + " flag: " + flag);
 
                     if ((cell.walls & flag) == flag) {
                         Cell n = grid.getNeighbor(cell, index);
                         if(n==null)continue;
                         Point p = grid.getOffset( n,index);
 
-
                         int px = nx + p.x;
                         int py = ny + p.y;
 
-
                         passage[px][py] = true;
-
-
-
                     }
-
-
-
                 }
-
-
             }
         }
 
