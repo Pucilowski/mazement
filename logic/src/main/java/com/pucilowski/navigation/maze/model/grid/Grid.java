@@ -15,7 +15,9 @@ public abstract class Grid {
     public final int sides;
     public Cell[][] cells;
 
-    public BinaryGrid binaryGrid;
+    public BinaryGrid binaryGrid = new BinaryGrid(this);
+    public int maxDepth = 1;
+
 
     public Grid(int width, int height, int sides) {
         this.width = width;
@@ -52,11 +54,26 @@ public abstract class Grid {
         }
 
     }
+
     public boolean contains(int x, int y) {
         return x >= 0 && y >= 0 && x < width && y < height;
     }
+
     public void gen() {
         binaryGrid = new BinaryGrid(this);
+    }
+
+    public boolean isConnected(Neighborship n) {
+        int index = n.index;
+
+        int cflag = (int) Math.pow(2, index);
+        int opp = (index + (sides / 2)) % sides;
+        int nflag = (int) Math.pow(2, opp);
+
+        //System.out.println("Current: " + n.source + " Adjacent: " + n.target + " c: " + cflag + " nflag: " + nflag);
+
+        return (n.source.walls & cflag) == cflag && (n.target.walls & nflag) == nflag;
+
     }
 
     public void connect(Neighborship n) {

@@ -1,6 +1,9 @@
 package com.pucilowski.navigation;
 
+import com.pucilowski.navigation.maze.algorithms.generation.Prim;
 import com.pucilowski.navigation.maze.algorithms.generation.StackDFS;
+import com.pucilowski.navigation.maze.algorithms.generation.StepListener;
+import com.pucilowski.navigation.maze.model.Cell;
 import com.pucilowski.navigation.maze.model.grid.Grid;
 import com.pucilowski.navigation.maze.model.grid.HexGrid;
 import com.pucilowski.navigation.maze.model.grid.SquareGrid;
@@ -15,13 +18,31 @@ public class Mazing {
 
     GUI gui;
 
+
     public Mazing() {
 
-        grid = new HexGrid(20,15);
-
-        StackDFS dfs = new StackDFS(grid);
-
+        grid = new SquareGrid(20, 15);
         gui = new GUI(this);
+
+
+        final Prim dfs = new Prim(grid);
+        dfs.step = new StepListener() {
+            @Override
+            public void onStep(Cell cell) {
+                gui.frame.repaint();
+
+                if (cell.depth > grid.maxDepth) grid.maxDepth = cell.depth;
+            }
+        };
+
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                dfs.start();
+            }
+        });
+        t.start();
+
 
     }
 }

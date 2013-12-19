@@ -18,10 +18,8 @@ public class Cell {
 
     public int walls = 0;
 
-    //public final boolean[] wall;
-
-    public boolean walkable = false;
-
+public int depth=0;
+Color c =  Color.WHITE;
 
     public Cell(int x, int y, int sides) {
         this.x = x;
@@ -33,9 +31,6 @@ public class Cell {
         //wall = new boolean[sides];
     }
 
-    public void setWalkable(boolean walkable) {
-        this.walkable = walkable;
-    }
 
     @Override
     public int hashCode() {
@@ -56,6 +51,6 @@ public class Cell {
 
     @Override
     public String toString() {
-        return new Point(x, y).toString();
+        return "["+x+", "+y+"]";
     }
 }

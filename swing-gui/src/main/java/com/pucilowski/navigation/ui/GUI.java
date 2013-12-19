@@ -9,7 +9,8 @@ public class GUI {
 
     public final Mazing mazing;
 
-    Frame frame;
+    public Frame frame;
+
 
     public GUI(Mazing mazing) {
         this.mazing = mazing;
