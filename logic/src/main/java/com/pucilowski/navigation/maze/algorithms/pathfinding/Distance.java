@@ -1,6 +1,6 @@
-package com.pucilowski.navigation.pathfinding;
+package com.pucilowski.navigation.maze.algorithms.pathfinding;
 
-import com.pucilowski.navigation.pathfinding.model.Vertex;
+import com.pucilowski.navigation.maze.algorithms.pathfinding.model.Vertex;
 
 /**
  * Created by martin on 15/11/13.

@@ -1,4 +1,4 @@
-package com.pucilowski.navigation.pathfinding.model;
+package com.pucilowski.navigation.maze.algorithms.pathfinding.model;
 
 import java.awt.*;
 import java.util.ArrayList;

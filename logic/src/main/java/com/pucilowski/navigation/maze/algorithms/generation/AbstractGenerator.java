@@ -1,4 +1,4 @@
-package com.pucilowski.navigation.maze.generation;
+package com.pucilowski.navigation.maze.algorithms.generation;
 
 import com.pucilowski.navigation.maze.model.grid.Grid;
 

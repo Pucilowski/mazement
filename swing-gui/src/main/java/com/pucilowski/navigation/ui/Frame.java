@@ -1,7 +1,7 @@
 package com.pucilowski.navigation.ui;
 
-import com.pucilowski.navigation.maze.generation.RecursiveDFS;
-import com.pucilowski.navigation.maze.generation.StackDFS;
+import com.pucilowski.navigation.maze.algorithms.generation.RecursiveDFS;
+import com.pucilowski.navigation.maze.algorithms.generation.StackDFS;
 import com.pucilowski.navigation.maze.model.grid.Grid;
 import com.pucilowski.navigation.ui.panels.ControlPanel;
 import com.pucilowski.navigation.ui.panels.ViewPanel;
