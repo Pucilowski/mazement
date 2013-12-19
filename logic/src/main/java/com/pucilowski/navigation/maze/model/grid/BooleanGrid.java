@@ -1,20 +1,19 @@
 package com.pucilowski.navigation.maze.model.grid;
 
 import com.pucilowski.navigation.maze.model.Cell;
-import com.pucilowski.navigation.maze.model.Neighborship;
 
 import java.awt.*;
 
 /**
  * Created by martin on 19/12/13.
  */
-public class BinaryGrid {
+public class BooleanGrid {
 
     public final int width;
     public final int height;
     public final boolean[][] passage;
 
-    public BinaryGrid(Grid grid) {
+    public BooleanGrid(Grid grid) {
         this.width = grid.width * 2 + 1;
         this.height = grid.height * 2 + 1;
         this.passage = new boolean[width][height];
@@ -44,7 +43,7 @@ public class BinaryGrid {
                     //System.out.println("WallS: "+cell.walls + " flag: " + flag);
 
                     if ((cell.walls & flag) == flag) {
-                        Cell n = grid.getAdjacentTile(cell, index);
+                        Cell n = grid.getNeighbor(cell, index);
                         if(n==null)continue;
                         Point p = grid.getOffset( n,index);
 

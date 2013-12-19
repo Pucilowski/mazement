@@ -53,31 +53,6 @@ public class HexGrid extends Grid {
         return new Point(x,y);
     }
 
-    public Cell getAdjacentTile(Cell cell, int index) {
-
-        Point o = getOffset(cell,index);
-
-        int x = cell.x + o.x;
-        int y = cell.y + o.y;
-        if(cell.x%2==1) y++;
-
-        if (!contains(x, y)) return null;
-
-        return cells[x][y];
-    }
-
-    @Override
-    public Cell[] getAdjacentTiles(Cell cell) {
-        ArrayList<Cell> adjacent = new ArrayList<Cell>();
-
-        for (int i = 0; i < sides; i++) {
-            Cell n = getAdjacentTile(cell, i);
-            if (n == null) continue;
-            adjacent.add(n);
-        }
-
-        return adjacent.toArray(new Cell[adjacent.size()]);
-    }
 
     @Override
     public void display() {

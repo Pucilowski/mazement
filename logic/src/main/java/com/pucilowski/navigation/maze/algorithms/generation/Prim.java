@@ -16,8 +16,6 @@ public class Prim extends AbstractGenerator {
     ArrayList<Cell> visited = new ArrayList<Cell>();
     ArrayList<Neighborship> walls = new ArrayList<Neighborship>();
 
-    public StepListener step;
-
     public Prim(Grid grid) {
         super(grid);
 
