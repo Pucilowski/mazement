@@ -7,6 +7,7 @@ import com.pucilowski.navigation.maze.model.grid.SquareGrid;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.Stack;
 
 /**
@@ -16,7 +17,7 @@ public class StackDFS extends AbstractGenerator {
 
 
 
-    Stack<Cell> visited = new Stack<Cell>();
+    LinkedList<Cell> visited = new LinkedList<Cell>();
 
 
 
@@ -48,23 +49,15 @@ public class StackDFS extends AbstractGenerator {
 
     public boolean step() {
 
-        //DIR[] dirs = DIR.values();
-        //Collections.shuffle(Arrays.asList(dirs));
-        //for (DIR dir : dirs) {
-
-        //System.out.println("cx: " + cx + " cy: " + cy);
-
-        if (visited.empty()) return false;
+        if (visited.isEmpty()) return false;
 
         Cell current = visited.peek();
-
-        //System.out.println("step: " + current);
 
         Neighborship[] neighborships = current.neighborships;
         Collections.shuffle(Arrays.asList(neighborships), random);
 
         for (int i = 0; i < neighborships.length; i++) {
-            //Cell adjacent = grid.getAdjacentTile(current, i);
+            //Cell adjacent = grid.getNeighbor(current, i);
             Neighborship neigh = neighborships[i];
             if (neigh == null) continue;
 
@@ -77,7 +70,7 @@ public class StackDFS extends AbstractGenerator {
 
                 grid.connect(neigh);
 
-                visited.add(neigh.target);
+                visited.push(neigh.target);
                 neigh.target.depth = current.depth;
 
                 return true;

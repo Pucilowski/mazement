@@ -17,6 +17,11 @@ public class RecursiveDFS extends AbstractGenerator {
     public RecursiveDFS(Grid grid) {
         super(grid);
 
+
+    }
+
+    @Override
+    public void start() {
         Cell cell = grid.cells[0][0];
 
         explore(cell);
@@ -36,7 +41,7 @@ public class RecursiveDFS extends AbstractGenerator {
 
         //for (int i = 0; i < adjacentTiles.length; i++) {
 
-        //Cell[] adjacentTiles = grid.getAdjacentTiles(current);
+        //Cell[] adjacentTiles = grid.getNeighbours(current);
 
 
         //Collections.shuffle(Arrays.asList(adjacentTiles));
@@ -45,7 +50,7 @@ public class RecursiveDFS extends AbstractGenerator {
         Collections.shuffle(Arrays.asList(neighborships), random);
 
         for (int i = 0; i < neighborships.length; i++) {
-            //Cell adjacent = grid.getAdjacentTile(current, i);
+            //Cell adjacent = grid.getNeighbor(current, i);
             Neighborship neigh = neighborships[i];
             if (neigh == null) continue;
 
