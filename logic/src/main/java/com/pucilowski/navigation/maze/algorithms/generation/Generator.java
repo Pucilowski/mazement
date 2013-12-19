@@ -21,7 +21,7 @@ public abstract class Generator {
         }
     };
 
-    State state = State.WORKING;
+    public State state = State.WORKING;
 
     public Generator(Grid grid) {
         this.grid = grid;
@@ -29,6 +29,8 @@ public abstract class Generator {
     }
 
     public abstract void start();
+
+    public abstract void step();
 
 
     public enum State {

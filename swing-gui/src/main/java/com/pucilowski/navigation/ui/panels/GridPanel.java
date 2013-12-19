@@ -37,7 +37,7 @@ public abstract class GridPanel extends JPanel {
 
 
                 int d = 0;
-                if (x % 2 == 0) d = size / 2;
+                //if (x % 2 == 0) d = size / 2;
 
                 int px = size * x;
                 int py = size * y + d;

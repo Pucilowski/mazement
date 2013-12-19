@@ -5,6 +5,7 @@ import com.pucilowski.navigation.maze.model.Neighborship;
 import com.pucilowski.navigation.maze.model.grid.Grid;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Created by martin on 19/12/13.
@@ -17,26 +18,14 @@ public class Prims extends Generator {
 
     public Prims(Grid grid) {
         super(grid);
-
-
     }
 
     public void start() {
 
+        Cell start = grid.cells[0][0];
+        visited.add(start);
+        addWalls(start);
 
-        while (step()) {
-
-
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
-            grid.gen();
-
-
-        }
     }
 
     public void addWalls(Cell cell) {
@@ -46,23 +35,15 @@ public class Prims extends Generator {
         }
     }
 
-    public boolean step() {
+    @Override
+    public void step() {
 
-        //DIR[] dirs = DIR.values();
-        //Collections.shuffle(Arrays.asList(dirs));
-        //for (DIR dir : dirs) {
-
-        //System.out.println("cx: " + cx + " cy: " + cy);
-
-
-        if (walls.isEmpty()) {
-            Cell start = grid.cells[0][0];
-            visited.add(start);
-            addWalls(start);
+        if(walls.isEmpty()) {
+            state = State.SUCCESS;
+            return;
         }
 
-
-        //Collections.shuffle(walls, random);
+        Collections.shuffle(walls, random);
         Neighborship wall = walls.get(0);
 
         if (visited.contains(wall.target)) {
@@ -74,8 +55,6 @@ public class Prims extends Generator {
         }
 
         step.onStep(wall.source);
-
-        return true;
 
 
     }
