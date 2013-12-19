@@ -1,6 +1,6 @@
 package com.pucilowski.navigation;
 
-import com.pucilowski.navigation.maze.generation.StackDFS;
+import com.pucilowski.navigation.maze.algorithms.generation.StackDFS;
 import com.pucilowski.navigation.maze.model.grid.Grid;
 import com.pucilowski.navigation.maze.model.grid.SquareGrid;
 

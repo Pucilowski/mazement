@@ -1,4 +1,4 @@
-package com.pucilowski.navigation.maze.generation.misc;
+package com.pucilowski.navigation.maze.algorithms.generation.misc;
 
 /**
  * Created by martin on 19/12/13.

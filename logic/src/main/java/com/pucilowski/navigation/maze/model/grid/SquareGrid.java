@@ -21,8 +21,12 @@ public class SquareGrid extends Grid {
         super(width, height, 4);
     }
 
-    public boolean contains(int x, int y) {
-        return x >= 0 && y >= 0 && x < width && y < height;
+
+
+
+    @Override
+    public Point getOffset(Cell cell,int index) {
+        return offsets[index];
     }
 
     public Cell getAdjacentTile(Cell cell, int index) {
@@ -39,9 +43,7 @@ public class SquareGrid extends Grid {
     public Cell[] getAdjacentTiles(Cell cell) {
         ArrayList<Cell> adjacent = new ArrayList<Cell>();
 
-
         for (int i = 0; i < sides; i++) {
-
             Cell n = getAdjacentTile(cell, i);
             if (n == null) continue;
             adjacent.add(n);
