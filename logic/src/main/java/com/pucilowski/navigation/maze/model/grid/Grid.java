@@ -79,18 +79,14 @@ public abstract class Grid {
 
         int index = n.index;
 
-        int cflag = (int) Math.pow(2, index);
+        int source = (int) Math.pow(2, index);
         int opp = (index + (sides / 2)) % sides;
-        int nflag = (int) Math.pow(2, opp);
+        int target = (int) Math.pow(2, opp);
 
         //System.out.println("Current: " + n.source + " Adjacent: " + n.target + " c: " + cflag + " nflag: " + nflag);
 
-        n.source.walls |= cflag;
-        n.target.walls |= nflag;
-
-        //cells[cx][cy].walls |= cflag;
-        //cells[nx][ny].walls |= nflag;
-
+        n.source.walls |= source;
+        n.target.walls |= target;
     }
 
     public abstract Point getOffset(Cell cell, int index);
@@ -105,7 +101,7 @@ public abstract class Grid {
         return cells[x][y];
     }
 
-    public final  Cell[] getNeighbours(Cell cell) {
+    public final  Cell[] getNeighbors(Cell cell) {
         ArrayList<Cell> adjacent = new ArrayList<Cell>();
 
         for (int i = 0; i < sides; i++) {
