@@ -1,6 +1,7 @@
 package com.pucilowski.navigation.maze.model.grid;
 
 import com.pucilowski.navigation.maze.model.Cell;
+import com.pucilowski.navigation.maze.model.grid.paint.DoublePoint;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
@@ -8,7 +9,7 @@ import java.awt.geom.Point2D;
 /**
  * Created by martin on 10/12/13.
  */
-public class TriangleGrid extends Grid {
+public class TriGrid extends Grid {
 
     public static final Point[] identical = {
             new Point(1, 0), // e
@@ -41,7 +42,7 @@ public class TriangleGrid extends Grid {
     };*/
 
 
-    public TriangleGrid(int width, int height) {
+    public TriGrid(int width, int height) {
         super(width, height, 3);
     }
 
@@ -125,48 +126,28 @@ public class TriangleGrid extends Grid {
 
     @Override
     public Polygon getPolygon(Cell cell, int size) {
-
-        size /= 2;
-
-        // (0,0),(1,0)
-        // (1,0),(1,1)
-        // (1,1),(0,1)
-        // (0,1),(0,0)
-
-        //
-
-        Point p;
-
-
-        Point2D.Double d = new Point2D.Double(1d, 1d);
-
-        Point[] identicalPoints = {
-/*                new Point(0, 0),
-                new Point(1, 1),
-                new Point(0, 1),*/
-                new Point(1, 0),
-                new Point(2, 2),
-                new Point(0, 2),
+        DoublePoint[] identicalPoints = {
+                new DoublePoint(1, 0),
+                new DoublePoint(2, 2),
+                new DoublePoint(0, 2),
         };
 
-        Point[] distinctPoints = {
-                new Point(0, 0),
-                new Point(2, 0),
-                new Point(1, 2),
+        DoublePoint[] distinctPoints = {
+                new DoublePoint(0, 0),
+                new DoublePoint(2, 0),
+                new DoublePoint(1, 2),
         };
 
-        Point[] points = cell.x % 2 == cell.y % 2 ? identicalPoints : distinctPoints;
-
+        DoublePoint[] points = cell.x % 2 == cell.y % 2 ? identicalPoints : distinctPoints;
 
         int[] xs = new int[sides];
         int[] ys = new int[sides];
         for (int i = 0; i < sides; i++) {
-            xs[i] = points[i].x * size;
-            ys[i] = points[i].y * size;
+            xs[i] = (int) (points[i].x * size);
+            ys[i] = (int) (points[i].y * size);
         }
 
         return new Polygon(xs, ys, 3);
-
     }
 
 }
