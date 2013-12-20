@@ -10,26 +10,21 @@ import java.util.Collections;
 /**
  * Created by martin on 19/12/13.
  */
-public class Prims extends Generator {
+public class Kruskals extends Generator {
 
 
     ArrayList<Cell> visited = new ArrayList<Cell>();
     ArrayList<Edge> walls = new ArrayList<Edge>();
 
-    public Prims(Grid grid) {
+    public Kruskals(Grid grid) {
         super(grid);
     }
 
     public void start() {
 
-
-        for (int y = 0; y < grid.height; y++) {
-            for (int x = 0; x < grid.width; x++) {
-                Cell c = grid.cells[x][y];
-                addWalls(c);
-            }
-        }
-
+        Cell start = grid.cells[0][0];
+        visited.add(start);
+        addWalls(start);
 
     }
 
@@ -43,25 +38,21 @@ public class Prims extends Generator {
     @Override
     public void step() {
 
-        if (walls.isEmpty()) {
+        if(walls.isEmpty()) {
             state = State.SUCCESS;
             return;
         }
 
-        //Collections.shuffle(walls, random);
-        //Edge wall = walls.get(0);
+        Collections.shuffle(walls, random);
+        Edge wall = walls.get(0);
 
-        int n = random.nextInt(walls.size());
-        Edge wall = walls.get(n);
-
-        if (visited.contains(wall.target)) {        walls.remove(wall);
-
+        if (visited.contains(wall.target)) {
+            walls.remove(wall);
         } else {
             grid.connect(wall);
             visited.add(wall.target);
             addWalls(wall.target);
         }
-
 
         step.onStep(wall.source);
 

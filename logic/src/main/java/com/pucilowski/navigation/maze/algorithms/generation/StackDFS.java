@@ -1,57 +1,56 @@
 package com.pucilowski.navigation.maze.algorithms.generation;
 
 import com.pucilowski.navigation.maze.model.Cell;
-import com.pucilowski.navigation.maze.model.Neighborship;
+import com.pucilowski.navigation.maze.model.Edge;
 import com.pucilowski.navigation.maze.model.grid.Grid;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
+import java.util.Stack;
 
 /**
  * Created by martin on 19/12/13.
  */
 public class StackDFS extends Generator {
 
-    LinkedList<Cell> visited = new LinkedList<Cell>();
+    Stack<Cell> visited = new Stack<Cell>();
 
     public StackDFS(Grid grid) {
         super(grid);
     }
 
+    @Override
     public void start() {
-        visited.add(grid.cells[0][0]);
+        visited.push(grid.cells[0][0]);
 
 
     }
 
+    @Override
     public void step() {
         if (visited.isEmpty()) {
+            System.out.println("|");
             state = State.SUCCESS;
             return;
         }
 
         Cell current = visited.peek();
 
-        Neighborship[] neighborships = current.neighborships;
-        Collections.shuffle(Arrays.asList(neighborships), random);
+        Edge[] edges = current.edges;
+        Collections.shuffle(Arrays.asList(edges), random);
 
-        for (int i = 0; i < neighborships.length; i++) {
-            //Cell adjacent = grid.getNeighbor(current, i);
-            Neighborship neigh = neighborships[i];
-            if (neigh == null) continue;
+        for (Edge n : edges) {
+            if (n == null) continue;
 
-            int nx = neigh.target.x;
-            int ny = neigh.target.y;
+            //int nx = n.target.x;
+            //int ny = n.target.y;
 
-            if ((grid.cells[nx][ny].walls == 0)) {
+            if (n.target.walls == 0) {
+                grid.connect(n);
+                visited.push(n.target);
 
-                grid.connect(neigh);
-
-                visited.push(neigh.target);
-                neigh.target.depth = current.depth;
-
-                step.onStep(neigh.target);
+                step.onStep(n.target);
 
                 return;
             }

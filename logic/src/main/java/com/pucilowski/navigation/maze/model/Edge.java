@@ -3,7 +3,7 @@ package com.pucilowski.navigation.maze.model;
 /**
  * Created by martin on 19/12/13.
  */
-public class Neighborship {
+public class Edge {
 
     public final Cell source;
     public final Cell target;
@@ -11,7 +11,7 @@ public class Neighborship {
 
 
 
-    public Neighborship(Cell source, Cell target, int index) {
+    public Edge(Cell source, Cell target, int index) {
         this.source = source;
         this.target = target;
         this.index = index;
@@ -19,7 +19,5 @@ public class Neighborship {
 
     }
 
-    public int getBit() {
-        return (int) Math.pow(2, index);
-    }
+
 }

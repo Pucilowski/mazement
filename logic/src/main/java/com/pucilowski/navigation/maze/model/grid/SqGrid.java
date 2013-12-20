@@ -1,9 +1,9 @@
 package com.pucilowski.navigation.maze.model.grid;
 
 import com.pucilowski.navigation.maze.model.Cell;
-import com.pucilowski.navigation.maze.model.grid.paint.DoublePoint;
 
 import java.awt.*;
+import java.awt.geom.Point2D;
 
 /**
  * Created by martin on 10/12/13.
@@ -28,11 +28,11 @@ public class SqGrid extends Grid {
 
     // paint
 
-    public static final DoublePoint[] points = {
-            new DoublePoint(0, 0),
-            new DoublePoint(1, 0),
-            new DoublePoint(1, 1),
-            new DoublePoint(0, 1)
+    public static final Point2D.Double[] points = {
+            new Point2D.Double(0, 0),
+            new Point2D.Double(1, 0),
+            new Point2D.Double(1, 1),
+            new Point2D.Double(0, 1)
     };
 
     @Override
@@ -45,7 +45,7 @@ public class SqGrid extends Grid {
 
     @Override
     public Point getPoint(Cell cell, int index, int size) {
-        DoublePoint dp = points[index];
+        Point2D.Double dp = points[index];
 
         int x = (int) (dp.x * size);
         int y = (int) (dp.y * size);
@@ -55,7 +55,6 @@ public class SqGrid extends Grid {
 
     @Override
     public Polygon getSide(Cell cell, int index, int size) {
-        //size/=2;
         Point a = getPoint(cell, index, size);
         Point b = getPoint(cell, (index + 1) % sides, size);
 

@@ -27,7 +27,6 @@ public abstract class Graph {
 
                 Vertex v = new Vertex(c.x, c.y);
                 vertices.add(v);
-
             }
         }
     }
