@@ -16,7 +16,7 @@ public abstract class Grid {
     public final int sides;
     public Cell[][] cells;
 
-    public BooleanGrid booleanGrid = new BooleanGrid(this);
+    public BooleanGrid booleanGrid;//= new BooleanGrid(this);
     public int maxDepth = 1;
 
 
@@ -52,15 +52,13 @@ public abstract class Grid {
     }
 
     public void gen() {
-        booleanGrid = new BooleanGrid(this);
+        //booleanGrid = new BooleanGrid(this);
     }
 
     public void connect(Neighborship n) {
 
-        int index = n.index;
-
-        int source = (int) Math.pow(2, index);
-        int opp = (index + (sides / 2)) % sides;
+        int source = (int) Math.pow(2, n.index);
+        int opp = getOppositeIndex(n.source, n.index);
         int target = (int) Math.pow(2, opp);
 
         n.source.walls |= source;
@@ -68,10 +66,8 @@ public abstract class Grid {
     }
 
     public boolean isConnected(Neighborship n) {
-        int index = n.index;
-
         int source = n.getBit();
-        int opp = (index + (sides / 2)) % sides;
+        int opp = getOppositeIndex(n.source, n.index);
         int target = (int) Math.pow(2, opp);
 
         return (n.source.walls & source) == source && (n.target.walls & target) == target;
@@ -80,6 +76,13 @@ public abstract class Grid {
 
 
     public abstract Point getOffset(Cell cell, int index);
+
+    public int getOppositeIndex(Cell cell, int index) {
+
+        return (index + (sides / 2)) % sides;
+
+        //return cell.x % 2 == cell.y % 2 ? identical[index] : distinct[index];
+    }
 
     public final Cell getNeighbor(Cell cell, int index) {
         Point o = getOffset(cell, index);
@@ -103,7 +106,13 @@ public abstract class Grid {
         return adjacent.toArray(new Cell[adjacent.size()]);
     }
 
+    // paint
 
+    public abstract Point getLocation(Cell cell, int size);
 
+    public abstract Point getPoint(Cell cell, int index, int size);
 
+    public abstract Polygon getSide(Cell cell, int index, int size);
+
+    public abstract Polygon getPolygon(Cell cell, int size);
 }
