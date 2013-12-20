@@ -1,7 +1,7 @@
 package com.pucilowski.navigation.maze.algorithms.generation;
 
 import com.pucilowski.navigation.maze.model.Cell;
-import com.pucilowski.navigation.maze.model.Neighborship;
+import com.pucilowski.navigation.maze.model.Edge;
 import com.pucilowski.navigation.maze.model.grid.Grid;
 
 import java.util.Arrays;
@@ -27,16 +27,14 @@ public class RecursiveDFS extends Generator {
         Cell cell = grid.cells[0][0];
 
         explore(cell);
-
-        grid.gen();
     }
 
     private void explore(Cell current) {
-        Neighborship[] neighborships = current.neighborships;
-        Collections.shuffle(Arrays.asList(neighborships), random);
+        Edge[] edges = current.edges;
+        Collections.shuffle(Arrays.asList(edges), random);
 
-        for (int i = 0; i < neighborships.length; i++) {
-            Neighborship neigh = neighborships[i];
+        for (int i = 0; i < edges.length; i++) {
+            Edge neigh = edges[i];
             if (neigh == null) continue;
 
             int nx = neigh.target.x;

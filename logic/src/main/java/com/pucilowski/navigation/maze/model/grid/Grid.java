@@ -1,7 +1,7 @@
 package com.pucilowski.navigation.maze.model.grid;
 
 import com.pucilowski.navigation.maze.model.Cell;
-import com.pucilowski.navigation.maze.model.Neighborship;
+import com.pucilowski.navigation.maze.model.Edge;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -16,7 +16,6 @@ public abstract class Grid {
     public final int sides;
     public Cell[][] cells;
 
-    public BooleanGrid booleanGrid;//= new BooleanGrid(this);
     public int maxDepth = 1;
 
 
@@ -36,11 +35,11 @@ public abstract class Grid {
             for (int x = 0; x < width; x++) {
                 Cell cell = cells[x][y];
 
-                for (int index = 0; index < sides; index++) {
-                    Cell neighbor = getNeighbor(cell, index);
+                for (int side = 0; side < sides; side++) {
+                    Cell neighbor = getNeighbor(cell, side);
                     if (neighbor == null) continue;
 
-                    cell.neighborships[index] = new Neighborship(cell, neighbor, index);
+                    cell.edges[side] = new Edge(cell, neighbor, side);
                 }
             }
         }
@@ -51,11 +50,7 @@ public abstract class Grid {
         return x >= 0 && y >= 0 && x < width && y < height;
     }
 
-    public void gen() {
-        //booleanGrid = new BooleanGrid(this);
-    }
-
-    public void connect(Neighborship n) {
+      public void connect(Edge n) {
 
         int source = (int) Math.pow(2, n.index);
         int opp = getOppositeIndex(n.source, n.index);
@@ -65,8 +60,8 @@ public abstract class Grid {
         n.target.walls |= target;
     }
 
-    public boolean isConnected(Neighborship n) {
-        int source = n.getBit();
+    public boolean isConnected(Edge n) {
+        int source = (int) Math.pow(2, n.index);
         int opp = getOppositeIndex(n.source, n.index);
         int target = (int) Math.pow(2, opp);
 
@@ -79,8 +74,13 @@ public abstract class Grid {
 
     public int getOppositeIndex(Cell cell, int index) {
 
-        return (index + (sides / 2)) % sides;
 
+        int index2= (index + (sides / 2)) % sides;
+
+        System.out.println("Before: " + index + " After: " + index2);
+
+
+        return index2;
         //return cell.x % 2 == cell.y % 2 ? identical[index] : distinct[index];
     }
 

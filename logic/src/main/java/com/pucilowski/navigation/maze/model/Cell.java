@@ -12,7 +12,7 @@ public class Cell {
     public final int y;
 
     public final int sides;
-    public final Neighborship[] neighborships;
+    public final Edge[] edges;
 
     public int walls = 0;
 
@@ -23,7 +23,7 @@ public class Cell {
         this.x = x;
         this.y = y;
         this.sides = sides;
-        this.neighborships = new Neighborship[sides];
+        this.edges = new Edge[sides];
     }
 
 
