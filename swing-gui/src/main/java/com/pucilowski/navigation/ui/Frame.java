@@ -31,7 +31,7 @@ public class Frame extends JFrame {
 
 
         pack();
-        setSize(800, 600);
+        setSize(1024, 768);
         setVisible(true);
 
         setLocationRelativeTo(null);
