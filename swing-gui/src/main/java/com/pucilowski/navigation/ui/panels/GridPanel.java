@@ -30,8 +30,8 @@ public abstract class GridPanel extends JPanel {
         int h = grid.height;
 
 
-        int size = Math.min(getWidth() / w, getHeight() / h);
-        //int size = 24;
+        //int size = Math.min(getWidth() / w, getHeight() / h);
+        int size = 24;
 
         Color[] colors = {
                 Color.RED,
@@ -48,10 +48,10 @@ public abstract class GridPanel extends JPanel {
                 //boolean walkable = grid.passage[x][y];
 
                 Point location = grid.getLocation(cell, size);
-                Polygon polygon = grid.getPolygon(cell, size);
+                //Polygon polygon = grid.getPolygon(cell, size);
 
-                int px = 8 + location.x;
-                int py = 8 + location.y;
+                int px = 8+ location.x;
+                int py = 12+ location.y;
 
 
 
@@ -163,7 +163,7 @@ public abstract class GridPanel extends JPanel {
                 g.setColor(c);*/
 
 
-                if (walkable) {
+        /*        if (walkable) {
                     g.setColor(Color.WHITE);
                     g.drawRect(px, py, size - 1, size - 1);
                     //g.setColor(Color.LIGHT_GRAY);
@@ -173,7 +173,7 @@ public abstract class GridPanel extends JPanel {
                     g.drawRect(px, py, size - 1, size - 1);
                     //g.setColor(Color.LIGHT_GRAY);
                     //g.drawRect(px, py, size - 1, size - 1);
-                }
+                }*/
 
 
             }

@@ -6,7 +6,7 @@ import com.pucilowski.navigation.maze.algorithms.generation.misc.StepListener;
 import com.pucilowski.navigation.maze.model.Cell;
 import com.pucilowski.navigation.maze.model.grid.Grid;
 import com.pucilowski.navigation.maze.model.grid.HexGrid;
-import com.pucilowski.navigation.maze.model.grid.TriangleGrid;
+import com.pucilowski.navigation.maze.model.grid.SqGrid;
 import com.pucilowski.navigation.ui.GUI;
 
 /**
@@ -20,7 +20,7 @@ public class Mazing {
 
     public Mazing() {
 
-        grid = new HexGrid(35, 25);
+        grid = new SqGrid(35, 25);
         gui = new GUI(this);
 
         final Generator dfs = new Prims(grid);
