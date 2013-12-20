@@ -3,10 +3,7 @@ package com.pucilowski.navigation.maze.algorithms.pathfinding;
 import com.pucilowski.navigation.maze.algorithms.pathfinding.model.Graph;
 import com.pucilowski.navigation.maze.algorithms.pathfinding.model.Vertex;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.LinkedList;
-import java.util.PriorityQueue;
+import java.util.*;
 
 /**
  * Created by martin on 11/12/13.
@@ -29,6 +26,7 @@ public class AStar {
         }
     });
 
+    final HashMap<Vertex, Integer> fScores = new HashMap<Vertex, Integer>();
 
     State state = State.WORKING;
     Vertex[] path = null;

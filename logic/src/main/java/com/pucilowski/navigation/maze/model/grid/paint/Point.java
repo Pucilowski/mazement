@@ -3,14 +3,14 @@ package com.pucilowski.navigation.maze.model.grid.paint;
 /**
  * Created by martin on 20/12/13.
  */
-public class DoublePoint {
-
-    public DoublePoint(double x, double y) {
+public class Point {
+    final public double x;
+    final public double y;
+    public Point(double x, double y) {
         this.x = x;
         this.y = y;
     }
 
-    public double x;
-    public double y;
+
 
 }

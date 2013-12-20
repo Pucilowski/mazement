@@ -1,30 +1,28 @@
 package com.pucilowski.navigation.maze.model.grid;
 
 import com.pucilowski.navigation.maze.model.Cell;
-import com.pucilowski.navigation.maze.model.grid.paint.DoublePoint;
 
 import java.awt.*;
-import java.awt.geom.Point2D;
 
 /**
  * Created by martin on 10/12/13.
  */
 public class TriGrid extends Grid {
 
-    public static final Point[] identical = {
-            new Point(1, 0), // e
-            new Point(0, 1), // s
-            new Point(-1, 0), // w
+    public static final java.awt.Point[] identical = {
+            new java.awt.Point(1, 0), // e
+            new java.awt.Point(0, 1), // s
+            new java.awt.Point(-1, 0), // w
     };
 
-    public static final Point[] distinct = {
+    public static final java.awt.Point[] distinct = {
 /*            new Point(0, -1), // n
             new Point(1, 0), // e
             new Point(-1, 0), // w*/
 
-            new Point(-1, 0), // w
-            new Point(0, -1), // n
-            new Point(1, 0), // e
+            new java.awt.Point(-1, 0), // w
+            new java.awt.Point(0, -1), // n
+            new java.awt.Point(1, 0), // e
 
     };
 
@@ -47,7 +45,7 @@ public class TriGrid extends Grid {
     }
 
     @Override
-    public Point getOffset(Cell cell, int index) {
+    public java.awt.Point getOffset(Cell cell, int index) {
         //return cell.x % 2 == cell.y % 2 ? identical[index] : distinct[index];
 
 /*        boolean identical = cell.x % 2 == cell.y % 2;
@@ -69,21 +67,21 @@ public class TriGrid extends Grid {
     }
 
     @Override
-    public Point getLocation(Cell cell, int size) {
+    public java.awt.Point getLocation(Cell cell, int size) {
         int px = size / 2 * cell.x;
         int py = size * cell.y;
 
-        return new Point(px, py);
+        return new java.awt.Point(px, py);
     }
 
     @Override
-    public Point getPoint(Cell cell, int index, int size) {
+    public java.awt.Point getPoint(Cell cell, int index, int size) {
         return null;
     }
 
     @Override
     public Polygon getSide(Cell cell, int index, int size) {
-        Point p = getOffset(cell, index);
+        java.awt.Point p = getOffset(cell, index);
 
         size /= 2;
 
@@ -94,27 +92,27 @@ public class TriGrid extends Grid {
 
         //
 
-        Point[] identicalPoints = {
+        java.awt.Point[] identicalPoints = {
 /*                new Point(0, 0),
                 new Point(1, 1),
                 new Point(0, 1),*/
-                new Point(1, 0),
-                new Point(2, 2),
-                new Point(0, 2),
+                new java.awt.Point(1, 0),
+                new java.awt.Point(2, 2),
+                new java.awt.Point(0, 2),
         };
 
 
-        Point[] distinctPoints = {
-                new Point(1, 2),
-                new Point(0, 0),
-                new Point(2, 0),
+        java.awt.Point[] distinctPoints = {
+                new java.awt.Point(1, 2),
+                new java.awt.Point(0, 0),
+                new java.awt.Point(2, 0),
         };
 
-        Point[] points = cell.x % 2 == cell.y % 2 ? identicalPoints : distinctPoints;
+        java.awt.Point[] points = cell.x % 2 == cell.y % 2 ? identicalPoints : distinctPoints;
 
 
-        Point a = points[index];
-        Point b = points[(index + 1) % sides];
+        java.awt.Point a = points[index];
+        java.awt.Point b = points[(index + 1) % sides];
 
         return new Polygon(
                 new int[]{a.x * size, b.x * size},
@@ -126,19 +124,19 @@ public class TriGrid extends Grid {
 
     @Override
     public Polygon getPolygon(Cell cell, int size) {
-        DoublePoint[] identicalPoints = {
-                new DoublePoint(1, 0),
-                new DoublePoint(2, 2),
-                new DoublePoint(0, 2),
+        com.pucilowski.navigation.maze.model.grid.paint.Point[] identicalPoints = {
+                new com.pucilowski.navigation.maze.model.grid.paint.Point(1, 0),
+                new com.pucilowski.navigation.maze.model.grid.paint.Point(2, 2),
+                new com.pucilowski.navigation.maze.model.grid.paint.Point(0, 2),
         };
 
-        DoublePoint[] distinctPoints = {
-                new DoublePoint(0, 0),
-                new DoublePoint(2, 0),
-                new DoublePoint(1, 2),
+        com.pucilowski.navigation.maze.model.grid.paint.Point[] distinctPoints = {
+                new com.pucilowski.navigation.maze.model.grid.paint.Point(0, 0),
+                new com.pucilowski.navigation.maze.model.grid.paint.Point(2, 0),
+                new com.pucilowski.navigation.maze.model.grid.paint.Point(1, 2),
         };
 
-        DoublePoint[] points = cell.x % 2 == cell.y % 2 ? identicalPoints : distinctPoints;
+        com.pucilowski.navigation.maze.model.grid.paint.Point[] points = cell.x % 2 == cell.y % 2 ? identicalPoints : distinctPoints;
 
         int[] xs = new int[sides];
         int[] ys = new int[sides];
