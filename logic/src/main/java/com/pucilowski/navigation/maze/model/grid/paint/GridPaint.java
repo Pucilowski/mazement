@@ -9,7 +9,7 @@ import java.awt.*;
  * Time: 22:55
  * To change this template use File | Settings | File Templates.
  */
-public class GridPaint extends GridRenderer {
+public class GridPaint {
 
 
     int across;

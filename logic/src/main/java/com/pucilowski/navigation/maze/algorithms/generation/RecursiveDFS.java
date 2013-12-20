@@ -3,7 +3,6 @@ package com.pucilowski.navigation.maze.algorithms.generation;
 import com.pucilowski.navigation.maze.model.Cell;
 import com.pucilowski.navigation.maze.model.Neighborship;
 import com.pucilowski.navigation.maze.model.grid.Grid;
-import com.pucilowski.navigation.maze.model.grid.SquareGrid;
 
 import java.util.Arrays;
 import java.util.Collections;

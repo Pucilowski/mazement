@@ -43,28 +43,28 @@ public class HexGrid extends Grid {
 
     // paint
 
-    double triangleWidth = 0.5D;
-    double triangleHeight = 0.75D;
-    //double triangleHeight = Math.sin(Math.toRadians(60));
-    //double triangleHeight = 1D;
+    public static final double TRIANGLE_WIDTH = 0.5D;
+   public static final     double TRIANGLE_HEIGHT = 0.875D;
+    //public static final double TRIANGLE_HEIGHT = Math.sin(Math.toRadians(60));
+    //double TRIANGLE_HEIGHT = 1D;
 
-    double leftX = 0D;
-    double rightX = 1D;
+    public static final double X_LEFT = 0D;
+    public static final double X_RIGHT = 1D;
 
-    double farLeftX = -0.5D;
-    double farRightX = 1.5D;
+    public static final double X_FAR_LEFT = -0.5D;
+    public static final double X_FAR_RIGHT = 1.5D;
 
-    double topY = 0;
-    double midY = triangleHeight;
-    double bottomY = 2 * triangleHeight;
+    public static final double Y_TOP = 0;
+    public static final double Y_MIDDLE = TRIANGLE_HEIGHT;
+    public static final double Y_BOTTOM = 2 * TRIANGLE_HEIGHT;
 
-    DoublePoint[] points = {
-            new DoublePoint(rightX, topY),
-            new DoublePoint(farRightX, midY),
-            new DoublePoint(rightX, bottomY),
-            new DoublePoint(leftX, bottomY),
-            new DoublePoint(farLeftX, midY),
-            new DoublePoint(leftX, topY),
+    public static final DoublePoint[] points = {
+            new DoublePoint(X_RIGHT, Y_TOP),
+            new DoublePoint(X_FAR_RIGHT, Y_MIDDLE),
+            new DoublePoint(X_RIGHT, Y_BOTTOM),
+            new DoublePoint(X_LEFT, Y_BOTTOM),
+            new DoublePoint(X_FAR_LEFT, Y_MIDDLE),
+            new DoublePoint(X_LEFT, Y_TOP),
     };
 
 
@@ -72,10 +72,10 @@ public class HexGrid extends Grid {
     public Point getLocation(Cell cell, int size) {
         //size/=2;
 
-        double px = triangleWidth + cell.x + cell.x * triangleWidth;
-        double py = 2 * triangleHeight * cell.y;
+        double px = TRIANGLE_WIDTH + cell.x + cell.x * TRIANGLE_WIDTH;
+        double py = 2 * TRIANGLE_HEIGHT * cell.y;
 
-        if (cell.x % 2 == 1) py += triangleHeight;
+        if (cell.x % 2 == 1) py += TRIANGLE_HEIGHT;
 
         int x = (int) (px * size);
         int y = (int) (py * size);
