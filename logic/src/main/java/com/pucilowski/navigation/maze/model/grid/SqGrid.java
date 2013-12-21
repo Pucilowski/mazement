@@ -1,6 +1,7 @@
 package com.pucilowski.navigation.maze.model.grid;
 
 import com.pucilowski.navigation.maze.model.Cell;
+import com.pucilowski.navigation.maze.model.grid.paint.PointD;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
@@ -28,11 +29,11 @@ public class SqGrid extends Grid {
 
     // paint
 
-    public static final Point2D.Double[] points = {
-            new Point2D.Double(0, 0),
-            new Point2D.Double(1, 0),
-            new Point2D.Double(1, 1),
-            new Point2D.Double(0, 1)
+    public static final PointD[] points = {
+            new PointD(0, 0),
+            new PointD(1, 0),
+            new PointD(1, 1),
+            new PointD(0, 1),
     };
 
     @Override
@@ -45,7 +46,7 @@ public class SqGrid extends Grid {
 
     @Override
     public Point getPoint(Cell cell, int index, int size) {
-        Point2D.Double dp = points[index];
+        PointD dp = points[index];
 
         int x = (int) (dp.x * size);
         int y = (int) (dp.y * size);
@@ -53,7 +54,7 @@ public class SqGrid extends Grid {
         return new Point(x, y);
     }
 
-    @Override
+/*    @Override
     public Polygon getSide(Cell cell, int index, int size) {
         Point a = getPoint(cell, index, size);
         Point b = getPoint(cell, (index + 1) % sides, size);
@@ -69,13 +70,13 @@ public class SqGrid extends Grid {
     public Polygon getPolygon(Cell cell, int size) {
         int[] xs = new int[sides];
         int[] ys = new int[sides];
-        for (int i = 0; i < sides; i++) {
-            Point p = getPoint(cell, i, size);
+        for (int index = 0; index < sides; index++) {
+            Point p = getPoint(cell, index, size);
 
-            xs[i] = p.x;
-            ys[i] = p.y;
+            xs[index] = p.x;
+            ys[index] = p.y;
         }
 
         return new Polygon(xs, ys, sides);
-    }
+    }*/
 }

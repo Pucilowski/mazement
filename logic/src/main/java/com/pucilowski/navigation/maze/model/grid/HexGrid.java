@@ -1,8 +1,7 @@
 package com.pucilowski.navigation.maze.model.grid;
 
 import com.pucilowski.navigation.maze.model.Cell;
-import com.pucilowski.navigation.maze.model.grid.paint.*;
-import com.pucilowski.navigation.maze.model.grid.paint.Point;
+import com.pucilowski.navigation.maze.model.grid.paint.PointD;
 
 import java.awt.*;
 
@@ -11,22 +10,20 @@ import java.awt.*;
  */
 public class HexGrid extends Grid {
 
+    public static final int SIDES = 6;
+
     public static final java.awt.Point[] offsets = {
+            new java.awt.Point(0, -1), // n
             new java.awt.Point(1, -1), // ne
             new java.awt.Point(1, 0), // se
 
             new java.awt.Point(0, 1), // s
-
             new java.awt.Point(-1, 0), // sw
             new java.awt.Point(-1, -1), // nw
-
-            new java.awt.Point(0, -1), // n
     };
 
-
     public HexGrid(int width, int height) {
-        super(width, height, 6);
-
+        super(width, height, SIDES);
     }
 
     @Override
@@ -72,13 +69,13 @@ public class HexGrid extends Grid {
     public static final double Y_MIDDLE = TRIANGLE_HEIGHT;
     public static final double Y_BOTTOM = 2 * TRIANGLE_HEIGHT;
 
-    public static final Point[] points = {
-            new Point(X_RIGHT, Y_TOP),
-            new Point(X_FAR_RIGHT, Y_MIDDLE),
-            new Point(X_RIGHT, Y_BOTTOM),
-            new Point(X_LEFT, Y_BOTTOM),
-            new Point(X_FAR_LEFT, Y_MIDDLE),
-            new Point(X_LEFT, Y_TOP),
+    public static final PointD[] points = {
+            new PointD(X_RIGHT, Y_TOP),
+            new PointD(X_FAR_RIGHT, Y_MIDDLE),
+            new PointD(X_RIGHT, Y_BOTTOM),
+            new PointD(X_LEFT, Y_BOTTOM),
+            new PointD(X_FAR_LEFT, Y_MIDDLE),
+            new PointD(X_LEFT, Y_TOP),
     };
 
 
@@ -97,7 +94,7 @@ public class HexGrid extends Grid {
 
     @Override
     public java.awt.Point getPoint(Cell cell, int index, int size) {
-        Point dp = points[index];
+        PointD dp = points[index];
 
         int x = (int) (dp.x * size);
         int y = (int) (dp.y * size);
@@ -105,7 +102,7 @@ public class HexGrid extends Grid {
         return new java.awt.Point(x, y);
     }
 
-    @Override
+/*    @Override
     public Polygon getSide(Cell cell, int index, int size) {
         java.awt.Point a = getPoint(cell, index, size);
         java.awt.Point b = getPoint(cell, (index + 1) % sides, size);
@@ -129,7 +126,7 @@ public class HexGrid extends Grid {
         }
 
         return new Polygon(xs, ys, sides);
-    }
+    }*/
 
 
 }
