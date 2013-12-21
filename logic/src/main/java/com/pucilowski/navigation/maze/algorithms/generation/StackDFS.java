@@ -12,7 +12,7 @@ import java.util.*;
  */
 public class StackDFS extends Generator {
 
-    Stack<Cell> visited = new Stack<Cell>();
+    LinkedList<Cell> visited = new LinkedList<Cell>();
 
     public StackDFS(Grid grid) {
         super(grid);
@@ -33,12 +33,8 @@ public class StackDFS extends Generator {
 
         Cell current = visited.peek();
 
-        //Edge[] edges = lolcurrent.edges;
-        List<Edge> edges = Arrays.asList(current.edges);
-        Collections.shuffle(edges, random);
-        //int n = random.nextInt(current.edges.length);
-        //Edge edge = current.edges[n];
-
+        Edge[] edges = current.getEdges();
+        Collections.shuffle(Arrays.asList(edges), random);
 
         for (Edge edge : edges) {
             if (edge == null) continue;
@@ -47,8 +43,7 @@ public class StackDFS extends Generator {
 
             if (edge.target.walls == 0) {
                 grid.connect(edge);
-
-                visited.add(edge.target);
+                visited.push(edge.target);
 
                 step.onStep(edge.target);
 

@@ -1,10 +1,8 @@
 package com.pucilowski.navigation;
 
+import com.pucilowski.navigation.maze.algorithms.Algorithm;
 import com.pucilowski.navigation.maze.algorithms.State;
-import com.pucilowski.navigation.maze.algorithms.generation.Generator;
-import com.pucilowski.navigation.maze.algorithms.generation.Prims;
-import com.pucilowski.navigation.maze.algorithms.generation.RecursiveDFS;
-import com.pucilowski.navigation.maze.algorithms.generation.StackDFS;
+import com.pucilowski.navigation.maze.algorithms.generation.*;
 import com.pucilowski.navigation.maze.algorithms.generation.misc.StepListener;
 import com.pucilowski.navigation.maze.model.Cell;
 import com.pucilowski.navigation.maze.model.grid.Grid;
@@ -20,11 +18,13 @@ public class Mazing {
 
     public Grid grid;
 
+    public Algorithm algo;
+
     GUI gui;
 
     public Mazing() {
 
-        grid = new SqGrid(35, 25);
+        grid = new HexGrid(30, 20);
         gui = new GUI(this);
 
         final Generator dfs = new StackDFS(grid);
@@ -37,6 +37,8 @@ public class Mazing {
             }
         };
 
+        algo = dfs;
+
         Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -48,7 +50,7 @@ public class Mazing {
 
 
                     try {
-                        Thread.sleep(10);
+                        Thread.sleep(0);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }

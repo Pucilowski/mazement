@@ -12,14 +12,14 @@ public class HexGrid extends Grid {
 
     public static final int SIDES = 6;
 
-    public static final java.awt.Point[] offsets = {
-            new java.awt.Point(0, -1), // n
-            new java.awt.Point(1, -1), // ne
-            new java.awt.Point(1, 0), // se
+    public static final Point[] offsets = {
+            new Point(0, -1), // n
+            new Point(1, -1), // ne
+            new Point(1, 0), // se
 
-            new java.awt.Point(0, 1), // s
-            new java.awt.Point(-1, 0), // sw
-            new java.awt.Point(-1, -1), // nw
+            new Point(0, 1), // s
+            new Point(-1, 0), // sw
+            new Point(-1, -1), // nw
     };
 
     public HexGrid(int width, int height) {
@@ -27,13 +27,13 @@ public class HexGrid extends Grid {
     }
 
     @Override
-    public java.awt.Point getOffset(Cell cell, int index) {
+    public Point getOffset(Cell cell, int index) {
         //return offsets[index];
         int x = offsets[index].x;
         int y = offsets[index].y;
-        if (cell.x % 2 == 1) y++;
+        if (cell.x % 2 == 1 && x!=0) y++;
 
-        return new java.awt.Point(x, y);
+        return new Point(x, y);
     }
 
     // paint
@@ -70,63 +70,37 @@ public class HexGrid extends Grid {
     public static final double Y_BOTTOM = 2 * TRIANGLE_HEIGHT;
 
     public static final PointD[] points = {
+            new PointD(X_LEFT, Y_TOP),
             new PointD(X_RIGHT, Y_TOP),
             new PointD(X_FAR_RIGHT, Y_MIDDLE),
             new PointD(X_RIGHT, Y_BOTTOM),
             new PointD(X_LEFT, Y_BOTTOM),
             new PointD(X_FAR_LEFT, Y_MIDDLE),
-            new PointD(X_LEFT, Y_TOP),
     };
 
 
     @Override
-    public java.awt.Point getLocation(Cell cell, int size) {
-        double px = TRIANGLE_WIDTH + cell.x * (TRIANGLE_WIDTH + SIDE_LENGTH);
-        double py = 2 * TRIANGLE_HEIGHT * cell.y;
+    public Point getLocation(Cell cell, int size) {
+        double px = size * TRIANGLE_WIDTH + cell.x * (int) (size * TRIANGLE_WIDTH) + cell.x * (int) (size * SIDE_LENGTH);
+        double py = 2 * (int) (TRIANGLE_HEIGHT * size) * cell.y;
 
-        if (cell.x % 2 == 1) py += TRIANGLE_HEIGHT;
+        if (cell.x % 2 == 1) py += (TRIANGLE_HEIGHT * size);
 
-        int x = (int) (px * size);
-        int y = (int) (py * size);
+        int x = (int) (px );
+        int y = (int) (py );
 
-        return new java.awt.Point(x, y);
+        return new Point(x, y);
     }
 
     @Override
-    public java.awt.Point getPoint(Cell cell, int index, int size) {
+    public Point getPoint(Cell cell, int index, int size) {
         PointD dp = points[index];
 
         int x = (int) (dp.x * size);
         int y = (int) (dp.y * size);
 
-        return new java.awt.Point(x, y);
+        return new Point(x, y);
     }
-
-/*    @Override
-    public Polygon getSide(Cell cell, int index, int size) {
-        java.awt.Point a = getPoint(cell, index, size);
-        java.awt.Point b = getPoint(cell, (index + 1) % sides, size);
-
-        return new Polygon(
-                new int[]{a.x, b.x},
-                new int[]{a.y, b.y},
-                2
-        );
-    }
-
-    @Override
-    public Polygon getPolygon(Cell cell, int size) {
-        int[] xs = new int[sides];
-        int[] ys = new int[sides];
-        for (int i = 0; i < sides; i++) {
-            java.awt.Point p = getPoint(cell, i, size);
-
-            xs[i] = p.x;
-            ys[i] = p.y;
-        }
-
-        return new Polygon(xs, ys, sides);
-    }*/
 
 
 }
