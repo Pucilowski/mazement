@@ -1,5 +1,6 @@
 package com.pucilowski.navigation.maze.algorithms.generation;
 
+import com.pucilowski.navigation.maze.algorithms.State;
 import com.pucilowski.navigation.maze.model.Cell;
 import com.pucilowski.navigation.maze.model.Edge;
 import com.pucilowski.navigation.maze.model.grid.Grid;
@@ -21,24 +22,22 @@ public class Prims extends Generator {
     }
 
     public void start() {
+        Cell start = grid.cells[0][0];
 
-
-        for (int y = 0; y < grid.height; y++) {
-            for (int x = 0; x < grid.width; x++) {
-                Cell c = grid.cells[x][y];
-                addWalls(c);
-            }
-        }
-
-
+        addCell(start);
     }
 
-    public void addWalls(Cell cell) {
+    public void addCell(Cell cell) {
+
+        visited.add(cell);
+
         for (Edge n : cell.edges) {
-            if (n == null /*|| n.target.walls>0*/) continue;
+            if (n == null) continue;
             walls.add(n);
         }
     }
+
+
 
     @Override
     public void step() {
@@ -48,18 +47,20 @@ public class Prims extends Generator {
             return;
         }
 
-        //Collections.shuffle(walls, random);
-        //Edge wall = walls.get(0);
+        Collections.shuffle(walls, random);
+        Edge wall = walls.get(0);
 
-        int n = random.nextInt(walls.size());
-        Edge wall = walls.get(n);
+        //int n = random.nextInt(walls.size());
+        //Edge wall = walls.get(n);
 
-        if (visited.contains(wall.target)) {        walls.remove(wall);
 
+
+        if (visited.contains(wall.target)) {
+            walls.remove(wall);
         } else {
             grid.connect(wall);
-            visited.add(wall.target);
-            addWalls(wall.target);
+
+            addCell(wall.target);
         }
 
 

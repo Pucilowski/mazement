@@ -67,13 +67,13 @@ public class GridPaint {
 
 
 
-    public Point getPolygonCenter(int x, int y) {
+    public PointD getPolygonCenter(int x, int y) {
         Polygon p = getPolygon(x, y);
 
         int p_x = (p.xpoints[5] + p.xpoints[2]) / 2;
         int p_y = p.ypoints[2];
 
-        return new Point(p_x, p_y);
+        return new PointD(p_x, p_y);
     }
 
 /*    public void paint(Graphics g, Point p, HexTile tile) {

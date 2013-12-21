@@ -37,10 +37,7 @@ public class RecursiveDFS extends Generator {
             Edge neigh = edges[i];
             if (neigh == null) continue;
 
-            int nx = neigh.target.x;
-            int ny = neigh.target.y;
-
-            if ((grid.cells[nx][ny].walls == 0)) {
+            if (neigh.target.walls == 0) {
                 grid.connect(neigh);
 
                 explore(neigh.target);

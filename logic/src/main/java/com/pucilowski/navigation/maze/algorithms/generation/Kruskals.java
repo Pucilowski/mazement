@@ -1,5 +1,6 @@
 package com.pucilowski.navigation.maze.algorithms.generation;
 
+import com.pucilowski.navigation.maze.algorithms.State;
 import com.pucilowski.navigation.maze.model.Cell;
 import com.pucilowski.navigation.maze.model.Edge;
 import com.pucilowski.navigation.maze.model.grid.Grid;
@@ -21,10 +22,13 @@ public class Kruskals extends Generator {
     }
 
     public void start() {
+        for (int y = 0; y < grid.height; y++) {
+            for (int x = 0; x < grid.width; x++) {
+                Cell c = grid.cells[x][y];
+                addWalls(c);
+            }
+        }
 
-        Cell start = grid.cells[0][0];
-        visited.add(start);
-        addWalls(start);
 
     }
 

@@ -1,13 +1,11 @@
 package com.pucilowski.navigation.maze.algorithms.generation;
 
+import com.pucilowski.navigation.maze.algorithms.State;
 import com.pucilowski.navigation.maze.model.Cell;
 import com.pucilowski.navigation.maze.model.Edge;
 import com.pucilowski.navigation.maze.model.grid.Grid;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.Stack;
+import java.util.*;
 
 /**
  * Created by martin on 19/12/13.
@@ -23,8 +21,6 @@ public class StackDFS extends Generator {
     @Override
     public void start() {
         visited.push(grid.cells[0][0]);
-
-
     }
 
     @Override
@@ -37,26 +33,29 @@ public class StackDFS extends Generator {
 
         Cell current = visited.peek();
 
-        Edge[] edges = current.edges;
-        Collections.shuffle(Arrays.asList(edges), random);
+        //Edge[] edges = lolcurrent.edges;
+        List<Edge> edges = Arrays.asList(current.edges);
+        Collections.shuffle(edges, random);
+        //int n = random.nextInt(current.edges.length);
+        //Edge edge = current.edges[n];
 
-        for (Edge n : edges) {
-            if (n == null) continue;
 
-            //int nx = n.target.x;
-            //int ny = n.target.y;
+        for (Edge edge : edges) {
+            if (edge == null) continue;
 
-            if (n.target.walls == 0) {
-                grid.connect(n);
-                visited.push(n.target);
+            System.out.println("Neighbor: " + edge.target);
 
-                step.onStep(n.target);
+            if (edge.target.walls == 0) {
+                grid.connect(edge);
+
+                visited.add(edge.target);
+
+                step.onStep(edge.target);
 
                 return;
             }
         }
 
         visited.pop();
-
     }
 }
