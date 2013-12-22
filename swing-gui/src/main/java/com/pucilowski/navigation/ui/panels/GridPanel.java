@@ -18,6 +18,15 @@ public abstract class GridPanel extends JPanel {
 
     public abstract Grid getGrid();
 
+    public static final  Color[] colors = {
+            Color.RED,
+            Color.GREEN,
+            Color.YELLOW,
+            Color.BLUE,
+            Color.MAGENTA,
+            Color.CYAN
+    };
+
     @Override
     public void paintComponent(Graphics g) {
         Grid grid = getGrid();
@@ -30,24 +39,16 @@ public abstract class GridPanel extends JPanel {
         int size = Math.min(getWidth() / w, getHeight() / h);
         //int size = 24;
 
-        Color[] colors = {
-                Color.RED,
-                Color.GREEN,
-                Color.YELLOW,
-                Color.BLUE,
-                Color.MAGENTA,
-                Color.CYAN
-        };
+
 
         for (int y = 0; y < grid.height; y++) {
             for (int x = 0; x < grid.width; x++) {
                 //if(x%2!=1 )continue;
 
                 Cell cell = grid.cells[x][y];
-                //boolean walkable = grid.passage[x][y];
 
                 Point location = grid.getLocation(cell, size);
-                Polygon polygon = grid.getPolygon(cell, size);
+                //Polygon polygon = grid.getPolygon(cell, size);
 
                 int px = 8 + location.x;
                 int py = 12 + location.y;
@@ -86,36 +87,6 @@ public abstract class GridPanel extends JPanel {
                     side.translate(px, py);
                     g.drawPolygon(side);
                 }
-
-
-                //if (x % 2 == 0) py += size / 2;
-
-
-                //if (y % 2 == 0) py += size / 2;
-/*
-                float ratio = (float) cell.depth / (float) getGrid().maxDepth;
-
-                float[] end = new float[3];
-                for (int i = 0; i < 3; i++) {
-                    end[i] = Lerp.rainbow[i].interpolate(ratio);
-                }
-
-                Color c = new Color(end[0], end[1], end[2], 150f / 255f);
-
-                g.setColor(c);*/
-
-
-            /*    if (walkable) {
-                    g.setColor(Color.WHITE);
-                    g.drawRect(px, py, size - 1, size - 1);
-                    //g.setColor(Color.LIGHT_GRAY);
-                    //g.drawRect(px, py, size, size);
-                } else {
-                    g.setColor(Color.BLACK);
-                    g.drawRect(px, py, size - 1, size - 1);
-                    //g.setColor(Color.LIGHT_GRAY);
-                    //g.drawRect(px, py, size - 1, size - 1);
-                }*/
 
 
             }

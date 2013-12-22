@@ -1,4 +1,4 @@
-package com.pucilowski.navigation.maze.algorithms;
+package com.pucilowski.navigation.maze.algorithm;
 
 /**
 * Created by martin on 20/12/13.

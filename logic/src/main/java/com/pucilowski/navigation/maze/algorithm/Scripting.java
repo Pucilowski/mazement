@@ -1,4 +1,4 @@
-package com.pucilowski.navigation.maze.algorithms;
+package com.pucilowski.navigation.maze.algorithm;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
