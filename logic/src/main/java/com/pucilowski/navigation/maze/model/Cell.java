@@ -1,6 +1,5 @@
 package com.pucilowski.navigation.maze.model;
 
-import java.awt.*;
 import java.util.ArrayList;
 
 /**
@@ -8,23 +7,22 @@ import java.util.ArrayList;
  */
 public class Cell {
 
-
-    public final int x;
-    public final int y;
+    public final int x,y;
 
     public final int sides;
     public final Edge[] edges;
 
     public int walls = 0;
 
-    public int depth = 0;
-    Color c = Color.WHITE;
-
     public Cell(int x, int y, int sides) {
         this.x = x;
         this.y = y;
         this.sides = sides;
         this.edges = new Edge[sides];
+    }
+
+    public Edge getEdge(int side) {
+        return edges[side];
     }
 
     public Edge[] getEdges() {

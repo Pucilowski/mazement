@@ -1,7 +1,7 @@
-package com.pucilowski.navigation.maze.algorithms.pathfinding;
+package com.pucilowski.navigation.maze.pathfinding;
 
-import com.pucilowski.navigation.maze.algorithms.pathfinding.model.Graph;
-import com.pucilowski.navigation.maze.algorithms.pathfinding.model.Vertex;
+import com.pucilowski.navigation.maze.pathfinding.model.Graph;
+import com.pucilowski.navigation.maze.pathfinding.model.Vertex;
 
 import java.util.*;
 

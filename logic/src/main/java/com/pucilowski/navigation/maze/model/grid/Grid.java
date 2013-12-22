@@ -16,8 +16,6 @@ public abstract class Grid {
     public final int sides;
     public Cell[][] cells;
 
-    public int maxDepth = 1;
-
     public Grid(int width, int height, int sides) {
         this.width = width;
         this.height = height;

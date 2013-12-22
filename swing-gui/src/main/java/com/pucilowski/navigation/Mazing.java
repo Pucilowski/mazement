@@ -1,13 +1,11 @@
 package com.pucilowski.navigation;
 
-import com.pucilowski.navigation.maze.algorithms.Algorithm;
-import com.pucilowski.navigation.maze.algorithms.State;
-import com.pucilowski.navigation.maze.algorithms.generation.*;
-import com.pucilowski.navigation.maze.algorithms.generation.misc.StepListener;
+import com.pucilowski.navigation.maze.algorithm.Algorithm;
+import com.pucilowski.navigation.maze.algorithm.State;
+import com.pucilowski.navigation.maze.generation.*;
+import com.pucilowski.navigation.maze.generation.misc.StepListener;
 import com.pucilowski.navigation.maze.model.Cell;
 import com.pucilowski.navigation.maze.model.grid.Grid;
-import com.pucilowski.navigation.maze.model.grid.HexGrid;
-import com.pucilowski.navigation.maze.model.grid.SqGrid;
 import com.pucilowski.navigation.maze.model.grid.TriGrid;
 import com.pucilowski.navigation.ui.GUI;
 
@@ -24,7 +22,7 @@ public class Mazing {
 
     public Mazing() {
 
-        grid = new HexGrid(30, 20);
+        grid = new TriGrid(30, 20);
         gui = new GUI(this);
 
         final Generator dfs = new StackDFS(grid);
