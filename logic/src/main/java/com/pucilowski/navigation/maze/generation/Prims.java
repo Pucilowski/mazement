@@ -1,6 +1,6 @@
-package com.pucilowski.navigation.maze.algorithms.generation;
+package com.pucilowski.navigation.maze.generation;
 
-import com.pucilowski.navigation.maze.algorithms.State;
+import com.pucilowski.navigation.maze.algorithm.State;
 import com.pucilowski.navigation.maze.model.Cell;
 import com.pucilowski.navigation.maze.model.Edge;
 import com.pucilowski.navigation.maze.model.grid.Grid;
