@@ -47,6 +47,14 @@ public abstract class Grid {
         return x >= 0 && y >= 0 && x < width && y < height;
     }
 
+    public double euclidean(Cell a, Cell b) {
+        return a.euclidean(b);
+    }
+
+    public double manhattan(Cell a, Cell b) {
+        return a.manhattan(b);
+    }
+
     public void connect(Edge n) {
 
         int source = (int) Math.pow(2, n.index);

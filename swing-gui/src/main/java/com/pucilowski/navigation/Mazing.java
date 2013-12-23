@@ -7,6 +7,8 @@ import com.pucilowski.navigation.maze.algorithm.generation.*;
 import com.pucilowski.navigation.maze.algorithm.generation.misc.StepListener;
 import com.pucilowski.navigation.maze.grid.Cell;
 import com.pucilowski.navigation.maze.grid.Grid;
+import com.pucilowski.navigation.maze.grid.grids.HexGrid;
+import com.pucilowski.navigation.maze.grid.grids.SqGrid;
 import com.pucilowski.navigation.maze.grid.grids.TriGrid;
 import com.pucilowski.navigation.maze.algorithm.pathfinding.Distance;
 import com.pucilowski.navigation.maze.algorithm.pathfinding.ReStar;
@@ -25,23 +27,31 @@ public class Mazing   {
 
     public Mazing() {
 
-        grid = new TriGrid(120, 45);
+        grid = new SqGrid(120, 45);
+
+        final Cell start = grid.cells[grid.width/2][grid.height/2];
+        final Cell goal = grid.cells[grid.width-1][grid.height-1];
+
         gui = new GUI(this);
 
-        final Generator dfs = new Prims(grid);
-        dfs.step = new StepListener() {
-            @Override
-            public void onStep(Cell cell) {
-                //gui.frame.repaint();
-
-            }
-        };
-
-        algo = dfs;
 
         Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
+
+
+
+                final Generator dfs = new Prims(grid);
+                dfs.step = new StepListener() {
+                    @Override
+                    public void onStep(Cell cell) {
+                        //gui.frame.repaint();
+
+                    }
+                };
+
+                algo = dfs;
+
 
                 dfs.start();
 
@@ -50,7 +60,7 @@ public class Mazing   {
 
 
                     try {
-                        Thread.sleep(2);
+                        Thread.sleep(0);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -59,9 +69,8 @@ public class Mazing   {
 
                 }
 
-                grid.toIsland(grid.cells[29][19]);
 
-                ReStar search = new ReStar(grid, grid.cells[0][0], grid.cells[29][19], new Distance() {
+                ReStar search = new ReStar(grid, start,goal, new Distance() {
                     @Override
                     public double weight(Cell a, Cell b) {
                         return 1;//a.euclidean(b);
@@ -73,9 +82,14 @@ public class Mazing   {
                     }
                 });
 
-
+                try {
+                    Thread.sleep(0);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
 
                 algo = search;
+                //grid.toIsland(grid.cells[29][19]);
 
                 while (search.state == State.WORKING && gui.frame.isVisible()) {
 

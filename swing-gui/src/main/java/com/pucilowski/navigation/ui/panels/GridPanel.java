@@ -44,7 +44,6 @@ public class GridPanel extends JPanel {
 
 
         int size = (int) Math.floor( Math.min((double)getWidth() / w, (double)getHeight() / h));
-        size-=2;
         //int size = 24;
 
 
