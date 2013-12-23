@@ -61,7 +61,7 @@ public class Prims extends Generator {
             return;
         }
 
-        Collections.shuffle(walls, random);
+        //Collections.shuffle(walls, random);
         Edge wall = walls.get(0);
 
         //int n = random.nextInt(walls.size());
