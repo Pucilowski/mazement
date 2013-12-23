@@ -7,17 +7,17 @@ import javax.swing.*;
  */
 public class NewMaze extends JDialog {
 
-    JComboBox<String> types;
+    JComboBox<MazeType> types;
 
     JSlider width;
     JSlider height;
 
     public NewMaze() {
 
-        types = new JComboBox<>();
-        types.addItem("Square");
-        types.addItem("Hexagon");
-        types.addItem("Triangle");
+        types = new JComboBox<MazeType>();
+        for (MazeType t : MazeType.values()) {
+            types.addItem(t);
+        }
 
         DefaultBoundedRangeModel brm = new DefaultBoundedRangeModel(30, 1, 2, 100);
 
@@ -32,10 +32,16 @@ public class NewMaze extends JDialog {
 
     }
 
-    public enum Maze {
-        SQUARE(),
-        HEXAGON,
-        TRIANGLE
+    public enum MazeType {
+        SQUARE("Square"),
+        HEXAGON("Hexagonal"),
+        TRIANGLE("Triangular");
+
+        final String label;
+
+        MazeType(String label) {
+            this.label = label;
+        }
     }
 
 }

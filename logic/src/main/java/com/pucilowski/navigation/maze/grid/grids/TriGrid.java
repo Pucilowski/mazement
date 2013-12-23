@@ -64,9 +64,11 @@ public class TriGrid extends Grid {
             new PointD(1, 0),
     };
 
+    //public static final double TRIANGLE_HEIGHT = Math.sin(Math.toRadians(60));
+
     @Override
     public PointD getSize() {
-        return new PointD((double)width/4D,(double)height);
+        return new PointD((double)width/2D,(double)height);
     }
 
     @Override

@@ -62,10 +62,10 @@ public class Prims extends Generator {
         }
 
         //Collections.shuffle(walls, random);
-        Edge wall = walls.get(0);
+        //Edge wall = walls.get(0);
 
-        //int n = random.nextInt(walls.size());
-        //Edge wall = walls.get(n);
+        int n = random.nextInt(walls.size());
+        Edge wall = walls.get(n);
 
 
         if (visited.contains(wall.target)) {
@@ -88,8 +88,11 @@ public class Prims extends Generator {
 
     }
 
+
     @Override
     public Color getColor(Cell cell) {
+
+
 
         int d = getMeta(cell).depth;
 
