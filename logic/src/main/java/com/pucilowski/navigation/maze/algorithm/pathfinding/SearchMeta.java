@@ -12,6 +12,7 @@ public class SearchMeta extends CellMeta {
     double fScore = 0;
 
     Cell parent;
+    public int order;
 
     public SearchMeta(Cell cell) {
         super(cell);

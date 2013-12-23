@@ -9,7 +9,7 @@ import java.util.Random;
 /**
  * Created by martin on 19/12/13.
  */
-public abstract class Generator extends Algorithm {
+public abstract class Generator<M extends CellMeta> extends Algorithm<M> {
 
     public final Random random;
 

@@ -1,5 +1,6 @@
 package com.pucilowski.navigation.maze.algorithm.pathfinding;
 
+import com.pucilowski.navigation.maze.algorithm.CellMeta;
 import com.pucilowski.navigation.maze.algorithm.Pathfinder;
 import com.pucilowski.navigation.maze.algorithm.State;
 import com.pucilowski.navigation.maze.grid.Cell;
@@ -32,11 +33,12 @@ public class ReStar extends Pathfinder<SearchMeta> {
     });
 
 
-    public Cell[] path = null;
 
     Distance weights;
 
+    public int maxOrder = 0;
     public int maxDepth = 1;
+
 
     public ReStar(Grid grid, Cell start, Cell goal, Distance distance) {
         super(grid, start, goal);
@@ -47,21 +49,19 @@ public class ReStar extends Pathfinder<SearchMeta> {
     }
 
 
-    @Override
-    public SearchMeta newMeta(Cell cell) {
-        return new SearchMeta(cell);
-    }
+
 
 
     @Override
     public void start() {
         open.add(start);
 
+        SearchMeta startMeta = getMeta(start);
 
         //start.g_score = 0D;
-        getMeta(start).gScore = 0D;
-        //start.f_score = start.g_score + weights.heuristic(start, finish);
-        getMeta(start).fScore = 0D;
+        startMeta.gScore = 0D;
+        //start.f_score = start.g_score + weights.heuristic(start, goal);
+        startMeta.fScore = startMeta.gScore + weights.heuristic(start, goal);
     }
 
     @Override
@@ -74,8 +74,11 @@ public class ReStar extends Pathfinder<SearchMeta> {
         }
 
         Cell current = open.peek();
+        SearchMeta currentMeta = getMeta(current);
+        maxOrder++;
+        currentMeta.order = maxOrder;
 
-        if (current.equals(goal)) {
+        if (current.equals(goal) && false) {
             state = State.SUCCESS;
             path = path(current);
             return;
@@ -86,24 +89,23 @@ public class ReStar extends Pathfinder<SearchMeta> {
 
         for (Edge edge : current.getEdges()) {
             if (!grid.isConnected(edge)) continue;
+
             Cell neighbor = edge.target;
+            SearchMeta neighborMeta = getMeta(neighbor);
 
-            SearchMeta mCurrent = getMeta(current);
-            SearchMeta mNeighbor = getMeta(neighbor);
-
-            double tentative_g_score = mCurrent.gScore + weights.weight(current, neighbor);
+            double tentative_g_score = currentMeta.gScore + weights.weight(current, neighbor);
             double tentative_f_score = tentative_g_score + weights.heuristic(neighbor, goal);
 
-            if (closed.contains(neighbor) && tentative_f_score >= mNeighbor.fScore)
+            if (closed.contains(neighbor) && tentative_f_score >= neighborMeta.fScore)
                 continue;
 
-            if (!open.contains(neighbor) || tentative_f_score < mNeighbor.fScore) {
-                mNeighbor.parent = current;
-                mNeighbor.depth = mCurrent.depth + 1;
-                if (mNeighbor.depth > maxDepth) maxDepth = mNeighbor.depth;
+            if (!open.contains(neighbor) || tentative_f_score < neighborMeta.fScore) {
+                neighborMeta.parent = current;
+                neighborMeta.depth = currentMeta.depth + 1;
+                if (neighborMeta.depth > maxDepth) maxDepth = neighborMeta.depth;
 
-                mNeighbor.gScore = tentative_g_score;
-                mNeighbor.fScore = tentative_f_score;
+                neighborMeta.gScore = tentative_g_score;
+                neighborMeta.fScore = tentative_f_score;
                 if (!open.contains(neighbor)) {
                     open.add(neighbor);
                 }
@@ -124,10 +126,27 @@ public class ReStar extends Pathfinder<SearchMeta> {
         return path.toArray(new Cell[path.size()]);
     }
 
+    public Color[] colors = {
+            Color.RED,
+            Color.GREEN,
+            Color.YELLOW,
+            Color.BLUE
+    };
+
     @Override
-  public  Color getColor(Cell cell) {
+    public Color getColor(Cell cell) {
+
+  /*      if (true) {
+            for (Edge e : cell.getEdges()) {
+                SearchMeta sm = getMeta(e.target);
+                if (cell.equals(sm.parent)) {
+                    return colors[e.index];
+                }
+            }
+        }*/
 
         int d = getMeta(cell).depth;
+//        int d = getMeta(cell).order;
 
         if (closed.contains(cell)) {
 
@@ -148,7 +167,7 @@ public class ReStar extends Pathfinder<SearchMeta> {
             //polygon.translate(px, py);
             //g.fillPolygon(polygon);
         } else if (open.contains(cell)) {
-            Color c = new Color(192,192,192,255);
+            Color c = new Color(192, 192, 192, 255);
 
             return c;
 
@@ -160,5 +179,9 @@ public class ReStar extends Pathfinder<SearchMeta> {
         }
 
         return null;
+    }
+    @Override
+    public Cell getCurrent() {
+        return open.peek();
     }
 }
