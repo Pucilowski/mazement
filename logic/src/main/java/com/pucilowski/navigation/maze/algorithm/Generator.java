@@ -1,10 +1,8 @@
-package com.pucilowski.navigation.maze.generation;
+package com.pucilowski.navigation.maze.algorithm;
 
-import com.pucilowski.navigation.maze.algorithm.Algorithm;
-import com.pucilowski.navigation.maze.algorithm.State;
-import com.pucilowski.navigation.maze.generation.misc.StepListener;
-import com.pucilowski.navigation.maze.model.Cell;
-import com.pucilowski.navigation.maze.model.grid.Grid;
+import com.pucilowski.navigation.maze.algorithm.generation.misc.StepListener;
+import com.pucilowski.navigation.maze.grid.Cell;
+import com.pucilowski.navigation.maze.grid.Grid;
 
 import java.util.Random;
 
@@ -22,15 +20,11 @@ public abstract class Generator extends Algorithm {
         }
     };
 
-    public State state = State.WORKING;
 
     public Generator(Grid grid) {
         super(grid);
         this.random = new Random();
     }
-
-
-
 
 
 }
