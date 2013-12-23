@@ -32,43 +32,46 @@ public class HexGrid extends Grid {
         //return offsets[index];
         int x = offsets[index].x;
         int y = offsets[index].y;
-        if (cell.x % 2 == 1 && x!=0) y++;
+        if (cell.x % 2 == 1 && x != 0) y++;
 
         return new Point(x, y);
     }
 
     // paint
 
-/*    public static final double TRIANGLE_WIDTH = 0.25D;
-    public static final double TRIANGLE_HEIGHT = 0.875D / 2D;
-    public static final double SIDE_LENGTH = 0.5D;
+/*
     //public static final double TRIANGLE_HEIGHT = Math.sin(Math.toRadians(60));
     //double TRIANGLE_HEIGHT = 1D;
 
+
+
+
+
+*/
+
+    //public static final double SIDE_LENGTH = 1.0D;
+    //public static final double TRIANGLE_WIDTH = 0.5D;
+    //public static final double TRIANGLE_HEIGHT = 0.875D;
+    //public static final double TRIANGLE_HEIGHT = Math.sin(Math.toRadians(60));
+    public static final double SIDE_LENGTH = 0.5D;
+    public static final double TRIANGLE_WIDTH = 0.25D;
+    public static final double TRIANGLE_HEIGHT = 0.875D / 2D;
+
+
+    //public static final double X_LEFT = 0D;
+    //public static final double X_RIGHT = 1D;
     public static final double X_LEFT = 0.25D;
     public static final double X_RIGHT = 0.75D;
 
+    //public static final double X_FAR_LEFT = -0.5D;
+    //public static final double X_FAR_RIGHT = 1.5D;
     public static final double X_FAR_LEFT = 0D;
     public static final double X_FAR_RIGHT = 1D;
 
     public static final double Y_TOP = 0;
     public static final double Y_MIDDLE = TRIANGLE_HEIGHT;
-    public static final double Y_BOTTOM = 2 * TRIANGLE_HEIGHT;*/
+    public static final double Y_BOTTOM = TRIANGLE_HEIGHT * 2;
 
-    public static final double SIDE_LENGTH = 1.0D;
-    public static final double TRIANGLE_WIDTH = 0.5D;
-    public static final double TRIANGLE_HEIGHT = 0.875D;
-    //public static final double TRIANGLE_HEIGHT = Math.sin(Math.toRadians(60));
-
-    public static final double X_LEFT = 0D;
-    public static final double X_RIGHT = 1D;
-
-    public static final double X_FAR_LEFT = -0.5D;
-    public static final double X_FAR_RIGHT = 1.5D;
-
-    public static final double Y_TOP = 0;
-    public static final double Y_MIDDLE = TRIANGLE_HEIGHT;
-    public static final double Y_BOTTOM = 2 * TRIANGLE_HEIGHT;
 
     public static final PointD[] points = {
             new PointD(X_LEFT, Y_TOP),
@@ -78,20 +81,26 @@ public class HexGrid extends Grid {
             new PointD(X_LEFT, Y_BOTTOM),
             new PointD(X_FAR_LEFT, Y_MIDDLE),
     };
+
     @Override
     public PointD getSize() {
-        return new PointD(width*1.5,height*3);
+        Cell last = cells[width-1][height-1];
+
+        double px = ( TRIANGLE_WIDTH) + last.x *  ( TRIANGLE_WIDTH) + last.x *  ( SIDE_LENGTH);
+        double py = 2 *  (TRIANGLE_HEIGHT ) * last.y;
+
+        return new PointD(px,py);
     }
 
     @Override
     public Point getLocation(Cell cell, int size) {
-        double px = size * TRIANGLE_WIDTH + cell.x * (int) (size * TRIANGLE_WIDTH) + cell.x * (int) (size * SIDE_LENGTH);
+        double px = (int)(size * TRIANGLE_WIDTH) + cell.x * (int) (size * TRIANGLE_WIDTH) + cell.x * (int) (size * SIDE_LENGTH);
         double py = 2 * (int) (TRIANGLE_HEIGHT * size) * cell.y;
 
         if (cell.x % 2 == 1) py += (TRIANGLE_HEIGHT * size);
 
-        int x = (int) (px );
-        int y = (int) (py );
+        int x = (int) (px);
+        int y = (int) (py);
 
         return new Point(x, y);
     }
