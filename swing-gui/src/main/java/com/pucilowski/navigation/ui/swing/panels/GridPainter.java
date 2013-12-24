@@ -25,11 +25,11 @@ public class GridPainter {
 
                 Cell cell = grid.cells[x][y];
 
-                Point location = grid.getLocation(cell, size);
+                Point location = grid.getLocation(cell);
                 int px = 8 + location.x;
                 int py = 12 + location.y;
 
-                Polygon polygon = grid.getPolygon(cell, size);
+                Polygon polygon = grid.getPolygon(cell);
                 polygon.translate(px, py);
 
 

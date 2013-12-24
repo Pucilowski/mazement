@@ -1,7 +1,6 @@
 package com.pucilowski.navigation.maze.grid;
 
 import com.pucilowski.navigation.maze.grid.paint.PointD;
-import org.json.JSONObject;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -140,21 +139,29 @@ public abstract class Grid {
 
     // paint
 
+    public final void resize(Rectangle area) {
+        PointD d = getScaledSize();
+        double sWidth = d.x;
+        double sHeight = d.y;
+
+        int cellSize = (int) Math.floor(Math.min((double) area.width / sWidth, (double) area.height / sHeight));
+
+        resize(cellSize);
+    }
+
     public abstract void resize(int size);
 
-    public abstract PointD getSize();
+    public abstract PointD getScaledSize();
 
-    public abstract Point getLocation(Cell cell, int size);
+    public abstract Point getSize();
 
-    public abstract Point getPoint(Cell cell, int index, int size);
+    public abstract Point getLocation(Cell cell);
 
-/*    public abstract Polygon getSide(Cell cell, int index, int size);
+    public abstract Point getPoint(Cell cell, int index);
 
-    public abstract Polygon getPolygon(Cell cell, int size);*/
-
-    public final Polygon getSide(Cell cell, int index, int size) {
-        java.awt.Point a = getPoint(cell, index, size);
-        java.awt.Point b = getPoint(cell, (index + 1) % sides, size);
+    public final Polygon getSide(Cell cell, int index) {
+        java.awt.Point a = getPoint(cell, index);
+        java.awt.Point b = getPoint(cell, (index + 1) % sides);
 
         return new Polygon(
                 new int[]{a.x, b.x},
@@ -163,11 +170,11 @@ public abstract class Grid {
         );
     }
 
-    public final Polygon getPolygon(Cell cell, int size) {
+    public final Polygon getPolygon(Cell cell) {
         int[] xs = new int[sides];
         int[] ys = new int[sides];
         for (int i = 0; i < sides; i++) {
-            java.awt.Point p = getPoint(cell, i, size);
+            java.awt.Point p = getPoint(cell, i);
 
             xs[i] = p.x;
             ys[i] = p.y;

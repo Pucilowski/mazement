@@ -37,10 +37,6 @@ public class HexGrid extends Grid {
         return new Point(x, y);
     }
 
-    @Override
-    public void resize(int size) {
-
-    }
 
     // paint
 
@@ -54,13 +50,13 @@ public class HexGrid extends Grid {
 
 */
 
-    //public static final double SIDE_LENGTH = 1.0D;
-    //public static final double TRIANGLE_WIDTH = 0.5D;
-    //public static final double TRIANGLE_HEIGHT = 0.875D;
+    public static final double SIDE_LENGTH = 1.0D;
+    public static final double TRIANGLE_WIDTH = 0.5D;
+    public static final double TRIANGLE_HEIGHT = 0.875D;
     //public static final double TRIANGLE_HEIGHT = Math.sin(Math.toRadians(60));
-    public static final double SIDE_LENGTH = 0.5D;
-    public static final double TRIANGLE_WIDTH = 0.25D;
-    public static final double TRIANGLE_HEIGHT = 0.875D / 2D;
+    //public static final double SIDE_LENGTH = 0.5D;
+    //public static final double TRIANGLE_WIDTH = 0.25D;
+    //public static final double TRIANGLE_HEIGHT = 0.875D / 2D;
 
 
     //public static final double X_LEFT = 0D;
@@ -77,8 +73,11 @@ public class HexGrid extends Grid {
     public static final double Y_MIDDLE = TRIANGLE_HEIGHT;
     public static final double Y_BOTTOM = TRIANGLE_HEIGHT * 2;
 
+    public int sideLength;
+    public int triangleWidth;
+    public int triangleHeight;
 
-    public static final PointD[] points = {
+    public static final PointD[] POINTS = {
             new PointD(X_LEFT, Y_TOP),
             new PointD(X_RIGHT, Y_TOP),
             new PointD(X_FAR_RIGHT, Y_MIDDLE),
@@ -87,17 +86,42 @@ public class HexGrid extends Grid {
             new PointD(X_FAR_LEFT, Y_MIDDLE),
     };
 
+    public static Point[] points;
+
+
+
     @Override
-    public PointD getSize() {
-        Cell last = cells[width - 1][height - 1];
+    public void resize(int size) {
 
-        double px = (TRIANGLE_WIDTH) + last.x * (TRIANGLE_WIDTH) + last.x * (SIDE_LENGTH) + TRIANGLE_WIDTH + SIDE_LENGTH;
-        double py = 2 * (TRIANGLE_HEIGHT) * last.y + TRIANGLE_HEIGHT * 2;
+        sideLength = (int) (SIDE_LENGTH * size);
+        triangleWidth = (int) (TRIANGLE_WIDTH * size);
+        triangleHeight = (int) (TRIANGLE_HEIGHT * size);
 
-        return new PointD(px, py);
+        points = new Point[]{
+                new Point(0, 0),
+                new Point(sideLength, 0),
+                new Point(sideLength + triangleWidth, triangleHeight),
+                new Point(sideLength, triangleHeight * 2),
+                new Point(0, triangleHeight * 2),
+                new Point(-triangleWidth, triangleHeight),
+        };
     }
 
     @Override
+    public PointD getScaledSize() {
+        double w = TRIANGLE_WIDTH + width * (SIDE_LENGTH + TRIANGLE_WIDTH);
+        double h = TRIANGLE_HEIGHT + height * TRIANGLE_HEIGHT * 2D;// * TRIANGLE_HEIGHT * 3D;
+
+        return new PointD(w, h);
+    }
+
+    @Override
+    public Point getSize() {
+        int w = triangleWidth + width * (sideLength + triangleWidth);
+        int h = triangleHeight + height * triangleHeight * 2;
+        return new Point(w,h);
+    }
+
     public Point getLocation(Cell cell, int size) {
         double px = (int) (size * TRIANGLE_WIDTH) + cell.x * (int) (size * TRIANGLE_WIDTH) + cell.x * (int) (size * SIDE_LENGTH);
         double py = 2 * (int) (TRIANGLE_HEIGHT * size) * cell.y;
@@ -111,13 +135,20 @@ public class HexGrid extends Grid {
     }
 
     @Override
-    public Point getPoint(Cell cell, int index, int size) {
-        PointD dp = points[index];
+    public Point getLocation(Cell cell) {
+        int x = triangleWidth + cell.x * triangleWidth + cell.x * sideLength;
+        int y = 2 * triangleHeight * cell.y;
 
-        int x = (int) (dp.x * size);
-        int y = (int) (dp.y * size);
+        if (cell.x % 2 == 1) y += triangleHeight;
+
 
         return new Point(x, y);
+    }
+
+
+    @Override
+    public Point getPoint(Cell cell, int index) {
+        return points[index];
     }
 
 
