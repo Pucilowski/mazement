@@ -1,6 +1,7 @@
 package com.pucilowski.navigation.ui;
 
 import com.pucilowski.navigation.Mazing;
+import com.pucilowski.navigation.ui.swing.Frame;
 
 import javax.swing.*;
 
