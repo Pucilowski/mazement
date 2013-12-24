@@ -1,7 +1,6 @@
-package com.pucilowski.navigation.ui.panels;
+package com.pucilowski.navigation.ui.swing.panels;
 
 import javax.swing.*;
-import java.awt.*;
 
 /**
  * Created by martin on 11/12/13.

@@ -3,15 +3,18 @@ package com.pucilowski.navigation;
 import com.pucilowski.navigation.maze.algorithm.Algorithm;
 import com.pucilowski.navigation.maze.algorithm.Generator;
 import com.pucilowski.navigation.maze.algorithm.State;
-import com.pucilowski.navigation.maze.algorithm.generation.*;
+import com.pucilowski.navigation.maze.algorithm.generation.Prims;
 import com.pucilowski.navigation.maze.algorithm.generation.misc.StepListener;
-import com.pucilowski.navigation.maze.algorithm.pathfinding.DFSearch;
-import com.pucilowski.navigation.maze.grid.Cell;
-import com.pucilowski.navigation.maze.grid.Grid;
-import com.pucilowski.navigation.maze.grid.grids.TriGrid;
 import com.pucilowski.navigation.maze.algorithm.pathfinding.Distance;
 import com.pucilowski.navigation.maze.algorithm.pathfinding.ReStar;
+import com.pucilowski.navigation.maze.grid.Cell;
+import com.pucilowski.navigation.maze.grid.Grid;
+import com.pucilowski.navigation.maze.grid.grids.HexGrid;
 import com.pucilowski.navigation.ui.GUI;
+import com.pucilowski.navigation.ui.events.Event;
+import com.pucilowski.navigation.ui.events.EventHandler;
+
+import java.util.LinkedList;
 
 /**
  * Created by martin on 10/12/13.
@@ -22,11 +25,17 @@ public class Mazing   {
 
     public Algorithm algo;
 
+
+
     GUI gui;
+
+    public EventHandler events;
 
     public Mazing() {
 
-        grid = new TriGrid(123, 45);
+        events = new EventHandler(this);
+
+        grid = new HexGrid(47, 29);
 
         final Cell start = grid.cells[grid.width/2][grid.height/2];
         final Cell goal = grid.cells[grid.width-1][grid.height-1];
@@ -40,7 +49,7 @@ public class Mazing   {
 
 
 
-                final Generator dfs = new DFS(grid);
+                final Generator dfs = new Prims(grid);
                 dfs.step = new StepListener() {
                     @Override
                     public void onStep(Cell cell) {
@@ -120,6 +129,9 @@ public class Mazing   {
 
 
     }
+
+
+
 
 
 }

@@ -1,4 +1,4 @@
-package com.pucilowski.navigation.ui.panels;
+package com.pucilowski.navigation.ui.swing.panels;
 
 import com.pucilowski.navigation.Mazing;
 import com.pucilowski.navigation.maze.algorithm.Algorithm;
