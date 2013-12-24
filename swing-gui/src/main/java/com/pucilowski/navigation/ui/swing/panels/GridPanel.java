@@ -1,6 +1,6 @@
 package com.pucilowski.navigation.ui.swing.panels;
 
-import com.pucilowski.navigation.Mazing;
+import com.pucilowski.navigation.Main;
 import com.pucilowski.navigation.maze.algorithm.Algorithm;
 import com.pucilowski.navigation.maze.grid.Cell;
 import com.pucilowski.navigation.maze.grid.Edge;
@@ -14,12 +14,45 @@ import java.awt.*;
  * Created by martin on 11/12/13.
  */
 public class GridPanel extends JPanel {
-    Mazing mazing;
 
-    public GridPanel(Mazing mazing) {
-        this.mazing = mazing;
+    final Main main;
+
+
+    int xOffset;
+    int yOffset;
+    int cellSize;
+
+    public GridPanel(Main main) {
+        this.main = main;
+
+        resize();
     }
 
+
+    public void resize() {
+        Grid grid = main.grid;
+
+
+        PointD d = grid.getSize();
+        double w = d.x;
+        double h = d.y;
+
+        cellSize = (int) Math.floor(Math.min((double) getWidth() / w, (double) getHeight() / h));
+
+        grid.resize(cellSize);
+
+        xOffset = (int) ((getWidth() - cellSize * w) / 2);
+        yOffset = (int) ((getHeight() - cellSize * h) / 2);
+
+        int w2 = (int) (cellSize * w);
+        int h2 = (int) (cellSize * h);
+
+        System.out.println(w2 + ", " + h2);
+
+
+        //main.gui.frame.invalidate();
+
+    }
 
     public static final Color[] colors = {
             Color.RED,
@@ -30,20 +63,21 @@ public class GridPanel extends JPanel {
             Color.CYAN
     };
 
+
     @Override
     public void paintComponent(Graphics g) {
         final Graphics2D g2d = (Graphics2D) g;
 
-        Grid grid = mazing.grid;
-        Algorithm algo = mazing.algo;
+        resize();
+
+        int size = cellSize;
+
+        Grid grid = main.grid;
+        Algorithm algo = main.algo;
+
+        //resize();
 
 
-        PointD d = grid.getSize();
-        double w = d.x;
-        double h = d.y;
-
-
-        int size = (int) Math.floor(Math.min((double) getWidth() / w, (double) getHeight() / h));
         //int size = 24;
 
 
@@ -54,8 +88,8 @@ public class GridPanel extends JPanel {
                 Cell cell = grid.cells[x][y];
 
                 Point location = grid.getLocation(cell, size);
-                int px = 8 + location.x;
-                int py = 12 + location.y;
+                int px = xOffset + location.x;
+                int py = yOffset + location.y;
 
                 Polygon polygon = grid.getPolygon(cell, size);
                 polygon.translate(px, py);
@@ -142,6 +176,7 @@ public class GridPanel extends JPanel {
                 }
             }
         }
+
     }
 
 

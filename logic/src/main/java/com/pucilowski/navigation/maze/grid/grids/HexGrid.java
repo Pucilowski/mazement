@@ -37,6 +37,11 @@ public class HexGrid extends Grid {
         return new Point(x, y);
     }
 
+    @Override
+    public void resize(int size) {
+
+    }
+
     // paint
 
 /*

@@ -27,6 +27,11 @@ public class SqGrid extends Grid {
         return offsets[index];
     }
 
+    @Override
+    public void resize(int size) {
+
+    }
+
     // paint
 
     public static final PointD[] points = {

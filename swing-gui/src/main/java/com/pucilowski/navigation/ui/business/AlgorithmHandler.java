@@ -1,6 +1,6 @@
 package com.pucilowski.navigation.ui.business;
 
-import com.pucilowski.navigation.Mazing;
+import com.pucilowski.navigation.Main;
 import com.pucilowski.navigation.maze.algorithm.State;
 
 /**
@@ -8,44 +8,31 @@ import com.pucilowski.navigation.maze.algorithm.State;
  */
 public class AlgorithmHandler implements Runnable {
 
-    final Mazing mazing;
+    final Main main;
 
-    public AlgorithmHandler(Mazing mazing) {
-        this.mazing = mazing;
+    public AlgorithmHandler(Main main) {
+        this.main = main;
 
-        Thread t= new Thread(this);
+        Thread t = new Thread(this);
         t.start();
     }
 
     @Override
     public void run() {
 
-
         while (true) {
+            if (main.algo != null && main.algo.state == State.WORKING) {
+                System.out.println("step");
 
-            if(mazing.algo==null) {
-                try {
-                    Thread.sleep(10);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                continue;
+                main.algo.step();
+
+                main.gui.frame.repaint();
             }
-
-            while (mazing.algo.state == State.WORKING) {
-                mazing.algo.step();
-
-
-                try {
-                    Thread.sleep(10);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-
-                mazing.gui.frame.repaint();
-
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
-
         }
 
     }

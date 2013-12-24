@@ -1,22 +1,20 @@
 package com.pucilowski.navigation.ui;
 
-import com.pucilowski.navigation.Mazing;
+import com.pucilowski.navigation.Main;
 import com.pucilowski.navigation.ui.swing.Frame;
-
-import javax.swing.*;
 
 /**
  * Created by martin on 15/12/13.
  */
 public class GUI {
 
-    public final Mazing mazing;
+    public final Main main;
 
     public Frame frame;
 
 
-    public GUI(Mazing mazing) {
-        this.mazing = mazing;
+    public GUI(Main main) {
+        this.main = main;
 /*
         try {
 
@@ -25,7 +23,7 @@ public class GUI {
             System.out.println("Unable to set native look and feel: " + e);
         }*/
 
-        frame = new Frame(this);
+        frame = new Frame(main,this);
 
     }
 

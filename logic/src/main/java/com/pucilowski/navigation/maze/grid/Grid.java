@@ -22,6 +22,10 @@ public abstract class Grid {
         this.sides = sides;
         cells = new Cell[width][height];
 
+        reset();
+    }
+
+    public void reset() {
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
                 cells[x][y] = new Cell(x, y, sides);
@@ -41,7 +45,6 @@ public abstract class Grid {
                 }
             }
         }
-
     }
 
     public boolean contains(int x, int y) {
@@ -137,6 +140,8 @@ public abstract class Grid {
 
     // paint
 
+    public abstract void resize(int size);
+
     public abstract PointD getSize();
 
     public abstract Point getLocation(Cell cell, int size);
@@ -176,6 +181,8 @@ public abstract class Grid {
 //        JSONObject grid = new JSONObject();
 
 //grid.put("type")
-return null;
+        return null;
     }
+
+
 }
