@@ -27,66 +27,60 @@ public class SqGrid extends Grid {
         return offsets[index];
     }
 
-    @Override
-    public void resize(int size) {
-
-    }
 
     // paint
 
-    public static final PointD[] points = {
+    public static final PointD[] POINTS = {
             new PointD(0, 0),
             new PointD(1, 0),
             new PointD(1, 1),
             new PointD(0, 1),
     };
 
+
+    public Point[] points = {
+            new Point(0, 0),
+            new Point(1, 0),
+            new Point(1, 1),
+            new Point(0, 1),
+    };
+
+    int sideLength;
+
     @Override
-    public PointD getSize() {
-        return new PointD(width,height);
+    public void resize(int size) {
+        sideLength = size;
+
+        points = new Point[]{
+                new Point(0, 0),
+                new Point(sideLength, 0),
+                new Point(sideLength, sideLength),
+                new Point(0, sideLength),
+        };
     }
 
     @Override
-    public Point getLocation(Cell cell, int size) {
-        int px = size * cell.x;
-        int py = size * cell.y;
+    public PointD getScaledSize() {
+        return new PointD(width, height);
+    }
+
+    @Override
+    public Point getSize() {
+        return new Point(sideLength * width, sideLength * height);
+    }
+
+
+    @Override
+    public Point getLocation(Cell cell) {
+        int px = sideLength * cell.x;
+        int py = sideLength * cell.y;
 
         return new Point(px, py);
     }
 
-    @Override
-    public Point getPoint(Cell cell, int index, int size) {
-        PointD dp = points[index];
-
-        int x = (int) (dp.x * size);
-        int y = (int) (dp.y * size);
-
-        return new Point(x, y);
-    }
-
-/*    @Override
-    public Polygon getSide(Cell cell, int index, int size) {
-        Point a = getPoint(cell, index, size);
-        Point b = getPoint(cell, (index + 1) % sides, size);
-
-        return new Polygon(
-                new int[]{a.x, b.x},
-                new int[]{a.y, b.y},
-                2
-        );
-    }
 
     @Override
-    public Polygon getPolygon(Cell cell, int size) {
-        int[] xs = new int[sides];
-        int[] ys = new int[sides];
-        for (int index = 0; index < sides; index++) {
-            Point p = getPoint(cell, index, size);
-
-            xs[index] = p.x;
-            ys[index] = p.y;
-        }
-
-        return new Polygon(xs, ys, sides);
-    }*/
+    public Point getPoint(Cell cell, int index) {
+        return points[index];
+    }
 }

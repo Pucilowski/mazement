@@ -50,74 +50,80 @@ public class TriGrid extends Grid {
         //return cell.x % 2 == cell.y % 2 ? identicalOffsets[index] : distinctOffsets[index];
     }
 
-    @Override
-    public void resize(int size) {
 
-    }
+
 
     // paint
-    public static final PointD[] identicalPoints = {
+    public static final PointD[] IDENTICAL_POINTS = {
             new PointD(0.5, 0),
             new PointD(1, 1),
             new PointD(0, 1),
     };
 
 
-    public static final PointD[] distinctPoints = {
+    public static final PointD[] DISTINCT_POINTS = {
             new PointD(0.5, 1),
             new PointD(0, 0),
             new PointD(1, 0),
     };
 
-    //public static final double TRIANGLE_HEIGHT = Math.sin(Math.toRadians(60));
+    public Point[] identicalPoints;
+    public Point[] distinctPoints;
+
+    public static final double TRIANGLE_HEIGHT = Math.sin(Math.toRadians(60));
+    public static final double SIDE_LENGTH = 1D;
+    public static final double TRIANGLE_WIDTH = 0.5D;
+    //public static final double TRIANGLE_HEIGHT = 0.875D;
+
+    public int sideLength;
+    public int triangleWidth;
+    public int triangleHeight;
 
     @Override
-    public PointD getSize() {
-        return new PointD((double)width/2D,(double)height);
+    public void resize(int size) {
+        sideLength = (int) (SIDE_LENGTH * size);
+        triangleWidth = (int) (TRIANGLE_WIDTH * size);
+        triangleHeight = (int) (TRIANGLE_HEIGHT * size);
+
+        identicalPoints = new Point[]{
+                new Point(triangleWidth, 0),
+                new Point(sideLength, triangleHeight),
+                new Point(0, triangleHeight),
+        };
+
+
+        distinctPoints = new Point[]{
+                new Point(triangleWidth, triangleHeight),
+                new Point(0, 0),
+                new Point(sideLength, 0),
+        };
     }
 
     @Override
-    public Point getLocation(Cell cell, int size) {
-        int px = size / 2 * cell.x;
-        int py = size * cell.y;
+    public PointD getScaledSize() {
+        return new PointD((double) width / 2D + 0.5D, (height * TRIANGLE_HEIGHT));
+    }
+
+    @Override
+    public Point getSize() {
+        return new Point(triangleWidth * width + triangleWidth, height * triangleHeight);
+    }
+
+
+    @Override
+    public Point getLocation(Cell cell) {
+        int px = triangleWidth * cell.x;
+        int py = triangleHeight * cell.y;
 
         return new Point(px, py);
     }
 
-    @Override
-    public Point getPoint(Cell cell, int index, int size) {
-        PointD[] points = cell.x % 2 == cell.y % 2 ? identicalPoints : distinctPoints;
-
-        int x = (int) (size * points[index].x);
-        int y = (int) (size * points[index].y);
-
-        return new Point(x, y);
-    }
-
-/*    @Override
-    public Polygon getSide(Cell cell, int index, int size) {
-        Point a = getPoint(cell, index, size);
-        Point b = getPoint(cell, (index + 1) % sides, size);
-
-        return new Polygon(
-                new int[]{a.x, b.x},
-                new int[]{a.y, b.y},
-                2
-        );
-
-    }
 
     @Override
-    public Polygon getPolygon(Cell cell, int size) {
-        int[] xs = new int[sides];
-        int[] ys = new int[sides];
-        for (int i = 0; i < sides; i++) {
-            Point point = getPoint(cell, i, size);
-            xs[i] = point.x;
-            ys[i] = point.y;
-        }
+    public Point getPoint(Cell cell, int index) {
+        Point[] points = cell.x % 2 == cell.y % 2 ? identicalPoints : distinctPoints;
 
-        return new Polygon(xs, ys, 3);
-    }*/
+        return points[index];
+    }
 
 }

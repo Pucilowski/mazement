@@ -2,7 +2,9 @@ package com.pucilowski.navigation;
 
 import com.pucilowski.navigation.maze.algorithm.Algorithm;
 import com.pucilowski.navigation.maze.grid.Grid;
+import com.pucilowski.navigation.maze.grid.grids.HexGrid;
 import com.pucilowski.navigation.maze.grid.grids.SqGrid;
+import com.pucilowski.navigation.maze.grid.grids.TriGrid;
 import com.pucilowski.navigation.ui.GUI;
 import com.pucilowski.navigation.ui.business.AlgorithmHandler;
 import com.pucilowski.navigation.ui.business.EventHandler;
@@ -26,7 +28,7 @@ public class Main {
 
     public Main() {
 
-        grid = new SqGrid(30, 30);
+        grid = new TriGrid(30, 30);
 
         gui = new GUI(this);
 

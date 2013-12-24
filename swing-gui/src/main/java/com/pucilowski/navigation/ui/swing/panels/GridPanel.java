@@ -28,24 +28,35 @@ public class GridPanel extends JPanel {
         resize();
     }
 
+    Rectangle r;
 
     public void resize() {
         Grid grid = main.grid;
 
+        grid.resize(getBounds());
 
-        PointD d = grid.getSize();
-        double w = d.x;
-        double h = d.y;
+       /* PointD d = grid.getScaledSize();
+        double sWidth = d.x;
+        double sHeight = d.y;
 
-        cellSize = (int) Math.floor(Math.min((double) getWidth() / w, (double) getHeight() / h));
+        cellSize = (int) Math.floor(Math.min((double) getWidth() / sWidth, (double) getHeight() / sHeight));
 
-        grid.resize(cellSize);
+        grid.resize(cellSize);*/
 
-        xOffset = (int) ((getWidth() - cellSize * w) / 2);
-        yOffset = (int) ((getHeight() - cellSize * h) / 2);
+        Point d2 = grid.getSize();
 
-        int w2 = (int) (cellSize * w);
-        int h2 = (int) (cellSize * h);
+        int width = d2.x;
+        int height = d2.y;
+
+        //xOffset = (int) ((getWidth() - cellSize * w) / 2);
+        //yOffset = (int) ((getHeight() - cellSize * h) / 2);
+        xOffset = (int) ((getWidth() - width) / 2D);
+        yOffset = (int) ((getHeight() - height) / 2D);
+
+        r = new Rectangle(xOffset, yOffset, width, height);
+
+        int w2 = (int) (cellSize * width);
+        int h2 = (int) (cellSize * height);
 
         System.out.println(w2 + ", " + h2);
 
@@ -70,7 +81,6 @@ public class GridPanel extends JPanel {
 
         resize();
 
-        int size = cellSize;
 
         Grid grid = main.grid;
         Algorithm algo = main.algo;
@@ -80,6 +90,8 @@ public class GridPanel extends JPanel {
 
         //int size = 24;
 
+        g.setColor(Color.RED);
+        ((Graphics2D) g).draw(r);
 
         for (int y = 0; y < grid.height; y++) {
             for (int x = 0; x < grid.width; x++) {
@@ -87,11 +99,13 @@ public class GridPanel extends JPanel {
 
                 Cell cell = grid.cells[x][y];
 
-                Point location = grid.getLocation(cell, size);
+                //Point location = grid.getLocation(cell, size);
+                Point location = grid.getLocation(cell);
                 int px = xOffset + location.x;
                 int py = yOffset + location.y;
 
-                Polygon polygon = grid.getPolygon(cell, size);
+                //Polygon polygon = grid.getPolygon(cell, size);
+                Polygon polygon = grid.getPolygon(cell);
                 polygon.translate(px, py);
 
 
@@ -136,7 +150,7 @@ public class GridPanel extends JPanel {
                     g2d.setStroke(new BasicStroke(2, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
 
 
-                    Polygon side = grid.getSide(cell, index, size);
+                    Polygon side = grid.getSide(cell, index);
                     side.translate(px, py);
                     g.drawPolygon(side);
                 }
@@ -154,11 +168,13 @@ public class GridPanel extends JPanel {
 
                     Cell cell = grid.cells[x][y];
 
-                    Point location = grid.getLocation(cell, size);
-                    int px = 8 + location.x;
-                    int py = 12 + location.y;
+                    //Point location = grid.getLocation(cell, size);
+                    Point location = grid.getLocation(cell);
+                    int px = xOffset + location.x;
+                    int py = yOffset + location.y;
 
-                    Polygon polygon = grid.getPolygon(cell, size);
+                    //Polygon polygon = grid.getPolygon(cell, size);
+                    Polygon polygon = grid.getPolygon(cell);
                     polygon.translate(px, py);
 
 
