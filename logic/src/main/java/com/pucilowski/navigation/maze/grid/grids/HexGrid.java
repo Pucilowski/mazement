@@ -84,17 +84,17 @@ public class HexGrid extends Grid {
 
     @Override
     public PointD getSize() {
-        Cell last = cells[width-1][height-1];
+        Cell last = cells[width - 1][height - 1];
 
-        double px = ( TRIANGLE_WIDTH) + last.x *  ( TRIANGLE_WIDTH) + last.x *  ( SIDE_LENGTH);
-        double py = 2 *  (TRIANGLE_HEIGHT ) * last.y;
+        double px = (TRIANGLE_WIDTH) + last.x * (TRIANGLE_WIDTH) + last.x * (SIDE_LENGTH) + TRIANGLE_WIDTH + SIDE_LENGTH;
+        double py = 2 * (TRIANGLE_HEIGHT) * last.y + TRIANGLE_HEIGHT * 2;
 
-        return new PointD(px,py);
+        return new PointD(px, py);
     }
 
     @Override
     public Point getLocation(Cell cell, int size) {
-        double px = (int)(size * TRIANGLE_WIDTH) + cell.x * (int) (size * TRIANGLE_WIDTH) + cell.x * (int) (size * SIDE_LENGTH);
+        double px = (int) (size * TRIANGLE_WIDTH) + cell.x * (int) (size * TRIANGLE_WIDTH) + cell.x * (int) (size * SIDE_LENGTH);
         double py = 2 * (int) (TRIANGLE_HEIGHT * size) * cell.y;
 
         if (cell.x % 2 == 1) py += (TRIANGLE_HEIGHT * size);
