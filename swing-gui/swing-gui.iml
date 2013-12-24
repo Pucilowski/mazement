@@ -14,6 +14,8 @@
     <orderEntry type="module" module-name="logic" />
     <orderEntry type="library" name="Maven: org.json:json:20131018" level="project" />
     <orderEntry type="library" name="Maven: org.luaj:luaj-jse:2.0.3" level="project" />
+    <orderEntry type="library" name="Maven: com.miglayout:miglayout-swing:4.2" level="project" />
+    <orderEntry type="library" name="Maven: com.miglayout:miglayout-core:4.2" level="project" />
   </component>
 </module>
 

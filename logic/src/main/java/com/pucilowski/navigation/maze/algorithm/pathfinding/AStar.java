@@ -33,7 +33,6 @@ public class AStar extends Pathfinder<SearchMeta> {
     });
 
 
-
     Distance weights = new Distance() {
         @Override
         public double weight(Cell a, Cell b) {
@@ -59,11 +58,8 @@ public class AStar extends Pathfinder<SearchMeta> {
     }
 
     public AStar(Grid grid) {
-        this(grid,null,null);
+        this(grid, null, null);
     }
-
-
-
 
 
     @Override
@@ -194,6 +190,7 @@ public class AStar extends Pathfinder<SearchMeta> {
 
         return null;
     }
+
     @Override
     public Cell getCurrent() {
         return open.peek();

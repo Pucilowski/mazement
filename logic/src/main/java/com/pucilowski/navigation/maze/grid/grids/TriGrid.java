@@ -50,6 +50,11 @@ public class TriGrid extends Grid {
         //return cell.x % 2 == cell.y % 2 ? identicalOffsets[index] : distinctOffsets[index];
     }
 
+    @Override
+    public void resize(int size) {
+
+    }
+
     // paint
     public static final PointD[] identicalPoints = {
             new PointD(0.5, 0),
