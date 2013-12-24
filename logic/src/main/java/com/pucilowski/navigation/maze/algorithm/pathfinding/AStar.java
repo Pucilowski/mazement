@@ -16,7 +16,7 @@ import java.util.PriorityQueue;
 /**
  * Created by martin on 11/12/13.
  */
-public class ReStar extends Pathfinder<SearchMeta> {
+public class AStar extends Pathfinder<SearchMeta> {
 
     public final ArrayList<Cell> closed = new ArrayList<Cell>();
     public final PriorityQueue<Cell> open = new PriorityQueue<Cell>(1, new Comparator<Cell>() {
@@ -34,18 +34,32 @@ public class ReStar extends Pathfinder<SearchMeta> {
 
 
 
-    Distance weights;
+    Distance weights = new Distance() {
+        @Override
+        public double weight(Cell a, Cell b) {
+            return 1;
+        }
+
+        @Override
+        public double heuristic(Cell a, Cell b) {
+            return a.manhattan(b);
+        }
+    };
 
     public int maxOrder = 0;
     public int maxDepth = 1;
 
 
-    public ReStar(Grid grid, Cell start, Cell goal, Distance distance) {
+    public AStar(Grid grid, Cell start, Cell goal) {
         super(grid, start, goal);
 
-        this.weights = distance;
+        //this.weights = distance;
 
-        start();
+        //start();
+    }
+
+    public AStar(Grid grid) {
+        this(grid,null,null);
     }
 
 

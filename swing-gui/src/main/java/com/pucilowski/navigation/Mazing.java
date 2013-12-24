@@ -1,46 +1,42 @@
 package com.pucilowski.navigation;
 
 import com.pucilowski.navigation.maze.algorithm.Algorithm;
-import com.pucilowski.navigation.maze.algorithm.Generator;
-import com.pucilowski.navigation.maze.algorithm.State;
-import com.pucilowski.navigation.maze.algorithm.generation.Prims;
-import com.pucilowski.navigation.maze.algorithm.generation.misc.StepListener;
-import com.pucilowski.navigation.maze.algorithm.pathfinding.Distance;
-import com.pucilowski.navigation.maze.algorithm.pathfinding.ReStar;
 import com.pucilowski.navigation.maze.grid.Cell;
 import com.pucilowski.navigation.maze.grid.Grid;
-import com.pucilowski.navigation.maze.grid.grids.HexGrid;
+import com.pucilowski.navigation.maze.grid.grids.SqGrid;
 import com.pucilowski.navigation.ui.GUI;
-import com.pucilowski.navigation.ui.events.Event;
-import com.pucilowski.navigation.ui.events.EventHandler;
-
-import java.util.LinkedList;
+import com.pucilowski.navigation.ui.business.AlgorithmHandler;
+import com.pucilowski.navigation.ui.business.EventHandler;
 
 /**
  * Created by martin on 10/12/13.
  */
-public class Mazing   {
+public class Mazing {
 
+    // data
     public Grid grid;
-
     public Algorithm algo;
 
-
-
-    GUI gui;
-
+    // logic
     public EventHandler events;
+    public AlgorithmHandler logic;
+
+    // ui
+    public GUI gui;
+
 
     public Mazing() {
 
-        events = new EventHandler(this);
-
-        grid = new HexGrid(47, 29);
-
-        final Cell start = grid.cells[grid.width/2][grid.height/2];
-        final Cell goal = grid.cells[grid.width-1][grid.height-1];
+        grid = new SqGrid(47, 29);
 
         gui = new GUI(this);
+
+        logic = new AlgorithmHandler(this);
+        events = new EventHandler(this);
+
+
+        //final Cell start = grid.cells[grid.width/2][grid.height/2];
+        //final Cell goal = grid.cells[grid.width-1][grid.height-1];
 
 
         Thread t = new Thread(new Runnable() {
@@ -49,7 +45,7 @@ public class Mazing   {
 
 
 
-                final Generator dfs = new Prims(grid);
+            /*    final Generator dfs = new Prims(grid);
                 dfs.step = new StepListener() {
                     @Override
                     public void onStep(Cell cell) {
@@ -78,18 +74,7 @@ public class Mazing   {
                 }
 
 
-                algo = new ReStar(grid, start,goal, new Distance() {
-                    @Override
-                    public double weight(Cell a, Cell b) {
-                        return a.euclidean(b);
-                    }
-
-                    @Override
-                    public double heuristic(Cell a, Cell b) {
-                        return 0;
-                        //return a.manhattan(b)*2;
-                    }
-                });
+                algo = new AStar(grid, start,goal, );
 
                 try {
                     Thread.sleep(0);
@@ -113,15 +98,15 @@ public class Mazing   {
                     gui.frame.repaint();
 
                 }
-/*
+*//*
                 Cell[] p = search.path;
 
                 for (int i = 0; i < p.length; i++) {
                     Cell c = p[i];
                     System.out.println(c);
-                }*/
+                }*//*
 
-                System.out.println("done");
+                System.out.println("done");*/
 
             }
         });
@@ -129,9 +114,6 @@ public class Mazing   {
 
 
     }
-
-
-
 
 
 }

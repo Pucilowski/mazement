@@ -17,13 +17,13 @@ public class GUI {
 
     public GUI(Mazing mazing) {
         this.mazing = mazing;
-
+/*
         try {
 
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e) {
             System.out.println("Unable to set native look and feel: " + e);
-        }
+        }*/
 
         frame = new Frame(this);
 

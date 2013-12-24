@@ -43,7 +43,7 @@ public class GridPanel extends JPanel {
         double h = d.y;
 
 
-        int size = (int) Math.floor( Math.min((double)getWidth() / w, (double)getHeight() / h));
+        int size = (int) Math.floor(Math.min((double) getWidth() / w, (double) getHeight() / h));
         //int size = 24;
 
 
@@ -61,17 +61,16 @@ public class GridPanel extends JPanel {
                 polygon.translate(px, py);
 
 
+                if (algo != null) {
+                    Color c = algo.getColor(cell);
 
-
-                Color c = algo.getColor(cell);
-
-                if (c != null) {
-                    g.setColor(c);
-                    //px = 8 + size/2 * x;
-                    //py = 8 + size * y;
-                    g.fillPolygon(polygon);
+                    if (c != null) {
+                        g.setColor(c);
+                        //px = 8 + size/2 * x;
+                        //py = 8 + size * y;
+                        g.fillPolygon(polygon);
+                    }
                 }
-
 
 
 /*                g.setColor(Color.PINK);
@@ -109,42 +108,40 @@ public class GridPanel extends JPanel {
                 }
 
 
-
-
             }
         }
 
 
+        if (algo != null) {
 
-        for (int y = 0; y < grid.height; y++) {
-            for (int x = 0; x < grid.width; x++) {
-                //if(x%2!=1 )continue;
+            for (int y = 0; y < grid.height; y++) {
+                for (int x = 0; x < grid.width; x++) {
+                    //if(x%2!=1 )continue;
 
-                Cell cell = grid.cells[x][y];
+                    Cell cell = grid.cells[x][y];
 
-                Point location = grid.getLocation(cell, size);
-                int px = 8 + location.x;
-                int py = 12 + location.y;
+                    Point location = grid.getLocation(cell, size);
+                    int px = 8 + location.x;
+                    int py = 12 + location.y;
 
-                Polygon polygon = grid.getPolygon(cell, size);
-                polygon.translate(px, py);
-
-
-
-                if(cell.equals(algo.getCurrent())) {
-
-                    g2d.setStroke(new BasicStroke(4, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
+                    Polygon polygon = grid.getPolygon(cell, size);
+                    polygon.translate(px, py);
 
 
-                    g.setColor(Color.BLACK);
+                    if (cell.equals(algo.getCurrent())) {
 
-                    g.drawPolygon(polygon);
+                        g2d.setStroke(new BasicStroke(4, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
+
+
+                        g.setColor(Color.BLACK);
+
+                        g.drawPolygon(polygon);
+
+                    }
 
                 }
-
             }
         }
-
     }
 
 

@@ -19,8 +19,14 @@ public abstract class Pathfinder<M extends CellMeta> extends Algorithm<M> {
     public Pathfinder(Grid grid, Cell start, Cell goal) {
         super(grid);
 
-        this.start = start;
-        this.goal = goal;
+        this.start = start != null ? start : grid.cells[0][0];
+        this.goal = goal != null ? goal : grid.cells[grid.width - 1][grid.height - 1];
+
+
+    }
+
+    public Pathfinder(Grid grid) {
+        this(grid, null, null);
     }
 
     @Override
@@ -28,3 +34,4 @@ public abstract class Pathfinder<M extends CellMeta> extends Algorithm<M> {
         return (M) new SearchMeta(cell);
     }
 }
+

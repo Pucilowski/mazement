@@ -1,6 +1,7 @@
 package com.pucilowski.navigation.maze.grid;
 
 import com.pucilowski.navigation.maze.grid.paint.PointD;
+import org.json.JSONObject;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -168,5 +169,13 @@ public abstract class Grid {
         }
 
         return new Polygon(xs, ys, sides);
+    }
+
+    public String serialize() {
+
+//        JSONObject grid = new JSONObject();
+
+//grid.put("type")
+return null;
     }
 }

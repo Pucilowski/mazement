@@ -1,5 +1,7 @@
 package com.pucilowski.navigation.ui.swing.dialogs;
 
+import com.pucilowski.navigation.ui.swing.dialogs.enums.GridType;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -8,7 +10,7 @@ import java.awt.*;
  */
 public class NewMaze extends JDialog {
 
-    JComboBox<MazeType> types;
+    JComboBox<GridType> types;
     JSlider width;
     JSlider height;
 
@@ -30,8 +32,8 @@ public class NewMaze extends JDialog {
     }
 
     private void initComponents() {
-        types = new JComboBox<MazeType>();
-        for (MazeType t : MazeType.values()) {
+        types = new JComboBox<GridType>();
+        for (GridType t : GridType.values()) {
             types.addItem(t);
         }
 
