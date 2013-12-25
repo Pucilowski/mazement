@@ -25,7 +25,6 @@ public class AlgorithmHandler implements Runnable {
                 //System.out.println("step");
 
                 main.algo.step();
-
                 main.gui.frame.repaint();
             }
             try {
@@ -34,7 +33,5 @@ public class AlgorithmHandler implements Runnable {
                 e.printStackTrace();
             }
         }
-
-        
     }
 }
