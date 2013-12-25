@@ -1,6 +1,8 @@
 package com.pucilowski.navigation.maze.grid;
 
-import com.pucilowski.navigation.maze.grid.paint.PointD;
+import com.pucilowski.navigation.maze.grid.misc.PointD;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -183,12 +185,29 @@ public abstract class Grid {
         return new Polygon(xs, ys, sides);
     }
 
-    public String serialize() {
+    public JSONObject toJson() {
 
-//        JSONObject grid = new JSONObject();
+        JSONObject grid = new JSONObject();
 
-//grid.put("type")
-        return null;
+        grid.put("type", "null");
+
+        JSONArray cellsArray = new JSONArray();
+        grid.put("cells", cellsArray);
+
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
+                Cell c = cells[x][y];
+
+                JSONObject cell = new JSONObject();
+                cell.put("x", x);
+                cell.put("y", y);
+                cell.put("walls", c.walls);
+
+                cellsArray.put(cell);
+            }
+        }
+
+        return grid;
     }
 
 

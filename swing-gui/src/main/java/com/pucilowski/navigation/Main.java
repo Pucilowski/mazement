@@ -28,7 +28,7 @@ public class Main {
 
     public Main() {
 
-        grid = new TriGrid(30, 30);
+        grid = new SqGrid(40, 30);
 
         gui = new GUI(this);
 

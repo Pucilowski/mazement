@@ -6,11 +6,10 @@ import com.pucilowski.navigation.maze.algorithm.State;
 import com.pucilowski.navigation.maze.grid.Cell;
 import com.pucilowski.navigation.maze.grid.Edge;
 import com.pucilowski.navigation.maze.grid.Grid;
-import com.pucilowski.navigation.maze.grid.paint.Lerp;
+import com.pucilowski.navigation.maze.grid.misc.Lerp;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Collections;
 
 /**
  * Created by martin on 19/12/13.
@@ -30,20 +29,14 @@ public class Prims extends Generator {
     }
 
     public Prims(Grid grid) {
-
-
-
         this(grid, grid.cells[grid.width/2][grid.height/2]);
     }
 
     public void start() {
-
-
         addCell(start);
     }
 
     public void addCell(Cell cell) {
-
         visited.add(cell);
 
         for (Edge n : cell.edges) {
@@ -51,7 +44,6 @@ public class Prims extends Generator {
             walls.add(n);
         }
     }
-
 
     @Override
     public void step() {

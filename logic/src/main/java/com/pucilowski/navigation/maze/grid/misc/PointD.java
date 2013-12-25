@@ -1,4 +1,4 @@
-package com.pucilowski.navigation.maze.grid.paint;
+package com.pucilowski.navigation.maze.grid.misc;
 
 /**
  * Created by martin on 20/12/13.
@@ -10,7 +10,4 @@ public class PointD {
         this.x = x;
         this.y = y;
     }
-
-
-
 }

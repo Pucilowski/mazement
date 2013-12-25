@@ -1,4 +1,4 @@
-package com.pucilowski.navigation.maze.grid.paint;
+package com.pucilowski.navigation.maze.grid.misc;
 
 import java.awt.*;
 

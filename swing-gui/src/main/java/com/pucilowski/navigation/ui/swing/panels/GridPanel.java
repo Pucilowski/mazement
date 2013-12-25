@@ -5,7 +5,6 @@ import com.pucilowski.navigation.maze.algorithm.Algorithm;
 import com.pucilowski.navigation.maze.grid.Cell;
 import com.pucilowski.navigation.maze.grid.Edge;
 import com.pucilowski.navigation.maze.grid.Grid;
-import com.pucilowski.navigation.maze.grid.paint.PointD;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,7 +19,6 @@ public class GridPanel extends JPanel {
 
     int xOffset;
     int yOffset;
-    int cellSize;
 
     public GridPanel(Main main) {
         this.main = main;
@@ -43,22 +41,15 @@ public class GridPanel extends JPanel {
 
         grid.resize(cellSize);*/
 
-        Point d2 = grid.getSize();
+        Point size = grid.getSize();
+        int width = size.x;
+        int height = size.y;
 
-        int width = d2.x;
-        int height = d2.y;
-
-        //xOffset = (int) ((getWidth() - cellSize * w) / 2);
-        //yOffset = (int) ((getHeight() - cellSize * h) / 2);
         xOffset = (int) ((getWidth() - width) / 2D);
         yOffset = (int) ((getHeight() - height) / 2D);
-
         r = new Rectangle(xOffset, yOffset, width, height);
 
-        int w2 = (int) (cellSize * width);
-        int h2 = (int) (cellSize * height);
-
-        System.out.println(w2 + ", " + h2);
+        //System.out.println(width + ", " + height);
 
 
         //main.gui.frame.invalidate();
@@ -85,18 +76,12 @@ public class GridPanel extends JPanel {
         Grid grid = main.grid;
         Algorithm algo = main.algo;
 
-        //resize();
 
-
-        //int size = 24;
-
-        g.setColor(Color.RED);
-        ((Graphics2D) g).draw(r);
+        //g.setColor(Color.RED);
+        //((Graphics2D) g).draw(r);
 
         for (int y = 0; y < grid.height; y++) {
             for (int x = 0; x < grid.width; x++) {
-                //if(x%2!=1 )continue;
-
                 Cell cell = grid.cells[x][y];
 
                 //Point location = grid.getLocation(cell, size);
@@ -119,20 +104,6 @@ public class GridPanel extends JPanel {
                         g.fillPolygon(polygon);
                     }
                 }
-
-
-/*                g.setColor(Color.PINK);
-                if(cell.x % 2 == cell.y % 2) {
-                    g.setColor(Color.ORANGE);
-                }*/
-
-                //px = 8 + size/2 * x;
-                //py = 8 + size * y;
-                //p.translate(px,py);
-                //g.fillPolygon(p);
-
-                //g.setColor(Color.BLACK);
-                //g.drawString(cell.getEdges().length+"",px, py+32);
 
                 for (int index = 0; index < grid.sides; index++) {
                     Edge n = cell.edges[index];

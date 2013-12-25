@@ -6,7 +6,7 @@ import com.pucilowski.navigation.maze.algorithm.State;
 import com.pucilowski.navigation.maze.grid.Cell;
 import com.pucilowski.navigation.maze.grid.Edge;
 import com.pucilowski.navigation.maze.grid.Grid;
-import com.pucilowski.navigation.maze.grid.paint.Lerp;
+import com.pucilowski.navigation.maze.grid.misc.Lerp;
 
 import java.awt.*;
 import java.util.*;
