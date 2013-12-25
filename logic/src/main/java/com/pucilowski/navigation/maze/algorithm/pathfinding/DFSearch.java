@@ -1,18 +1,15 @@
 package com.pucilowski.navigation.maze.algorithm.pathfinding;
 
 import com.pucilowski.navigation.maze.algorithm.CellMeta;
-import com.pucilowski.navigation.maze.algorithm.Generator;
 import com.pucilowski.navigation.maze.algorithm.Pathfinder;
 import com.pucilowski.navigation.maze.algorithm.State;
 import com.pucilowski.navigation.maze.grid.Cell;
 import com.pucilowski.navigation.maze.grid.Edge;
 import com.pucilowski.navigation.maze.grid.Grid;
-import com.pucilowski.navigation.maze.grid.paint.Lerp;
+import com.pucilowski.navigation.maze.grid.misc.Lerp;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.LinkedList;
 
 /**

@@ -22,7 +22,7 @@ public class AlgorithmHandler implements Runnable {
 
         while (true) {
             if (main.algo != null && main.algo.state == State.WORKING) {
-                System.out.println("step");
+                //System.out.println("step");
 
                 main.algo.step();
 

@@ -2,7 +2,7 @@ package com.pucilowski.navigation.maze.grid.grids;
 
 import com.pucilowski.navigation.maze.grid.Cell;
 import com.pucilowski.navigation.maze.grid.Grid;
-import com.pucilowski.navigation.maze.grid.paint.PointD;
+import com.pucilowski.navigation.maze.grid.misc.PointD;
 
 import java.awt.*;
 

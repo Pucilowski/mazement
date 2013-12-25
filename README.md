@@ -1,7 +1,7 @@
 navigation
 ==========
 
-An environment for visualising graph algorithms in the context of grids and mazes.
+A tool for visualising graph algorithms in the context of grids and mazes.
 
 Maze generation
 ---------------

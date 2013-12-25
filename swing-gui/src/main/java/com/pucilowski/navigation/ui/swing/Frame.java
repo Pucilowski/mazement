@@ -120,36 +120,6 @@ public class Frame extends JFrame {
         gridPanel = new GridPanel(gui.main);
 
 
-
-       /* JPanel panel = new TexturedPanel(new Color(85, 85, 85), new Color(116, 116, 116), new boolean[][]{
-                new boolean[]{false, false, false, true},
-                new boolean[]{false, false, true, false},
-                new boolean[]{false, true, false, false},
-                new boolean[]{true, false, false, false}
-        });*/
-
-        //dad.setBackground(Color.BLUE);
-        /*panel.setLayout(new MigLayout("insets 0",
-                "[grow,center]",
-                "[grow,center]"));*/
-        //panel.setLayout(new BorderLayout());
-      //  panel.setLayout(new GridBagLayout());
-        //panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
-
-
-        //gridPanel.setSize(100,100);
-      //  gridPanel.setPreferredSize(new Dimension(100,100));
-        //panel.add(gridPanel, BorderLayout.CENTER);
-        //gridPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
-      //  panel.add(gridPanel);
-
-        //new JScrollPane(panel);
-
-
-
-        //ControlPanel controlPanel = new ControlPanel();
-        //controlPanel.setPreferredSize(new Dimension(128, 600));
-
         add(gridPanel, BorderLayout.CENTER);
         //add(controlPanel, BorderLayout.EAST);
 
