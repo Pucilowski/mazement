@@ -1,13 +1,15 @@
 package com.pucilowski.navigation.ui.swing;
 
-import com.pucilowski.navigation.Main;
+import com.pucilowski.navigation.environment.Environment;
+import com.pucilowski.navigation.ui.Main;
 import com.pucilowski.navigation.ui.GUI;
-import com.pucilowski.navigation.ui.events.GenerateMazeEvent;
-import com.pucilowski.navigation.ui.events.NewGridEvent;
-import com.pucilowski.navigation.ui.events.SolveMazeEvent;
-import com.pucilowski.navigation.ui.swing.dialogs.enums.GridType;
-import com.pucilowski.navigation.ui.swing.dialogs.enums.MazeGenerator;
-import com.pucilowski.navigation.ui.swing.dialogs.enums.MazePathfinder;
+import com.pucilowski.navigation.environment.events.GenerateMazeEvent;
+import com.pucilowski.navigation.environment.events.NewGridEvent;
+import com.pucilowski.navigation.environment.events.SolveMazeEvent;
+import com.pucilowski.navigation.environment.enums.GridType;
+import com.pucilowski.navigation.environment.enums.MazeGenerator;
+import com.pucilowski.navigation.environment.enums.MazePathfinder;
+import com.pucilowski.navigation.ui.swing.panels.ControlPanel;
 import com.pucilowski.navigation.ui.swing.panels.GridPanel;
 
 import javax.swing.*;
@@ -23,7 +25,7 @@ import java.awt.event.ActionListener;
  */
 public class Frame extends JFrame {
 
-    final Main main;
+    final Environment env;
     final GUI gui;
 
     JMenuBar menuBar = new JMenuBar();
@@ -39,8 +41,10 @@ public class Frame extends JFrame {
 
     public GridPanel gridPanel;
 
-    public Frame(Main main,GUI gui) {
-        this.main=main;
+    public ControlPanel controlPanel;
+
+    public Frame(Environment env,GUI gui) {
+        this.env=env;
         this.gui = gui;
 
         setTitle("Navigation");
@@ -120,8 +124,11 @@ public class Frame extends JFrame {
         gridPanel = new GridPanel(gui.main);
 
 
+        controlPanel = new ControlPanel();
+        controlPanel.setPreferredSize(new Dimension(128,0));
+
         add(gridPanel, BorderLayout.CENTER);
-        //add(controlPanel, BorderLayout.EAST);
+        add(controlPanel, BorderLayout.EAST);
 
     }
 
@@ -166,7 +173,7 @@ public class Frame extends JFrame {
                 heightLabel, height
         };
 
-        //JOptionPane.showMessageDialog(null, inputs, "New maze...", JOptionPane.PLAIN_MESSAGE);
+        //JOptionPane.showMessageDialog(null, inputs, "New logic...", JOptionPane.PLAIN_MESSAGE);
         int result = JOptionPane.showConfirmDialog(this, inputs, "New maze...", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE);
 
         if (result == JOptionPane.YES_OPTION) {

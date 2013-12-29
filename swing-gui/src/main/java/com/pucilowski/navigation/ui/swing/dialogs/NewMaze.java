@@ -1,6 +1,6 @@
 package com.pucilowski.navigation.ui.swing.dialogs;
 
-import com.pucilowski.navigation.ui.swing.dialogs.enums.GridType;
+import com.pucilowski.navigation.environment.enums.GridType;
 
 import javax.swing.*;
 import java.awt.*;

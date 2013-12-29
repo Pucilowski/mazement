@@ -1,7 +1,7 @@
 package com.pucilowski.navigation.ui.swing.panels;
 
-import com.pucilowski.navigation.maze.grid.Cell;
-import com.pucilowski.navigation.maze.grid.Grid;
+import com.pucilowski.navigation.logic.grid.Cell;
+import com.pucilowski.navigation.logic.grid.Grid;
 
 import java.awt.*;
 

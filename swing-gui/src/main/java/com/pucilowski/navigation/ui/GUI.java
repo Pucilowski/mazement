@@ -1,6 +1,6 @@
 package com.pucilowski.navigation.ui;
 
-import com.pucilowski.navigation.Main;
+import com.pucilowski.navigation.environment.Environment;
 import com.pucilowski.navigation.ui.swing.Frame;
 
 /**
@@ -8,22 +8,22 @@ import com.pucilowski.navigation.ui.swing.Frame;
  */
 public class GUI {
 
-    public final Main main;
+    public final Environment main;
 
     public Frame frame;
 
 
-    public GUI(Main main) {
+    public GUI(Environment main) {
         this.main = main;
-/*
-        try {
 
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (Exception e) {
-            System.out.println("Unable to set native look and feel: " + e);
-        }*/
 
-        frame = new Frame(main,this);
+//        try {
+//            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+//        } catch (Exception e) {
+//            System.out.println("Unable to set native look and feel: " + e);
+//        }
+
+        frame = new Frame(main, this);
 
     }
 

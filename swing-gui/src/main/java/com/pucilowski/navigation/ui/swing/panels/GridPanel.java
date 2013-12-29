@@ -1,10 +1,11 @@
 package com.pucilowski.navigation.ui.swing.panels;
 
-import com.pucilowski.navigation.Main;
-import com.pucilowski.navigation.maze.algorithm.Algorithm;
-import com.pucilowski.navigation.maze.grid.Cell;
-import com.pucilowski.navigation.maze.grid.Edge;
-import com.pucilowski.navigation.maze.grid.Grid;
+import com.pucilowski.navigation.environment.Environment;
+import com.pucilowski.navigation.ui.Main;
+import com.pucilowski.navigation.logic.algorithm.Algorithm;
+import com.pucilowski.navigation.logic.grid.Cell;
+import com.pucilowski.navigation.logic.grid.Edge;
+import com.pucilowski.navigation.logic.grid.Grid;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,13 +15,13 @@ import java.awt.*;
  */
 public class GridPanel extends JPanel {
 
-    final Main main;
+    final Environment main;
 
 
     int xOffset;
     int yOffset;
 
-    public GridPanel(Main main) {
+    public GridPanel(Environment main) {
         this.main = main;
 
         resize();
