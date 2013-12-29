@@ -11,4 +11,4 @@ Maze generation
 
 Maze pathfinding
 ----------------
-* A* Star
+* A* Search

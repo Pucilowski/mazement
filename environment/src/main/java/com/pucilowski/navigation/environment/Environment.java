@@ -2,6 +2,7 @@ package com.pucilowski.navigation.environment;
 
 import com.pucilowski.navigation.logic.algorithm.Algorithm;
 import com.pucilowski.navigation.logic.grid.Grid;
+import com.pucilowski.navigation.logic.grid.grids.HexGrid;
 import com.pucilowski.navigation.logic.grid.grids.SqGrid;
 import com.pucilowski.navigation.environment.business.AlgorithmHandler;
 import com.pucilowski.navigation.environment.business.EventHandler;
@@ -24,7 +25,7 @@ public class Environment {
 
     public Environment() {
 
-        grid = new SqGrid(40, 30);
+        grid = new HexGrid(40, 30);
 
           logic = new AlgorithmHandler(this);
         events = new EventHandler(this);
