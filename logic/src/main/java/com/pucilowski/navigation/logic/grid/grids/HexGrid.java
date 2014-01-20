@@ -24,12 +24,17 @@ public class HexGrid extends Grid {
     };
 
     public HexGrid(int width, int height) {
-        super(width, height, SIDES);
+        super(width, height);
+    }
+
+    @Override
+    public int getSides(Cell cell) {
+        return SIDES;
     }
 
     @Override
     public Point getOffset(Cell cell, int index) {
-        //return offsets[index];
+        //return offsets[side];
         int x = offsets[index].x;
         int y = offsets[index].y;
         if (cell.x % 2 == 1 && x != 0) y++;
@@ -38,7 +43,7 @@ public class HexGrid extends Grid {
     }
 
 
-    // paint
+    // render
 
 /*
     //public static final double TRIANGLE_HEIGHT = Math.sin(Math.toRadians(60));

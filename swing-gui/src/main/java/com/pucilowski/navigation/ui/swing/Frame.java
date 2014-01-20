@@ -1,7 +1,6 @@
 package com.pucilowski.navigation.ui.swing;
 
 import com.pucilowski.navigation.environment.Environment;
-import com.pucilowski.navigation.ui.Main;
 import com.pucilowski.navigation.ui.GUI;
 import com.pucilowski.navigation.environment.events.GenerateMazeEvent;
 import com.pucilowski.navigation.environment.events.NewGridEvent;
@@ -121,7 +120,7 @@ public class Frame extends JFrame {
 
         setLayout(new BorderLayout());
 
-        gridPanel = new GridPanel(gui.main);
+        gridPanel = new GridPanel(gui.env);
 
 
         controlPanel = new ControlPanel();
@@ -144,10 +143,12 @@ public class Frame extends JFrame {
             types.addItem(t);
         }
 
+        types.setSelectedItem(env.gridType);
+
         //width = new JSlider(new DefaultBoundedRangeModel(30, 1, 2, 100));
 
-        int w = gui.main.grid.width;
-        int h = gui.main.grid.height;
+        int w = gui.env.grid.width;
+        int h = gui.env.grid.height;
 
         final JLabel widthLabel = new JLabel("Width: " + w);
         width = new JSlider(0, 100, w);
@@ -178,7 +179,7 @@ public class Frame extends JFrame {
 
         if (result == JOptionPane.YES_OPTION) {
             NewGridEvent event = new NewGridEvent((GridType) types.getSelectedItem(), width.getValue(), height.getValue());
-            gui.main.events.sendEvent(event);
+            gui.env.events.sendEvent(event);
         }
 
 
@@ -203,14 +204,14 @@ public class Frame extends JFrame {
     public void menuGenerateMaze(MazeGenerator gen) {
 
         GenerateMazeEvent event = new GenerateMazeEvent(gen);
-        gui.main.events.sendEvent(event);
+        gui.env.events.sendEvent(event);
 
     }
 
     public void menuSolveMaze(MazePathfinder gen) {
 
         SolveMazeEvent event = new SolveMazeEvent(gen);
-        gui.main.events.sendEvent(event);
+        gui.env.events.sendEvent(event);
 
     }
 

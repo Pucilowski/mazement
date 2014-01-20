@@ -36,7 +36,6 @@ public class Lerp {
     public static final Lerp[] rainbow = new Lerp[3];
 
     static {
-        // rainbow colours as per https://en.wikipedia.org/wiki/Rainbow and the relevant articles
         Color[] range = {
                 VIOLET,
                 INDIGO,

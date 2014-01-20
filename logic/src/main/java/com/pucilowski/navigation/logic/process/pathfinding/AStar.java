@@ -1,7 +1,7 @@
-package com.pucilowski.navigation.logic.algorithm.pathfinding;
+package com.pucilowski.navigation.logic.process.pathfinding;
 
-import com.pucilowski.navigation.logic.algorithm.Pathfinder;
-import com.pucilowski.navigation.logic.algorithm.State;
+import com.pucilowski.navigation.logic.process.Pathfinder;
+import com.pucilowski.navigation.logic.process.State;
 import com.pucilowski.navigation.logic.grid.Cell;
 import com.pucilowski.navigation.logic.grid.Edge;
 import com.pucilowski.navigation.logic.grid.Grid;
@@ -87,7 +87,7 @@ public class AStar extends Pathfinder<SearchMeta> {
         maxOrder++;
         currentMeta.order = maxOrder;
 
-        if (current.equals(goal) ) {
+        if (current.equals(goal)) {
             state = State.SUCCESS;
             path = path(current);
             return;
@@ -149,7 +149,7 @@ public class AStar extends Pathfinder<SearchMeta> {
             for (Edge e : cell.getEdges()) {
                 SearchMeta sm = getMeta(e.target);
                 if (cell.equals(sm.parent)) {
-                    return colors[e.index];
+                    return colors[e.side];
                 }
             }
         }*/
@@ -158,7 +158,6 @@ public class AStar extends Pathfinder<SearchMeta> {
 //        int d = getMeta(cell).order;
 
         if (closed.contains(cell)) {
-
             float ratio = (float) d / (float) maxDepth;
 
             float[] end = new float[3];
@@ -166,19 +165,10 @@ public class AStar extends Pathfinder<SearchMeta> {
                 end[i] = Lerp.rainbow[i].interpolate(ratio);
             }
 
-            Color c = new Color(end[0], end[1], end[2], 150f / 255f);
-
-            return c;
-
-            //g.setColor(c);
-            //px = 8 + size/2 * x;
-            //py = 8 + size * y;
-            //polygon.translate(px, py);
-            //g.fillPolygon(polygon);
+            return new Color(end[0], end[1], end[2], 150f / 255f);
         } else if (open.contains(cell)) {
-            Color c = new Color(192, 192, 192, 255);
 
-            return c;
+            return new Color(192, 192, 192, 255);
 
             //g.setColor(c);
             //px = 8 + size/2 * x;

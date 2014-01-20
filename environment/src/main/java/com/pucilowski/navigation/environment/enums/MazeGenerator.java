@@ -1,8 +1,8 @@
 package com.pucilowski.navigation.environment.enums;
 
-import com.pucilowski.navigation.logic.algorithm.Generator;
-import com.pucilowski.navigation.logic.algorithm.generation.DFS;
-import com.pucilowski.navigation.logic.algorithm.generation.Prims;
+import com.pucilowski.navigation.logic.process.Generator;
+import com.pucilowski.navigation.logic.process.generation.DFS;
+import com.pucilowski.navigation.logic.process.generation.Prims;
 import com.pucilowski.navigation.logic.grid.Grid;
 
 /**

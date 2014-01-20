@@ -65,33 +65,7 @@ public class EventHandler implements Runnable {
 
     private void handle(Event e) {
 
-        if (e instanceof NewGridEvent) {
-            NewGridEvent event = (NewGridEvent) e;
-
-            env.grid = event.type.newMaze(event.width, event.height);
-            env.algo = null;
-
-        }
-
-        if (e instanceof GenerateMazeEvent) {
-            GenerateMazeEvent event = (GenerateMazeEvent) e;
-
-            env.grid.reset();
-
-            env.algo = event.gen.newGenerator(env.grid);
-
-            env.algo.start();
-
-        }
-
-        if (e instanceof SolveMazeEvent) {
-            SolveMazeEvent event = (SolveMazeEvent) e;
-
-            env.algo = event.gen.newPathfinder(env.grid);
-
-            env.algo.start();
-
-        }
+        e.handle(env);
 
         env.onRefresh();
     }

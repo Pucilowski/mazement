@@ -1,8 +1,8 @@
 package com.pucilowski.navigation.ui.swing.panels;
 
 import com.pucilowski.navigation.environment.Environment;
-import com.pucilowski.navigation.ui.Main;
-import com.pucilowski.navigation.logic.algorithm.Algorithm;
+import com.pucilowski.navigation.logic.process.pathfinding.AStar;
+import com.pucilowski.navigation.logic.process.pathfinding.SearchMeta;
 import com.pucilowski.navigation.logic.grid.Cell;
 import com.pucilowski.navigation.logic.grid.Edge;
 import com.pucilowski.navigation.logic.grid.Grid;
@@ -75,7 +75,7 @@ public class GridPanel extends JPanel {
 
 
         Grid grid = main.grid;
-        Algorithm algo = main.algo;
+        com.pucilowski.navigation.logic.process.Process algo = main.process;
 
 
         //g.setColor(Color.RED);
@@ -106,7 +106,7 @@ public class GridPanel extends JPanel {
                     }
                 }
 
-                for (int index = 0; index < grid.sides; index++) {
+                for (int index = 0; index < cell.sides; index++) {
                     Edge n = cell.edges[index];
 
                     if (n != null && grid.isConnected(n)) {
@@ -115,7 +115,7 @@ public class GridPanel extends JPanel {
                         continue;
                     } else {
                         g.setColor(Color.BLACK);
-                        //g.setColor(colors[index]);
+                        //g.setColor(colors[side]);
 
                     }
 
@@ -159,6 +159,16 @@ public class GridPanel extends JPanel {
 
                         g.drawPolygon(polygon);
 
+                    }
+
+                    if (algo instanceof AStar) {
+                        SearchMeta sm = ((AStar) algo).getMeta(cell);
+
+                        //g.drawString(sm.fScore + " / " + sm.gScore, px, py);
+
+                        if (sm.gScore > 0)
+
+                            g.drawString((int)sm.gScore + "", px-4, py+16);
                     }
 
                 }

@@ -1,16 +1,16 @@
 package com.pucilowski.navigation.environment.business;
 
 import com.pucilowski.navigation.environment.Environment;
-import com.pucilowski.navigation.logic.algorithm.State;
+import com.pucilowski.navigation.logic.process.State;
 
 /**
  * Created by martin on 24/12/13.
  */
-public class AlgorithmHandler implements Runnable {
+public class ProcessHandler implements Runnable {
 
     final Environment env;
 
-    public AlgorithmHandler(Environment env) {
+    public ProcessHandler(Environment env) {
         this.env = env;
 
         Thread t = new Thread(this);
@@ -21,14 +21,19 @@ public class AlgorithmHandler implements Runnable {
     public void run() {
 
         while (true) {
-            if (env.algo != null && env.algo.state == State.WORKING) {
+            if (env.process != null && env.process.state == State.WORKING) {
                 //System.out.println("step");
 
-                env.algo.step();
+                env.process.step();
                 env.onRefresh();
+
+
+
+
             }
+
             try {
-                Thread.sleep(10);
+                Thread.sleep(1);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

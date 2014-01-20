@@ -7,17 +7,18 @@ import java.util.ArrayList;
  */
 public class Cell {
 
-    public final int x,y;
-
+    public final Grid grid;
+    public final int x, y;
     public final int sides;
     public final Edge[] edges;
 
     public int walls = 0;
 
-    public Cell(int x, int y, int sides) {
+    public Cell(Grid grid, int x, int y) {
+        this.grid = grid;
         this.x = x;
         this.y = y;
-        this.sides = sides;
+        this.sides = grid.getSides(this);
         this.edges = new Edge[sides];
     }
 
@@ -60,9 +61,7 @@ public class Cell {
         if (!(other instanceof Cell)) return false;
 
         Cell cell = (Cell) other;
-
         return x == cell.x && y == cell.y;
-
     }
 
     @Override

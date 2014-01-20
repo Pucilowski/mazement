@@ -1,4 +1,4 @@
-package com.pucilowski.navigation.logic.algorithm.pathfinding;
+package com.pucilowski.navigation.logic.process.pathfinding;
 
 import com.pucilowski.navigation.logic.grid.Cell;
 

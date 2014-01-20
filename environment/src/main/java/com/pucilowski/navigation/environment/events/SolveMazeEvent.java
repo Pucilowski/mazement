@@ -1,5 +1,6 @@
 package com.pucilowski.navigation.environment.events;
 
+import com.pucilowski.navigation.environment.Environment;
 import com.pucilowski.navigation.environment.enums.MazePathfinder;
 
 /**
@@ -18,4 +19,10 @@ public class SolveMazeEvent extends Event {
         return "SolveMazeEvent=["+gen+"]";
     }
 
+    @Override
+    public void handle(Environment env) {
+        env.process = gen.newPathfinder(env.grid);
+
+        env.process.start();
+    }
 }

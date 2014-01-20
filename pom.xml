@@ -8,6 +8,10 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
 
+    <scm>
+        <url>https://github.com/Pucilowski/navigation.git</url>
+    </scm>
+
     <modules>
         <module>logic</module>
         <module>environment</module>

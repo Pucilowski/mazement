@@ -1,6 +1,6 @@
-package com.pucilowski.navigation.logic.algorithm.pathfinding;
+package com.pucilowski.navigation.logic.process.pathfinding;
 
-import com.pucilowski.navigation.logic.algorithm.CellMeta;
+import com.pucilowski.navigation.logic.process.CellMeta;
 import com.pucilowski.navigation.logic.grid.Cell;
 
 /**
@@ -8,8 +8,8 @@ import com.pucilowski.navigation.logic.grid.Cell;
  */
 public class SearchMeta extends CellMeta {
 
-    double gScore = 0;
-    double fScore = 0;
+    public double gScore = 0;
+    public double fScore = 0;
 
     Cell parent;
     public int order;

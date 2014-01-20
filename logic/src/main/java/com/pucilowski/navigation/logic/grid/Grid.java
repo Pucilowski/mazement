@@ -12,13 +12,13 @@ public abstract class Grid {
 
     public final int width;
     public final int height;
-    public final int sides;
-    public Cell[][] cells;
+    //public final int sides;
+    public final Cell[][] cells;
 
-    public Grid(int width, int height, int sides) {
+    public Grid(int width, int height) {
         this.width = width;
         this.height = height;
-        this.sides = sides;
+        //this.sides = sides;
         cells = new Cell[width][height];
 
         reset();
@@ -27,7 +27,7 @@ public abstract class Grid {
     public void reset() {
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
-                cells[x][y] = new Cell(x, y, sides);
+                cells[x][y] = new Cell(this, x, y);
             }
         }
 
@@ -35,7 +35,7 @@ public abstract class Grid {
             for (int x = 0; x < width; x++) {
                 Cell cell = cells[x][y];
 
-                for (int side = 0; side < sides; side++) {
+                for (int side = 0; side < cell.sides; side++) {
                     Cell neighbor = getNeighbor(cell, side);
                     if (neighbor == null) continue;
 
@@ -59,9 +59,8 @@ public abstract class Grid {
     }
 
     public void connect(Edge n) {
-
-        int source = (int) Math.pow(2, n.index);
-        int opp = getOppositeIndex(n.source, n.index);
+        int source = (int) Math.pow(2, n.side);
+        int opp = getOppositeIndex(n.source, n.side);
         int target = (int) Math.pow(2, opp);
 
         //System.out.println("S: " + n.source + " T: " + n.target);
@@ -72,9 +71,8 @@ public abstract class Grid {
 
 
     public void disconnect(Edge n) {
-
-        int source = (int) Math.pow(2, n.index);
-        int opp = getOppositeIndex(n.source, n.index);
+        int source = (int) Math.pow(2, n.side);
+        int opp = getOppositeIndex(n.source, n.side);
         int target = (int) Math.pow(2, opp);
 
         //System.out.println("S: " + n.source + " T: " + n.target);
@@ -84,35 +82,30 @@ public abstract class Grid {
     }
 
     public void toIsland(Cell cell) {
-
         for (Edge edge : cell.getEdges()) {
             disconnect(edge);
         }
-
     }
 
     public boolean isConnected(Edge n) {
-        int source = (int) Math.pow(2, n.index);
-        int opp = getOppositeIndex(n.source, n.index);
+        int source = (int) Math.pow(2, n.side);
+        int opp = getOppositeIndex(n.source, n.side);
         int target = (int) Math.pow(2, opp);
 
         return (n.source.walls & source) == source && (n.target.walls & target) == target;
-
     }
 
+    public abstract int getSides(Cell cell);
 
     public abstract Point getOffset(Cell cell, int index);
 
     public int getOppositeIndex(Cell cell, int index) {
+        int index2 = (index + (cell.sides / 2)) % cell.sides;
 
-
-        int index2 = (index + (sides / 2)) % sides;
-
-        //System.out.println("Before: " + index + " After: " + index2);
-
+        //System.out.println("Before: " + side + " After: " + index2);
 
         return index2;
-        //return cell.x % 2 == cell.y % 2 ? identicalOffsets[index] : distinctOffsets[index];
+        //return cell.x % 2 == cell.y % 2 ? identicalOffsets[side] : distinctOffsets[side];
     }
 
     public final Cell getNeighbor(Cell cell, int index) {
@@ -128,7 +121,7 @@ public abstract class Grid {
     public final Cell[] getNeighbors(Cell cell) {
         ArrayList<Cell> adjacent = new ArrayList<Cell>();
 
-        for (int i = 0; i < sides; i++) {
+        for (int i = 0; i < cell.sides; i++) {
             Cell n = getNeighbor(cell, i);
             if (n == null) continue;
             adjacent.add(n);
@@ -161,7 +154,7 @@ public abstract class Grid {
 
     public final Polygon getSide(Cell cell, int index) {
         java.awt.Point a = getPoint(cell, index);
-        java.awt.Point b = getPoint(cell, (index + 1) % sides);
+        java.awt.Point b = getPoint(cell, (index + 1) % cell.sides);
 
         return new Polygon(
                 new int[]{a.x, b.x},
@@ -171,16 +164,16 @@ public abstract class Grid {
     }
 
     public final Polygon getPolygon(Cell cell) {
-        int[] xs = new int[sides];
-        int[] ys = new int[sides];
-        for (int i = 0; i < sides; i++) {
+        int[] xs = new int[cell.sides];
+        int[] ys = new int[cell.sides];
+        for (int i = 0; i < cell.sides; i++) {
             java.awt.Point p = getPoint(cell, i);
 
             xs[i] = p.x;
             ys[i] = p.y;
         }
 
-        return new Polygon(xs, ys, sides);
+        return new Polygon(xs, ys, cell.sides);
     }
 
   /*  public JSONObject toJson() {

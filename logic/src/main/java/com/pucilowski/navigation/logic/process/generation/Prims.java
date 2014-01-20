@@ -1,8 +1,8 @@
-package com.pucilowski.navigation.logic.algorithm.generation;
+package com.pucilowski.navigation.logic.process.generation;
 
-import com.pucilowski.navigation.logic.algorithm.CellMeta;
-import com.pucilowski.navigation.logic.algorithm.Generator;
-import com.pucilowski.navigation.logic.algorithm.State;
+import com.pucilowski.navigation.logic.process.CellMeta;
+import com.pucilowski.navigation.logic.process.Generator;
+import com.pucilowski.navigation.logic.process.State;
 import com.pucilowski.navigation.logic.grid.Cell;
 import com.pucilowski.navigation.logic.grid.Edge;
 import com.pucilowski.navigation.logic.grid.Grid;
@@ -75,7 +75,6 @@ public class Prims extends Generator {
         }
 
 
-        step.onStep(wall.source);
 
 
     }

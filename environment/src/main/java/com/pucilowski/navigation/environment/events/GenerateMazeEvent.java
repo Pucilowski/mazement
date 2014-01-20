@@ -1,5 +1,6 @@
 package com.pucilowski.navigation.environment.events;
 
+import com.pucilowski.navigation.environment.Environment;
 import com.pucilowski.navigation.environment.enums.MazeGenerator;
 
 /**
@@ -18,4 +19,13 @@ public class GenerateMazeEvent extends Event {
         return "GenerateMazeEvent=["+gen+"]";
     }
 
+    @Override
+    public void handle(Environment env) {
+
+        env.grid.reset();
+        env.process = gen.newGenerator(env.grid);
+
+        env.process.start();
+
+    }
 }

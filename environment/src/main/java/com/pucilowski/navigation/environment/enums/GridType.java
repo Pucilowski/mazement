@@ -4,6 +4,7 @@ import com.pucilowski.navigation.logic.grid.Grid;
 import com.pucilowski.navigation.logic.grid.grids.HexGrid;
 import com.pucilowski.navigation.logic.grid.grids.SqGrid;
 import com.pucilowski.navigation.logic.grid.grids.TriGrid;
+import com.pucilowski.navigation.logic.grid.grids.UpsilonGrid;
 
 /**
  * Created by martin on 24/12/13.
@@ -25,6 +26,13 @@ public enum GridType {
         @Override
         public Grid newMaze(int width, int height) {
             return new HexGrid(width, height);
+        }
+    },
+
+    UPSILON("Upsilon") {
+        @Override
+        public Grid newMaze(int width, int height) {
+            return new UpsilonGrid(width, height);
         }
     };
 

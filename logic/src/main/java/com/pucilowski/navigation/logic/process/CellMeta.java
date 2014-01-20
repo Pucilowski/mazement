@@ -1,4 +1,4 @@
-package com.pucilowski.navigation.logic.algorithm;
+package com.pucilowski.navigation.logic.process;
 
 import com.pucilowski.navigation.logic.grid.Cell;
 

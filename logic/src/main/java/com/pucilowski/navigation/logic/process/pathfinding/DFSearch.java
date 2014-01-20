@@ -1,27 +1,28 @@
-package com.pucilowski.navigation.logic.algorithm.generation;
+package com.pucilowski.navigation.logic.process.pathfinding;
 
-import com.pucilowski.navigation.logic.algorithm.CellMeta;
-import com.pucilowski.navigation.logic.algorithm.Generator;
-import com.pucilowski.navigation.logic.algorithm.State;
+import com.pucilowski.navigation.logic.process.CellMeta;
+import com.pucilowski.navigation.logic.process.Pathfinder;
+import com.pucilowski.navigation.logic.process.State;
 import com.pucilowski.navigation.logic.grid.Cell;
 import com.pucilowski.navigation.logic.grid.Edge;
 import com.pucilowski.navigation.logic.grid.Grid;
 import com.pucilowski.navigation.logic.grid.misc.Lerp;
 
 import java.awt.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
 
 /**
  * Created by martin on 19/12/13.
  */
-public class DFS extends Generator {
+public class DFSearch extends Pathfinder<SearchMeta> {
 
     LinkedList<Cell> visited = new LinkedList<Cell>();
 
     int maxDepth;
 
-    public DFS(Grid grid) {
-        super(grid);
+    public DFSearch(Grid grid, Cell start, Cell goal) {
+        super(grid, start, goal);
     }
 
     @Override
@@ -31,48 +32,61 @@ public class DFS extends Generator {
 
     @Override
     public void step() {
+
         if (visited.isEmpty()) {
-            System.out.println("|");
-            state = State.SUCCESS;
+            state = State.FAILED;
             return;
         }
 
         Cell current = visited.peek();
 
+
+        if (current.equals(goal)) {
+            state = State.SUCCESS;
+            path = path(current);
+            return;
+        }
+
         Edge[] edges = current.getEdges();
-        Collections.shuffle(Arrays.asList(edges), random);
+        //Collections.shuffle(Arrays.asList(edges), random);
 
         CellMeta cM = getMeta(current);
 
         for (Edge edge : edges) {
-            if (edge == null) continue;
-
+            if (!grid.isConnected(edge)) continue;
             //System.out.println("Neighbor: " + edge.target);
-
-            if (edge.target.walls == 0) {
-
-                CellMeta nM = getMeta(edge.target);
-                nM.depth = cM.depth + 1;
-                if (nM.depth > maxDepth) maxDepth = nM.depth;
+            Cell neighbor = edge.target;
+            SearchMeta neighborMeta = getMeta(neighbor);
 
 
-                grid.connect(edge);
-                visited.push(edge.target);
+            neighborMeta.parent = current;
+            neighborMeta.depth = cM.depth + 1;
+            if (neighborMeta.depth > maxDepth) maxDepth = neighborMeta.depth;
 
-                step.onStep(edge.target);
+            visited.push(edge.target);
 
-                return;
-            }
+
+            return;
+
         }
 
         visited.pop();
+    }
+
+    public Cell[] path(Cell v) {
+        ArrayList<Cell> path = new ArrayList<Cell>();
+
+        do {
+            path.add(0, v);
+        } while ((v = getMeta(v).parent) != null);
+
+        return path.toArray(new Cell[path.size()]);
     }
 
     @Override
     public Color getColor(Cell cell) {
 
         int d = getMeta(cell).depth;
-
 
 
         if (cell.walls == 0) return null;

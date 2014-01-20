@@ -25,16 +25,21 @@ public class TriGrid extends Grid {
     };
 
     public TriGrid(int width, int height) {
-        super(width, height, 3);
+        super(width, height);
+    }
+
+    @Override
+    public int getSides(Cell cell) {
+        return 3;
     }
 
     @Override
     public Point getOffset(Cell cell, int index) {
-        //return cell.x % 2 == cell.y % 2 ? identicalOffsets[index] : distinctOffsets[index];
+        //return cell.x % 2 == cell.y % 2 ? identicalOffsets[side] : distinctOffsets[side];
 
 /*        boolean identicalOffsets = cell.x % 2 == cell.y % 2;
 
-        int i = index*2;
+        int i = side*2;
         if(!identicalOffsets) i+=1;
 
         return offsets[i];*/
@@ -47,7 +52,7 @@ public class TriGrid extends Grid {
 
         return index;
 
-        //return cell.x % 2 == cell.y % 2 ? identicalOffsets[index] : distinctOffsets[index];
+        //return cell.x % 2 == cell.y % 2 ? identicalOffsets[side] : distinctOffsets[side];
     }
 
 

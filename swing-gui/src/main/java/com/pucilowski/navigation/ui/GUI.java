@@ -1,6 +1,8 @@
 package com.pucilowski.navigation.ui;
 
 import com.pucilowski.navigation.environment.Environment;
+import com.pucilowski.navigation.environment.enums.GridType;
+import com.pucilowski.navigation.environment.events.NewGridEvent;
 import com.pucilowski.navigation.ui.swing.Frame;
 
 /**
@@ -8,13 +10,13 @@ import com.pucilowski.navigation.ui.swing.Frame;
  */
 public class GUI {
 
-    public final Environment main;
+    public final Environment env;
 
     public Frame frame;
 
 
-    public GUI(Environment main) {
-        this.main = main;
+    public GUI(Environment env) {
+        this.env = env;
 
 
 //        try {
@@ -23,8 +25,10 @@ public class GUI {
 //            System.out.println("Unable to set native look and feel: " + e);
 //        }
 
-        frame = new Frame(main, this);
+        frame = new Frame(env, this);
 
+
+        env.events.sendEvent(new NewGridEvent(GridType.HEXAGON, 40, 20));
     }
 
 }

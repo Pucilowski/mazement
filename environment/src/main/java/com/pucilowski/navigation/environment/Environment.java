@@ -1,45 +1,35 @@
 package com.pucilowski.navigation.environment;
 
-import com.pucilowski.navigation.logic.algorithm.Algorithm;
+import com.pucilowski.navigation.environment.business.EventHandler;
+import com.pucilowski.navigation.environment.business.ProcessHandler;
+import com.pucilowski.navigation.environment.enums.GridType;
 import com.pucilowski.navigation.logic.grid.Grid;
 import com.pucilowski.navigation.logic.grid.grids.HexGrid;
-import com.pucilowski.navigation.logic.grid.grids.SqGrid;
-import com.pucilowski.navigation.environment.business.AlgorithmHandler;
-import com.pucilowski.navigation.environment.business.EventHandler;
+import com.pucilowski.navigation.logic.process.Process;
 
 /**
  * Created by martin on 10/12/13.
  */
-public class Environment {
+public abstract class Environment {
 
-    // data
+    public GridType gridType;
     public Grid grid;
-    public Algorithm algo;
+    public Process process;
 
-    // logic
     public EventHandler events;
-    public AlgorithmHandler logic;
-
-    // ui
-
+    public ProcessHandler logic;
 
     public Environment() {
 
+        gridType = GridType.SQUARE;
         grid = new HexGrid(40, 30);
 
-          logic = new AlgorithmHandler(this);
+        logic = new ProcessHandler(this);
         events = new EventHandler(this);
 
 
-        //final Cell start = grid.cells[grid.width/2][grid.height/2];
-        //final Cell goal = grid.cells[grid.width-1][grid.height-1];
-
-
     }
 
 
-    public void onRefresh() {
-
-    }
-
+    public abstract void onRefresh();
 }

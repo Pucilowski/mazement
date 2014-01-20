@@ -7,17 +7,12 @@ public class Edge {
 
     public final Cell source;
     public final Cell target;
-    public final int index;
+    public final int side;
 
-
-
-    public Edge(Cell source, Cell target, int index) {
+    public Edge(Cell source, Cell target, int side) {
         this.source = source;
         this.target = target;
-        this.index = index;
-
-
+        this.side = side;
     }
-
 
 }

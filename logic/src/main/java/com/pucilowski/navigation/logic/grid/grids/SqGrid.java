@@ -19,7 +19,12 @@ public class SqGrid extends Grid {
     };
 
     public SqGrid(int width, int height) {
-        super(width, height, 4);
+        super(width, height);
+    }
+
+    @Override
+    public int getSides(Cell cell) {
+        return 4;
     }
 
     @Override

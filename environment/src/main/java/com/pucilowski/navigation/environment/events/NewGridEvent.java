@@ -1,5 +1,6 @@
 package com.pucilowski.navigation.environment.events;
 
+import com.pucilowski.navigation.environment.Environment;
 import com.pucilowski.navigation.environment.enums.GridType;
 
 /**
@@ -12,14 +13,21 @@ public class NewGridEvent extends Event {
     public final int height;
 
     public NewGridEvent(GridType type, int width, int height) {
-        this.type=type;
-        this.width=width;
-        this.height=height;
+        this.type = type;
+        this.width = width;
+        this.height = height;
     }
 
     @Override
     public String toString() {
-        return "NewGridEvent=["+type+", "+width+", "+height+"]";
+        return "NewGridEvent=[" + type + ", " + width + ", " + height + "]";
     }
 
+    @Override
+    public void handle(Environment env) {
+        env.process = null;
+
+        env.gridType = type;
+        env.grid = type.newMaze(width, height);
+    }
 }

@@ -1,7 +1,7 @@
 package com.pucilowski.navigation.environment.enums;
 
-import com.pucilowski.navigation.logic.algorithm.Pathfinder;
-import com.pucilowski.navigation.logic.algorithm.pathfinding.AStar;
+import com.pucilowski.navigation.logic.process.Pathfinder;
+import com.pucilowski.navigation.logic.process.pathfinding.AStar;
 import com.pucilowski.navigation.logic.grid.Grid;
 
 /**

@@ -1,4 +1,4 @@
-package com.pucilowski.navigation.logic.algorithm;
+package com.pucilowski.navigation.logic.process;
 
 import com.pucilowski.navigation.logic.grid.Cell;
 import com.pucilowski.navigation.logic.grid.Grid;
@@ -8,7 +8,7 @@ import java.awt.*;
 /**
  * Created by martin on 20/12/13.
  */
-public abstract class Algorithm<M extends CellMeta> {
+public abstract class Process<M extends CellMeta> {
     public State state = State.WORKING;
 
     public final Grid grid;
@@ -16,7 +16,7 @@ public abstract class Algorithm<M extends CellMeta> {
     //HashMap<Cell, CellMeta> data = new HashMap<Cell, CellMeta>();
     final M[][] data;
 
-    public Algorithm(Grid grid) {
+    public Process(Grid grid) {
         this.grid = grid;
 
         data = (M[][]) new CellMeta[grid.width][grid.height];
@@ -51,7 +51,7 @@ public abstract class Algorithm<M extends CellMeta> {
     }
     public  Cell getCurrent() {
         return null;
-    };
+    }
 
     public void paint(Graphics g, Cell cell, Point p, Polygon p2) {
 

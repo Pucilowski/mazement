@@ -1,13 +1,13 @@
-package com.pucilowski.navigation.logic.algorithm;
+package com.pucilowski.navigation.logic.process;
 
-import com.pucilowski.navigation.logic.algorithm.pathfinding.SearchMeta;
+import com.pucilowski.navigation.logic.process.pathfinding.SearchMeta;
 import com.pucilowski.navigation.logic.grid.Cell;
 import com.pucilowski.navigation.logic.grid.Grid;
 
 /**
  * Created by martin on 10/12/13.
  */
-public abstract class Pathfinder<M extends CellMeta> extends Algorithm<M> {
+public abstract class Pathfinder<M extends CellMeta> extends Process<M> {
 
     public final Cell start;
     public final Cell goal;
