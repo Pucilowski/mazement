@@ -22,7 +22,7 @@ public class Main {
 
         gui = new GUI(env);
 
-        env.events.sendEvent(new NewGridEvent(GridType.UPSILON, 65, 35));
+        env.events.sendEvent(new NewGridEvent(GridType.SQUARE, 20, 20));
     }
 
     public static void main(String[] args) {

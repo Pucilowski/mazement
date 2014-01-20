@@ -1,4 +1,4 @@
-navigation
+Amazement
 ==========
 
 A tool for visualising graph algorithms in the context of grids and mazes.
@@ -14,9 +14,11 @@ Graph representations
 Maze generation
 ---------------
 
-* Depth First Search
+* Randomized Depth First Search
 * Prim's
 
 Maze pathfinding
 ----------------
+
+* Depth First Search
 * A* Search

@@ -3,13 +3,20 @@ package com.pucilowski.navigation.environment.enums;
 import com.pucilowski.navigation.logic.process.Pathfinder;
 import com.pucilowski.navigation.logic.process.pathfinding.AStar;
 import com.pucilowski.navigation.logic.grid.Grid;
+import com.pucilowski.navigation.logic.process.pathfinding.DFSearch;
 
 /**
  * Created by martin on 24/12/13.
  */
 public enum MazePathfinder {
 
-    ASTAR("A* Star") {
+    DFSEARCH("Depth First") {
+        @Override
+        public Pathfinder newPathfinder(Grid grid){
+            return new DFSearch(grid);
+        }
+    },
+    ASTAR("A* Star Search") {
         @Override
         public Pathfinder newPathfinder(Grid grid){
             return new AStar(grid);

@@ -50,10 +50,6 @@ public class AStar extends Pathfinder<SearchMeta> {
 
     public AStar(Grid grid, Cell start, Cell goal) {
         super(grid, start, goal);
-
-        //this.weights = distance;
-
-        //start();
     }
 
     public AStar(Grid grid) {
@@ -145,17 +141,7 @@ public class AStar extends Pathfinder<SearchMeta> {
     @Override
     public Color getColor(Cell cell) {
 
-  /*      if (true) {
-            for (Edge e : cell.getEdges()) {
-                SearchMeta sm = getMeta(e.target);
-                if (cell.equals(sm.parent)) {
-                    return colors[e.side];
-                }
-            }
-        }*/
-
         int d = getMeta(cell).depth;
-//        int d = getMeta(cell).order;
 
         if (closed.contains(cell)) {
             float ratio = (float) d / (float) maxDepth;

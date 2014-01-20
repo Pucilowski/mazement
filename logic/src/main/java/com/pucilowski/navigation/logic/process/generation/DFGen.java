@@ -14,13 +14,13 @@ import java.util.*;
 /**
  * Created by martin on 19/12/13.
  */
-public class DFS extends Generator {
+public class DFGen extends Generator {
 
     LinkedList<Cell> visited = new LinkedList<Cell>();
 
     int maxDepth;
 
-    public DFS(Grid grid) {
+    public DFGen(Grid grid) {
         super(grid);
     }
 

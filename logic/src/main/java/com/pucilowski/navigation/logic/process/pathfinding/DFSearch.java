@@ -17,12 +17,17 @@ import java.util.LinkedList;
  */
 public class DFSearch extends Pathfinder<SearchMeta> {
 
+    ArrayList<Cell> explored = new ArrayList<Cell>();
     LinkedList<Cell> visited = new LinkedList<Cell>();
 
     int maxDepth;
 
     public DFSearch(Grid grid, Cell start, Cell goal) {
         super(grid, start, goal);
+    }
+
+    public DFSearch(Grid grid) {
+        this(grid, null, null);
     }
 
     @Override
@@ -40,7 +45,6 @@ public class DFSearch extends Pathfinder<SearchMeta> {
 
         Cell current = visited.peek();
 
-
         if (current.equals(goal)) {
             state = State.SUCCESS;
             path = path(current);
@@ -48,12 +52,11 @@ public class DFSearch extends Pathfinder<SearchMeta> {
         }
 
         Edge[] edges = current.getEdges();
-        //Collections.shuffle(Arrays.asList(edges), random);
 
         CellMeta cM = getMeta(current);
 
         for (Edge edge : edges) {
-            if (!grid.isConnected(edge)) continue;
+            if (!grid.isConnected(edge) || explored.contains(edge.target)) continue;
             //System.out.println("Neighbor: " + edge.target);
             Cell neighbor = edge.target;
             SearchMeta neighborMeta = getMeta(neighbor);
@@ -64,7 +67,7 @@ public class DFSearch extends Pathfinder<SearchMeta> {
             if (neighborMeta.depth > maxDepth) maxDepth = neighborMeta.depth;
 
             visited.push(edge.target);
-
+            explored.add(edge.target);
 
             return;
 
@@ -88,18 +91,19 @@ public class DFSearch extends Pathfinder<SearchMeta> {
 
         int d = getMeta(cell).depth;
 
+        if(explored.contains(cell)) {
+            if (cell.walls == 0) return null;
+            float ratio = (float) d / (float) maxDepth;
 
-        if (cell.walls == 0) return null;
-        float ratio = (float) d / (float) maxDepth;
+            float[] end = new float[3];
+            for (int i = 0; i < 3; i++) {
+                end[i] = Lerp.rainbow[i].interpolate(ratio);
+            }
 
-        float[] end = new float[3];
-        for (int i = 0; i < 3; i++) {
-            end[i] = Lerp.rainbow[i].interpolate(ratio);
+            return new Color(end[0], end[1], end[2], 150f / 255f);
         }
+return null;
 
-        Color c = new Color(end[0], end[1], end[2], 150f / 255f);
-
-        return c;
 
         //g.setColor(c);
         //px = 8 + size/2 * x;
