@@ -16,7 +16,6 @@
         <module>logic</module>
         <module>environment</module>
         <module>swing-gui</module>
-        <module>vaadin-gui</module>
     </modules>
 
     <build>
