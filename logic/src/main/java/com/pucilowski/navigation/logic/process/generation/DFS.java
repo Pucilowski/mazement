@@ -69,15 +69,13 @@ public class DFS extends Generator {
     public Color getColor(Cell cell) {
 
         int min = getMeta(cell).depth;
-        int max = maxDepth;
+        //int max = maxDepth;
+        int max = 20;
 
-/*        int d = getMeta(cell).depth;
-        int max = 40;
-
-        int min = d % max;
-        if (d % (max * 2) >= max) {
+        min = min % max;
+        if (min % (max * 2) >= max) {
             min = max - min;
-        }*/
+        }
 
         if (cell.walls == 0) return null;
         float ratio = (float) min / (float) max;

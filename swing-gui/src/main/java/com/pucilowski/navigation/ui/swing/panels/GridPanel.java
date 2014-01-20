@@ -111,7 +111,7 @@ public class GridPanel extends JPanel {
 
                     if (n != null && grid.isConnected(n)) {
                         //g.setColor(Color.LIGHT_GRAY);
-                        g.setColor(new Color(230, 230, 230, 100));
+                        //g.setColor(new Color(230, 230, 230, 255));
                         continue;
                     } else {
                         g.setColor(Color.BLACK);

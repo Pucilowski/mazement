@@ -28,7 +28,7 @@ public class GUI {
         frame = new Frame(env, this);
 
 
-        env.events.sendEvent(new NewGridEvent(GridType.HEXAGON, 40, 20));
+        //env.events.sendEvent(new NewGridEvent(GridType.UPSILON, 40, 20));
     }
 
 }
