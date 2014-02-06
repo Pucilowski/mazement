@@ -7,32 +7,23 @@ import com.pucilowski.navigation.environment.events.NewGridEvent;
 /**
  * Created by martin on 29/12/13.
  */
-public class Main {
+public class Main extends Environment {
 
-    Environment env;
     GUI gui;
 
     public Main() {
-        env = new Environment() {
-            @Override
-            public void onRefresh() {
-                gui.frame.repaint();
-            }
-        };
+        gui = new GUI(this);
 
-        gui = new GUI(env);
+        events.sendEvent(new NewGridEvent(GridType.SQUARE, 20, 20));
+    }
 
-        env.events.sendEvent(new NewGridEvent(GridType.SQUARE, 20, 20));
+    @Override
+    public void onRefresh() {
+        gui.frame.repaint();
     }
 
     public static void main(String[] args) {
-
-
         new Main();
-
-
-
-
     }
 
 }

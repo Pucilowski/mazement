@@ -64,11 +64,12 @@ public class UpsilonGrid extends Grid {
     public int getOppositeIndex(Cell cell, int index) {
         //int index2 = (index + (cell.sides / 2)) % cell.sides;
 
-        int sides=8;
+        int sides = 8;
         if (isWhite(cell)) {
             // 0 -> 0
             // 2 -> 1
             // 4 -> 2
+            // 6 -> 3
             if (index % 2 == 0) {
                 index /= 2;
                 sides = 4;
@@ -131,11 +132,9 @@ public class UpsilonGrid extends Grid {
 
     @Override
     public void resize(int size) {
-
         sideLength = (int) (SIDE_LENGTH * size);
         cornerWidth = (int) (CORNER_WIDTH * size);
         combined = sideLength + cornerWidth;
-
 
         pointsWhite = new Point[]{
                 new Point(0, -cornerWidth), // NW

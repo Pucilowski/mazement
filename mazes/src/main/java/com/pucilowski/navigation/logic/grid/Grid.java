@@ -39,7 +39,6 @@ public abstract class Grid {
                     Cell neighbor = getNeighbor(cell, side);
                     if (neighbor == null) continue;
 
-                    //cell.edges[(side+2)%sides] = new Edge(cell, neighbor, side);
                     cell.edges[side] = new Edge(cell, neighbor, side);
                 }
             }

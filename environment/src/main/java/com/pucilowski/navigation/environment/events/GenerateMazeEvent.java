@@ -21,8 +21,8 @@ public class GenerateMazeEvent extends Event {
 
     @Override
     public void handle(Environment env) {
-
         env.grid.reset();
+
         env.process = gen.newGenerator(env.grid);
 
         env.process.start();

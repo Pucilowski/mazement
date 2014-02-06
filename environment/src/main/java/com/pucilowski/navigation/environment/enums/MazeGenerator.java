@@ -2,6 +2,7 @@ package com.pucilowski.navigation.environment.enums;
 
 import com.pucilowski.navigation.logic.process.Generator;
 import com.pucilowski.navigation.logic.process.generation.DFGen;
+import com.pucilowski.navigation.logic.process.generation.Kruskals;
 import com.pucilowski.navigation.logic.process.generation.Prims;
 import com.pucilowski.navigation.logic.grid.Grid;
 
@@ -11,14 +12,20 @@ import com.pucilowski.navigation.logic.grid.Grid;
 public enum MazeGenerator {
     SQUARE("Depth First") {
         @Override
-        public Generator newGenerator(Grid grid){
+        public Generator newGenerator(Grid grid) {
             return new DFGen(grid);
         }
     },
-    HEXAGON("Prim's") {
+    PRIMS("Prim's") {
         @Override
-        public Generator newGenerator(Grid grid){
+        public Generator newGenerator(Grid grid) {
             return new Prims(grid);
+        }
+    },
+    KRUSKALS("Kruskal's") {
+        @Override
+        public Generator newGenerator(Grid grid) {
+            return new Kruskals(grid);
         }
     };
 
@@ -28,7 +35,7 @@ public enum MazeGenerator {
         this.label = label;
     }
 
-    public Generator newGenerator(Grid grid){
+    public Generator newGenerator(Grid grid) {
         return null;
     }
 

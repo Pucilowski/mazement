@@ -1,6 +1,8 @@
 package com.pucilowski.navigation.ui.swing.panels;
 
 import com.pucilowski.navigation.environment.Environment;
+import com.pucilowski.navigation.logic.process.CellMeta;
+import com.pucilowski.navigation.logic.process.generation.Kruskals;
 import com.pucilowski.navigation.logic.process.pathfinding.AStar;
 import com.pucilowski.navigation.logic.process.pathfinding.SearchMeta;
 import com.pucilowski.navigation.logic.grid.Cell;
@@ -163,12 +165,17 @@ public class GridPanel extends JPanel {
 
                     if (algo instanceof AStar) {
                         SearchMeta sm = ((AStar) algo).getMeta(cell);
-
                         //g.drawString(sm.fScore + " / " + sm.gScore, px, py);
 
                         if (sm.gScore > 0)
-
                             g.drawString((int)sm.gScore + "", px-4, py+16);
+                    }
+
+                    if (algo instanceof Kruskals) {
+                        CellMeta sm =algo.getMeta(cell);
+                        //g.drawString(sm.fScore + " / " + sm.gScore, px, py);
+
+                            g.drawString((int)sm.depth + "", px+8, py+16);
                     }
 
                 }

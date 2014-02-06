@@ -15,7 +15,7 @@ import com.pucilowski.navigation.logic.process.Process;
  */
 public abstract class Environment {
 
-    public GridType gridType;
+    public GridType gridType = GridType.SQUARE;
     public Grid grid;
     public Process process;
 
@@ -23,13 +23,16 @@ public abstract class Environment {
     public ProcessHandler logic;
 
     public Environment() {
-      gridType = GridType.SQUARE;
+        gridType = GridType.SQUARE;
         grid = new SqGrid(80, 50);
 
         logic = new ProcessHandler(this);
         events = new EventHandler(this);
     }
 
+    public void reset() {
+        grid = gridType.newMaze(80, 50);
+    }
 
     public abstract void onRefresh();
 }

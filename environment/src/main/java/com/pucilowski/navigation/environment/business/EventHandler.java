@@ -26,9 +26,7 @@ public class EventHandler implements Runnable {
         t.start();
     }
 
-    class T extends Thread {
-
-    }
+ 
 
 
     @Override

@@ -32,15 +32,16 @@ public class DFSearch extends Pathfinder<SearchMeta> {
 
     @Override
     public void start() {
-        visited.push(grid.cells[0][0]);
+        explored.add(start);
+        visited.push(start);
     }
 
     @Override
-    public void step() {
+    public boolean step() {
 
         if (visited.isEmpty()) {
             state = State.FAILED;
-            return;
+            return false;
         }
 
         Cell current = visited.peek();
@@ -48,7 +49,7 @@ public class DFSearch extends Pathfinder<SearchMeta> {
         if (current.equals(goal)) {
             state = State.SUCCESS;
             path = path(current);
-            return;
+            return false;
         }
 
         Edge[] edges = current.getEdges();
@@ -69,11 +70,11 @@ public class DFSearch extends Pathfinder<SearchMeta> {
             visited.push(edge.target);
             explored.add(edge.target);
 
-            return;
-
+            return true;
         }
 
         visited.pop();
+        return true;
     }
 
     public Cell[] path(Cell v) {
@@ -91,7 +92,7 @@ public class DFSearch extends Pathfinder<SearchMeta> {
 
         int d = getMeta(cell).depth;
 
-        if(explored.contains(cell)) {
+        if (explored.contains(cell)) {
             if (cell.walls == 0) return null;
             float ratio = (float) d / (float) maxDepth;
 
@@ -102,7 +103,7 @@ public class DFSearch extends Pathfinder<SearchMeta> {
 
             return new Color(end[0], end[1], end[2], 150f / 255f);
         }
-return null;
+        return null;
 
 
         //g.setColor(c);

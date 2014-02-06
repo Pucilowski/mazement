@@ -9,83 +9,69 @@ import com.pucilowski.navigation.logic.grid.Grid;
 import com.pucilowski.navigation.logic.grid.misc.Lerp;
 
 import java.awt.*;
-import java.util.ArrayList;
+import java.util.*;
 
 /**
  * Created by martin on 19/12/13.
  */
-public class Prims extends Generator {
+public class DFGen extends Generator {
 
+    LinkedList<Cell> visited = new LinkedList<Cell>();
 
-    ArrayList<Cell> visited = new ArrayList<Cell>();
-    ArrayList<Edge> walls = new ArrayList<Edge>();
     int maxDepth;
 
-    final Cell start;
-
-    public Prims(Grid grid, Cell start) {
+    public DFGen(Grid grid) {
         super(grid);
-        this.start = start;
-    }
-
-    public Prims(Grid grid) {
-        this(grid, grid.cells[grid.width/2][grid.height/2]);
-    }
-
-    public void start() {
-        addCell(start);
-    }
-
-    public void addCell(Cell cell) {
-        visited.add(cell);
-
-        for (Edge n : cell.edges) {
-            if (n == null) continue;
-            walls.add(n);
-        }
     }
 
     @Override
-    public void step() {
-
-        if (walls.isEmpty()) {
-            state = State.SUCCESS;
-            return;
-        }
-
-        //Collections.shuffle(walls, random);
-        //Edge wall = walls.get(0);
-
-        int n = random.nextInt(walls.size());
-        Edge wall = walls.get(n);
-
-
-        if (visited.contains(wall.target)) {
-            walls.remove(wall);
-        } else {
-            grid.connect(wall);
-
-            CellMeta mSource = getMeta(wall.source);
-            CellMeta mTarget = getMeta(wall.target);
-
-            mTarget.depth = mSource.depth + 1;
-            if (mTarget.depth > maxDepth) maxDepth = mTarget.depth;
-
-            addCell(wall.target);
-        }
-
-
-
-
+    public void start() {
+        visited.push(grid.cells[0][0]);
     }
 
+    @Override
+    public boolean step() {
+        if (visited.isEmpty()) {
+            System.out.println("|");
+            state = State.SUCCESS;
+            return false;
+        }
+
+        Cell current = visited.peek();
+
+        Edge[] edges = current.getEdges();
+        Collections.shuffle(Arrays.asList(edges), random);
+
+        CellMeta cM = getMeta(current);
+
+        for (Edge edge : edges) {
+            if (edge == null) continue;
+
+            //System.out.println("Neighbor: " + edge.target);
+
+            if (edge.target.walls == 0) {
+
+                CellMeta nM = getMeta(edge.target);
+                nM.depth = cM.depth + 1;
+                if (nM.depth > maxDepth) maxDepth = nM.depth;
+
+                grid.connect(edge);
+                visited.push(edge.target);
+
+                return true;
+            }
+        }
+
+        visited.pop();
+        return true;
+    }
 
     @Override
     public Color getColor(Cell cell) {
 
         int min = getMeta(cell).depth;
         //int max = maxDepth;
-        int max = 40;
+        int max = 20;
 
         min = min % max;
         if (min % (max * 2) >= max) {
@@ -112,4 +98,8 @@ public class Prims extends Generator {
 
     }
 
+    @Override
+    public Cell getCurrent() {
+        return visited.peek();
+    }
 }

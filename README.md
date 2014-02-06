@@ -9,7 +9,7 @@ Graph representations
 * Square grid
 * Triangle grid
 * Hexagonal grid
-* Upsilon (?) grid
+* Octagon/square grid
 
 Maze generation
 ---------------

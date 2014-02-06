@@ -21,22 +21,44 @@ public class ProcessHandler implements Runnable {
     public void run() {
 
         while (true) {
-            if (env.process != null && env.process.state == State.WORKING) {
+
+            if (env.process == null) {
+                try {
+                    Thread.sleep(30);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                continue;
+            }
+
+            boolean sleep = false;
+
+            if (env.process.state == State.WORKING) {
                 //System.out.println("step");
 
-                env.process.step();
+                if (env.process.step()) {
+                    sleep = true;
+                }
                 env.onRefresh();
 
-
-
-
+                if (sleep ) {
+                    try {
+                        Thread.sleep(10);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
 
-            try {
-                Thread.sleep(30);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+
+
         }
     }
 }

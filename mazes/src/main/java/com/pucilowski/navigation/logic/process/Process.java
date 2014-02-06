@@ -40,7 +40,7 @@ public abstract class Process<M extends CellMeta> {
 
     public abstract void start();
 
-    public abstract void step();
+    public abstract boolean step();
 
     public void notify(Event e) {
 

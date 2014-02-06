@@ -9,13 +9,10 @@ public class CellMeta {
 
     Cell cell;
 
-    public int depth ;//
-
+    public int depth;
 
     public CellMeta(Cell cell) {
         this.cell = cell;
     }
-
-
 
 }

@@ -13,12 +13,12 @@
     </scm>
 
     <modules>
-        <module>logic</module>
+        <module>mazes</module>
         <module>environment</module>
         <module>swing-gui</module>
     </modules>
 
-    <build>
+<!--    <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -29,6 +29,6 @@
                 </configuration>
             </plugin>
         </plugins>
-    </build>
+    </build>-->
 
 </project>
