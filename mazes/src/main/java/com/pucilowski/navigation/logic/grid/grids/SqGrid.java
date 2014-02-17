@@ -74,7 +74,6 @@ public class SqGrid extends Grid {
         return new Point(sideLength * width, sideLength * height);
     }
 
-
     @Override
     public Point getLocation(Cell cell) {
         int px = sideLength * cell.x;
@@ -82,7 +81,6 @@ public class SqGrid extends Grid {
 
         return new Point(px, py);
     }
-
 
     @Override
     public Point getPoint(Cell cell, int index) {

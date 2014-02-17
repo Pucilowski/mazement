@@ -127,18 +127,6 @@ public class HexGrid extends Grid {
         return new Point(w,h);
     }
 
-    public Point getLocation(Cell cell, int size) {
-        double px = (int) (size * TRIANGLE_WIDTH) + cell.x * (int) (size * TRIANGLE_WIDTH) + cell.x * (int) (size * SIDE_LENGTH);
-        double py = 2 * (int) (TRIANGLE_HEIGHT * size) * cell.y;
-
-        if (cell.x % 2 == 1) py += (TRIANGLE_HEIGHT * size);
-
-        int x = (int) (px);
-        int y = (int) (py);
-
-        return new Point(x, y);
-    }
-
     @Override
     public Point getLocation(Cell cell) {
         int x = triangleWidth + cell.x * triangleWidth + cell.x * sideLength;

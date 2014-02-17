@@ -71,7 +71,7 @@ public class AStar extends Pathfinder<SearchMeta> {
 
     @Override
     public boolean step() {
-        //System.out.println("############ step(" + start + ", " + finish + ")");
+        System.out.println("############ step(" + start + ", " + goal + ")");
 
         if (open.isEmpty()) {
             state = (State.FAILED);
@@ -115,11 +115,9 @@ public class AStar extends Pathfinder<SearchMeta> {
                     open.add(neighbor);
                 }
             }
-
-            return true;
         }
 
-return false;
+        return true;
     }
 
     public Cell[] path(Cell v) {

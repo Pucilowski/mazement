@@ -49,9 +49,7 @@ public class TriGrid extends Grid {
 
     @Override
     public int getOppositeIndex(Cell cell, int index) {
-
         return index;
-
         //return cell.x % 2 == cell.y % 2 ? identicalOffsets[side] : distinctOffsets[side];
     }
 
