@@ -1,10 +1,10 @@
 package com.pucilowski.navigation.environment.enums;
 
-import com.pucilowski.navigation.logic.process.Generator;
-import com.pucilowski.navigation.logic.process.generation.DFGen;
-import com.pucilowski.navigation.logic.process.generation.Kruskals;
-import com.pucilowski.navigation.logic.process.generation.Prims;
-import com.pucilowski.navigation.logic.grid.Grid;
+import com.pucilowski.navigation.mazes.process.Generator;
+import com.pucilowski.navigation.mazes.process.generation.DFGen;
+import com.pucilowski.navigation.mazes.process.generation.Kruskals;
+import com.pucilowski.navigation.mazes.process.generation.Prims;
+import com.pucilowski.navigation.mazes.grid.Grid;
 
 /**
  * Created by martin on 24/12/13.

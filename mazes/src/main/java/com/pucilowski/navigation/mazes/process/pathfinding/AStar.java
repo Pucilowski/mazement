@@ -1,11 +1,11 @@
-package com.pucilowski.navigation.logic.process.pathfinding;
+package com.pucilowski.navigation.mazes.process.pathfinding;
 
-import com.pucilowski.navigation.logic.process.Pathfinder;
-import com.pucilowski.navigation.logic.process.State;
-import com.pucilowski.navigation.logic.grid.Cell;
-import com.pucilowski.navigation.logic.grid.Edge;
-import com.pucilowski.navigation.logic.grid.Grid;
-import com.pucilowski.navigation.logic.grid.misc.Lerp;
+import com.pucilowski.navigation.mazes.process.Pathfinder;
+import com.pucilowski.navigation.mazes.process.State;
+import com.pucilowski.navigation.mazes.grid.Cell;
+import com.pucilowski.navigation.mazes.grid.Edge;
+import com.pucilowski.navigation.mazes.grid.Grid;
+import com.pucilowski.navigation.mazes.grid.misc.Lerp;
 
 import java.awt.*;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.pucilowski.navigation.logic.grid;
+package com.pucilowski.navigation.mazes.grid;
 
 import java.util.ArrayList;
 

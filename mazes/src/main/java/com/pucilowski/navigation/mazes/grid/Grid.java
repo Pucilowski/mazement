@@ -1,6 +1,6 @@
-package com.pucilowski.navigation.logic.grid;
+package com.pucilowski.navigation.mazes.grid;
 
-import com.pucilowski.navigation.logic.grid.misc.PointD;
+import com.pucilowski.navigation.mazes.grid.misc.PointD;
 
 import java.awt.*;
 import java.util.ArrayList;

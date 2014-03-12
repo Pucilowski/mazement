@@ -1,8 +1,8 @@
-package com.pucilowski.navigation.logic.process;
+package com.pucilowski.navigation.mazes.process;
 
-import com.pucilowski.navigation.logic.process.pathfinding.SearchMeta;
-import com.pucilowski.navigation.logic.grid.Cell;
-import com.pucilowski.navigation.logic.grid.Grid;
+import com.pucilowski.navigation.mazes.process.pathfinding.SearchMeta;
+import com.pucilowski.navigation.mazes.grid.Cell;
+import com.pucilowski.navigation.mazes.grid.Grid;
 
 /**
  * Created by martin on 10/12/13.

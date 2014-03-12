@@ -1,8 +1,8 @@
-package com.pucilowski.navigation.logic.grid.grids;
+package com.pucilowski.navigation.mazes.grid.grids;
 
-import com.pucilowski.navigation.logic.grid.Cell;
-import com.pucilowski.navigation.logic.grid.Grid;
-import com.pucilowski.navigation.logic.grid.misc.PointD;
+import com.pucilowski.navigation.mazes.grid.Cell;
+import com.pucilowski.navigation.mazes.grid.Grid;
+import com.pucilowski.navigation.mazes.grid.misc.PointD;
 
 import java.awt.*;
 

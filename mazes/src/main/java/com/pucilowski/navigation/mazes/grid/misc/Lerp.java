@@ -1,4 +1,4 @@
-package com.pucilowski.navigation.logic.grid.misc;
+package com.pucilowski.navigation.mazes.grid.misc;
 
 import java.awt.*;
 

@@ -1,10 +1,10 @@
 package com.pucilowski.navigation.environment.enums;
 
-import com.pucilowski.navigation.logic.grid.Grid;
-import com.pucilowski.navigation.logic.grid.grids.HexGrid;
-import com.pucilowski.navigation.logic.grid.grids.SqGrid;
-import com.pucilowski.navigation.logic.grid.grids.TriGrid;
-import com.pucilowski.navigation.logic.grid.grids.UpsilonGrid;
+import com.pucilowski.navigation.mazes.grid.Grid;
+import com.pucilowski.navigation.mazes.grid.grids.HexGrid;
+import com.pucilowski.navigation.mazes.grid.grids.SqGrid;
+import com.pucilowski.navigation.mazes.grid.grids.TriGrid;
+import com.pucilowski.navigation.mazes.grid.grids.UpsilonGrid;
 
 /**
  * Created by martin on 24/12/13.

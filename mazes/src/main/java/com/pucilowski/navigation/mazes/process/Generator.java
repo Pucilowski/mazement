@@ -1,6 +1,6 @@
-package com.pucilowski.navigation.logic.process;
+package com.pucilowski.navigation.mazes.process;
 
-import com.pucilowski.navigation.logic.grid.Grid;
+import com.pucilowski.navigation.mazes.grid.Grid;
 
 import java.util.Random;
 

@@ -3,12 +3,9 @@ package com.pucilowski.navigation.environment;
 import com.pucilowski.navigation.environment.business.EventHandler;
 import com.pucilowski.navigation.environment.business.ProcessHandler;
 import com.pucilowski.navigation.environment.enums.GridType;
-import com.pucilowski.navigation.environment.events.NewGridEvent;
-import com.pucilowski.navigation.logic.grid.Grid;
-import com.pucilowski.navigation.logic.grid.grids.HexGrid;
-import com.pucilowski.navigation.logic.grid.grids.SqGrid;
-import com.pucilowski.navigation.logic.grid.grids.UpsilonGrid;
-import com.pucilowski.navigation.logic.process.Process;
+import com.pucilowski.navigation.mazes.grid.Grid;
+import com.pucilowski.navigation.mazes.grid.grids.SqGrid;
+import com.pucilowski.navigation.mazes.process.Process;
 
 /**
  * Created by martin on 10/12/13.

@@ -1,4 +1,4 @@
-package com.pucilowski.navigation.logic.process;
+package com.pucilowski.navigation.mazes.process;
 
 import java.io.IOException;
 

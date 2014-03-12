@@ -1,7 +1,7 @@
 package com.pucilowski.navigation.environment.business;
 
 import com.pucilowski.navigation.environment.Environment;
-import com.pucilowski.navigation.logic.process.State;
+import com.pucilowski.navigation.mazes.process.State;
 
 /**
  * Created by martin on 24/12/13.

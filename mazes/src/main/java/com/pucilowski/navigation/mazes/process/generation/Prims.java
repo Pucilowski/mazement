@@ -1,12 +1,12 @@
-package com.pucilowski.navigation.logic.process.generation;
+package com.pucilowski.navigation.mazes.process.generation;
 
-import com.pucilowski.navigation.logic.process.CellMeta;
-import com.pucilowski.navigation.logic.process.Generator;
-import com.pucilowski.navigation.logic.process.State;
-import com.pucilowski.navigation.logic.grid.Cell;
-import com.pucilowski.navigation.logic.grid.Edge;
-import com.pucilowski.navigation.logic.grid.Grid;
-import com.pucilowski.navigation.logic.grid.misc.Lerp;
+import com.pucilowski.navigation.mazes.process.CellMeta;
+import com.pucilowski.navigation.mazes.process.Generator;
+import com.pucilowski.navigation.mazes.process.State;
+import com.pucilowski.navigation.mazes.grid.Cell;
+import com.pucilowski.navigation.mazes.grid.Edge;
+import com.pucilowski.navigation.mazes.grid.Grid;
+import com.pucilowski.navigation.mazes.grid.misc.Lerp;
 
 import java.awt.*;
 import java.util.ArrayList;

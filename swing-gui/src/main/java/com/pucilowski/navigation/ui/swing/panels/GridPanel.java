@@ -1,13 +1,13 @@
 package com.pucilowski.navigation.ui.swing.panels;
 
 import com.pucilowski.navigation.environment.Environment;
-import com.pucilowski.navigation.logic.process.CellMeta;
-import com.pucilowski.navigation.logic.process.generation.Kruskals;
-import com.pucilowski.navigation.logic.process.pathfinding.AStar;
-import com.pucilowski.navigation.logic.process.pathfinding.SearchMeta;
-import com.pucilowski.navigation.logic.grid.Cell;
-import com.pucilowski.navigation.logic.grid.Edge;
-import com.pucilowski.navigation.logic.grid.Grid;
+import com.pucilowski.navigation.mazes.process.CellMeta;
+import com.pucilowski.navigation.mazes.process.generation.Kruskals;
+import com.pucilowski.navigation.mazes.process.pathfinding.AStar;
+import com.pucilowski.navigation.mazes.process.pathfinding.SearchMeta;
+import com.pucilowski.navigation.mazes.grid.Cell;
+import com.pucilowski.navigation.mazes.grid.Edge;
+import com.pucilowski.navigation.mazes.grid.Grid;
 
 import javax.swing.*;
 import java.awt.*;
@@ -77,7 +77,7 @@ public class GridPanel extends JPanel {
 
 
         Grid grid = main.grid;
-        com.pucilowski.navigation.logic.process.Process algo = main.process;
+        com.pucilowski.navigation.mazes.process.Process algo = main.process;
 
 
         //g.setColor(Color.RED);

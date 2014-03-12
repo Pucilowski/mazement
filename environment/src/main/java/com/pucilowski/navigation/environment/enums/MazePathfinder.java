@@ -1,9 +1,9 @@
 package com.pucilowski.navigation.environment.enums;
 
-import com.pucilowski.navigation.logic.process.Pathfinder;
-import com.pucilowski.navigation.logic.process.pathfinding.AStar;
-import com.pucilowski.navigation.logic.grid.Grid;
-import com.pucilowski.navigation.logic.process.pathfinding.DFSearch;
+import com.pucilowski.navigation.mazes.process.Pathfinder;
+import com.pucilowski.navigation.mazes.process.pathfinding.AStar;
+import com.pucilowski.navigation.mazes.grid.Grid;
+import com.pucilowski.navigation.mazes.process.pathfinding.DFSearch;
 
 /**
  * Created by martin on 24/12/13.
