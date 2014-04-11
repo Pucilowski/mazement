@@ -22,6 +22,10 @@ public class Cell {
         this.edges = new Edge[sides];
     }
 
+    public class TH {
+
+    }
+
     public Edge getEdge(int side) {
         return edges[side];
     }

@@ -11,31 +11,30 @@ import com.pucilowski.navigation.environment.events.SolveMazeEvent;
 import com.pucilowski.navigation.mazes.grid.Grid;
 import com.pucilowski.navigation.mazes.grid.grids.SqGrid;
 import com.pucilowski.navigation.mazes.process.Task;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+/*import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;*/
 
 /**
  * Created by martin on 10/12/13.
  */
 
-@Component
+//@Component
 public abstract class Environment {
 
     public GridType gridType = GridType.SQUARE;
     public Grid grid = new SqGrid(20, 20);
 
-    @Autowired
+    //@Autowired
     public EventBus bus;
     public final TaskHandler logic;
 
     public Environment() {
         System.out.println("Environment()" + this);
 
-        //bus = new EventBus();
+        bus = new EventBus();
         logic = new TaskHandler(this);
-    }
 
-    public void init() {
+
         bus.register(this);
     }
 

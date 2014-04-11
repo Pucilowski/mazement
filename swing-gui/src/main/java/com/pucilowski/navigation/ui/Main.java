@@ -3,11 +3,11 @@ package com.pucilowski.navigation.ui;
 import com.pucilowski.navigation.environment.Environment;
 import com.pucilowski.navigation.environment.enums.GridType;
 import com.pucilowski.navigation.environment.events.NewGridEvent;
-import org.springframework.context.ApplicationContext;
+/*import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Component;*/
 
 /**
  * Created by martin on 29/12/13.
@@ -26,17 +26,18 @@ public class Main extends Environment {
 
         gui = new GUI(this);
 
+        System.out.println("gui: " + gui);
 
-    }
-
-    public void init() {
+        //init();
         bus.post(new NewGridEvent(GridType.SQUARE, 20, 20));
 
         onRefresh();
     }
 
+
     @Override
     public void onRefresh() {
+        if(gui==null)System.out.println("null gui");
         gui.frame.repaint();
     }
 

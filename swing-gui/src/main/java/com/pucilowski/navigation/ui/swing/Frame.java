@@ -11,7 +11,6 @@ import com.pucilowski.navigation.environment.enums.MazeGenerator;
 import com.pucilowski.navigation.environment.enums.MazePathfinder;
 import com.pucilowski.navigation.ui.swing.panels.ControlPanel;
 import com.pucilowski.navigation.ui.swing.panels.GridPanel;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
@@ -28,7 +27,7 @@ import java.awt.event.ActionListener;
 
 public class Frame extends JFrame {
 
-    @Autowired
+    //@Autowired
     EventBus bus;
 
 
@@ -50,9 +49,11 @@ public class Frame extends JFrame {
 
     public ControlPanel controlPanel;
 
-    public Frame(Environment env,GUI gui) {
-        this.env=env;
+    public Frame(Environment env, GUI gui) {
+        this.env = env;
         this.gui = gui;
+
+        bus = env.bus;
 
         setTitle("Navigation");
 
@@ -132,7 +133,7 @@ public class Frame extends JFrame {
 
 
         controlPanel = new ControlPanel();
-        controlPanel.setPreferredSize(new Dimension(128,0));
+        controlPanel.setPreferredSize(new Dimension(128, 0));
 
         add(gridPanel, BorderLayout.CENTER);
         add(controlPanel, BorderLayout.EAST);
