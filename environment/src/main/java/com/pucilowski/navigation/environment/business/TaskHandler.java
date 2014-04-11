@@ -1,16 +1,19 @@
 package com.pucilowski.navigation.environment.business;
 
 import com.pucilowski.navigation.environment.Environment;
-import com.pucilowski.navigation.mazes.process.State;
+import com.pucilowski.navigation.mazes.process.*;
+import com.pucilowski.navigation.mazes.process.Task;
 
 /**
  * Created by martin on 24/12/13.
  */
-public class ProcessHandler implements Runnable {
+public class TaskHandler implements Runnable {
 
     final Environment env;
 
-    public ProcessHandler(Environment env) {
+    private Task task;
+
+    public TaskHandler(Environment env) {
         this.env = env;
 
         Thread t = new Thread(this);
@@ -22,7 +25,7 @@ public class ProcessHandler implements Runnable {
 
         while (true) {
 
-            if (env.process == null) {
+            if (task == null) {
                 try {
                     Thread.sleep(30);
                 } catch (InterruptedException e) {
@@ -33,10 +36,10 @@ public class ProcessHandler implements Runnable {
 
             boolean sleep = false;
 
-            if (env.process.state == State.WORKING) {
+            if (task.state == State.WORKING) {
                 //System.out.println("step");
 
-                if (env.process.step()) {
+                if (task.step()) {
                     sleep = true;
                 }
                 env.onRefresh();
@@ -60,5 +63,13 @@ public class ProcessHandler implements Runnable {
 
 
         }
+    }
+
+    public void setTask(Task task) {
+        this.task = task;
+    }
+
+    public Task getTask() {
+        return task;
     }
 }

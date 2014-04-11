@@ -5,6 +5,8 @@ import com.pucilowski.navigation.environment.enums.GridType;
 import com.pucilowski.navigation.environment.events.NewGridEvent;
 import com.pucilowski.navigation.ui.swing.Frame;
 
+import javax.swing.*;
+
 /**
  * Created by martin on 15/12/13.
  */
@@ -19,11 +21,11 @@ public class GUI {
         this.env = env;
 
 
-//        try {
-//            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-//        } catch (Exception e) {
-//            System.out.println("Unable to set native look and feel: " + e);
-//        }
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (Exception e) {
+            System.out.println("Unable to set native look and feel: " + e);
+        }
 
         frame = new Frame(env, this);
 

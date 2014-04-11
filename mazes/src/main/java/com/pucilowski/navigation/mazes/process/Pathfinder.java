@@ -7,7 +7,7 @@ import com.pucilowski.navigation.mazes.grid.Grid;
 /**
  * Created by martin on 10/12/13.
  */
-public abstract class Pathfinder<M extends CellMeta> extends Process<M> {
+public abstract class Pathfinder<M extends CellMeta> extends Task<M> {
 
     public final Cell start;
     public final Cell goal;

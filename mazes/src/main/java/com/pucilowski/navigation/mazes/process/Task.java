@@ -8,7 +8,7 @@ import java.awt.*;
 /**
  * Created by martin on 20/12/13.
  */
-public abstract class Process<M extends CellMeta> {
+public abstract class Task<M extends CellMeta> {
     public State state = State.WORKING;
 
     public final Grid grid;
@@ -16,7 +16,7 @@ public abstract class Process<M extends CellMeta> {
     //HashMap<Cell, CellMeta> data = new HashMap<Cell, CellMeta>();
     final M[][] data;
 
-    public Process(Grid grid) {
+    public Task(Grid grid) {
         this.grid = grid;
 
         data = (M[][]) new CellMeta[grid.width][grid.height];

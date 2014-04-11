@@ -23,11 +23,5 @@ public class NewGridEvent extends Event {
         return "NewGridEvent=[" + type + ", " + width + ", " + height + "]";
     }
 
-    @Override
-    public void handle(Environment env) {
-        env.process = null;
 
-        env.gridType = type;
-        env.grid = type.newMaze(width, height);
-    }
 }

@@ -7,6 +7,5 @@ import com.pucilowski.navigation.environment.Environment;
  */
 public abstract class Event {
 
-    public abstract void handle(Environment env) ;
 
 }

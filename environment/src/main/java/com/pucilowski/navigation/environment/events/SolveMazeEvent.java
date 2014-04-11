@@ -19,10 +19,5 @@ public class SolveMazeEvent extends Event {
         return "SolveMazeEvent=["+gen+"]";
     }
 
-    @Override
-    public void handle(Environment env) {
-        env.process = gen.newPathfinder(env.grid);
 
-        env.process.start();
-    }
 }

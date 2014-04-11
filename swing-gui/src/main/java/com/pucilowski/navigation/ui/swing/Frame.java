@@ -1,5 +1,6 @@
 package com.pucilowski.navigation.ui.swing;
 
+import com.google.common.eventbus.EventBus;
 import com.pucilowski.navigation.environment.Environment;
 import com.pucilowski.navigation.ui.GUI;
 import com.pucilowski.navigation.environment.events.GenerateMazeEvent;
@@ -10,6 +11,7 @@ import com.pucilowski.navigation.environment.enums.MazeGenerator;
 import com.pucilowski.navigation.environment.enums.MazePathfinder;
 import com.pucilowski.navigation.ui.swing.panels.ControlPanel;
 import com.pucilowski.navigation.ui.swing.panels.GridPanel;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
@@ -22,7 +24,13 @@ import java.awt.event.ActionListener;
 /**
  * Created by martin on 10/12/13.
  */
+
+
 public class Frame extends JFrame {
+
+    @Autowired
+    EventBus bus;
+
 
     final Environment env;
     final GUI gui;
@@ -179,7 +187,8 @@ public class Frame extends JFrame {
 
         if (result == JOptionPane.YES_OPTION) {
             NewGridEvent event = new NewGridEvent((GridType) types.getSelectedItem(), width.getValue(), height.getValue());
-            gui.env.events.sendEvent(event);
+            //gui.env.events.sendEvent(event);
+            gui.env.bus.post(event);
         }
 
 
@@ -204,14 +213,16 @@ public class Frame extends JFrame {
     public void menuGenerateMaze(MazeGenerator gen) {
 
         GenerateMazeEvent event = new GenerateMazeEvent(gen);
-        gui.env.events.sendEvent(event);
+        //gui.env.events.sendEvent(event);
+        bus.post(event);
 
     }
 
     public void menuSolveMaze(MazePathfinder gen) {
 
         SolveMazeEvent event = new SolveMazeEvent(gen);
-        gui.env.events.sendEvent(event);
+        //gui.env.events.sendEvent(event);
+        bus.post(event);
 
     }
 

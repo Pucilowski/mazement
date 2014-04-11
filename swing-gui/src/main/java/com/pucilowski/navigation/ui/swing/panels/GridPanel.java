@@ -1,8 +1,7 @@
 package com.pucilowski.navigation.ui.swing.panels;
 
 import com.pucilowski.navigation.environment.Environment;
-import com.pucilowski.navigation.mazes.process.CellMeta;
-import com.pucilowski.navigation.mazes.process.generation.Kruskals;
+import com.pucilowski.navigation.mazes.process.Task;
 import com.pucilowski.navigation.mazes.process.pathfinding.AStar;
 import com.pucilowski.navigation.mazes.process.pathfinding.SearchMeta;
 import com.pucilowski.navigation.mazes.grid.Cell;
@@ -77,7 +76,7 @@ public class GridPanel extends JPanel {
 
 
         Grid grid = main.grid;
-        com.pucilowski.navigation.mazes.process.Process algo = main.process;
+        Task algo = main.logic.getTask();
 
 
         //g.setColor(Color.RED);
@@ -171,12 +170,12 @@ public class GridPanel extends JPanel {
                             g.drawString((int)sm.gScore + "", px-4, py+16);
                     }
 
-                    if (algo instanceof Kruskals) {
+                    /*if (algo instanceof Kruskals) {
                         CellMeta sm =algo.getMeta(cell);
                         //g.drawString(sm.fScore + " / " + sm.gScore, px, py);
 
                             g.drawString((int)sm.depth + "", px+8, py+16);
-                    }
+                    }*/
 
                 }
             }
